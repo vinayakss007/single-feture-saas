@@ -1,2 +1,7 @@
 packages:
+  # The ten products. Each one is built on the framework in _template/.
   - 'apps/*'
+  # The abetworks.in banner site. Deliberately NOT under apps/: it is a shop
+  # window, not a product — it has no engine, no accounts and nothing to meter, so
+  # holding it to the product contract in _template/ would be wrong.
+  - 'site'

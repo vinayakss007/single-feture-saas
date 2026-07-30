@@ -45,6 +45,10 @@ jobs:
       - name: Framework is in sync
         run: pnpm sync:check
 
+      # Fails if the abetworks.in hub is advertising stale product copy.
+      - name: Hub catalog is current
+        run: pnpm run gen:hub:check
+
       - name: Typecheck
         run: pnpm typecheck
 

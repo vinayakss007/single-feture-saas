@@ -248,16 +248,37 @@ function rootReadme() {
     .map((p) => `| ${p.name} | \`${p.mcpTool}\` | \`apps/${p.dir}/mcp/server.mjs\` |`)
     .join("\n");
 
-  return `# ${suite.name}
+  return `# Abet Works — Single-Feature SaaS Framework + Ten Products
 
-Ten enterprise-ready SaaS products. Each does **exactly one job**, and each ships with four surfaces so it can be sold to humans, to backends and to agents:
+**A documented standard for building single-feature SaaS, plus ten products built on it.**
+
+- **[site/](./site)** — **abetworks.in**, the banner site. One page that puts every product one click
+  away, with a products menu that links straight out to each one. Generated from the same catalog as
+  everything else, so it cannot advertise stale copy.
+- **[FRAMEWORK.md](./FRAMEWORK.md)** — the standard. Architecture, the nine rules, how to build a new
+  product in six steps, the money path, testing and monitoring standards, the free-service stack, and
+  the launch, security and operations checklists. **Read this first.**
+- **[ROADMAP.md](./ROADMAP.md)** — ten more researched product ideas (11–20), each buildable on the
+  framework by writing two files.
+
+Each product ships six surfaces, so it can be sold to humans, to backends and to agents:
 
 1. a **marketing site** — hero, problem, features, pricing, FAQ
 2. a **working product** at \`/app\` — no signup, no API key, no empty state
-3. a **REST API** at \`POST /api/v1/run\` that publishes its own schema
-4. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/${suite.repo.split("/")[0]}/aw-agent-fleet) can use it as a tool
+3. **accounts and billing** — signup, login, password reset, dashboard, Razorpay and Stripe checkout,
+   metered quotas, API keys
+4. a **REST API** at \`POST /api/v1/run\` that publishes its own schema
+5. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/${suite.repo.split("/")[0]}/aw-agent-fleet) can use it as a tool
+6. **monitoring** — \`/api/health\`, Prometheus \`/api/metrics\`, webhook alerts, a retention cron
 
-Every product is independently deployable. Nothing is shared at runtime.
+Every product is independently deployable. Nothing is shared at runtime; everything is shared at
+build time via \`_template/\`, enforced by \`pnpm sync:check\`.
+
+### It runs with an empty \`.env\`
+
+With no environment variables at all, every product boots and its demo works, metered by IP. Add
+\`DATABASE_URL\` and it becomes the full product with accounts and billing. Add payment keys and it
+takes money. Same build throughout — no flags, no separate demo deployment.
 
 ## The ten
 
@@ -306,9 +327,24 @@ cd apps/01-dealbrief && pnpm dev
 Verify everything:
 
 \`\`\`bash
-pnpm typecheck        # tsc --noEmit across all ten
-pnpm build            # production build across all ten
-node scripts/smoke.mjs # boots each app, runs its own example, asserts real output
+pnpm verify           # sync:check → gen:hub:check → typecheck → test → build → smoke
+\`\`\`
+
+Or step by step:
+
+\`\`\`bash
+pnpm sync             # propagate _template/ into all ten, regenerate lib/schema.ts
+pnpm sync:check       # fail if any product has drifted from the framework
+pnpm run gen:hub      # regenerate the banner site's product catalog
+pnpm typecheck        # tsc --noEmit across all ten plus the site
+pnpm test             # 42 unit tests per product, 10 for the site — 430 total
+pnpm build            # production build across all eleven
+pnpm smoke            # boots each app with NO env vars, asserts real output
+pnpm run gen:docs     # regenerate this README and the per-app docs
+
+# Full stack against a real Postgres — 55 checks
+DATABASE_URL=postgres://… node scripts/db-apply.mjs --twice
+DATABASE_URL=postgres://… node scripts/test-integration.mjs --app 01-dealbrief
 \`\`\`
 
 \`scripts/smoke.mjs\` is worth understanding: it reads each product's example payload from that product's own \`GET /api/v1/run\` schema endpoint and POSTs it back. So it verifies the documented contract and the real one agree, not just that the server starts.
@@ -330,9 +366,21 @@ apps/                 ten independently deployable Next.js apps
     Dockerfile        multi-stage, standalone output, healthcheck
     LAUNCH.md         Product Hunt / HN / Reddit kit
   02-churnsignal/ … 10-promptshield/
-_template/            canonical shared kit — copy this to add an eleventh
+site/                 abetworks.in — the banner site, deployed at the apex
+_template/            THE FRAMEWORK — 55 shared files, the single source of truth
+  lib/                16 modules: auth, db, payments, plans, usage, observability, …
+  db/schema.sql       one schema shared by all products, idempotent
+  tests/              42 tests every product must pass
+FRAMEWORK.md          the standard: rules, architecture, checklists, free services
+ROADMAP.md            products 11-20, researched
 docs/                 deploy guide, portfolio, launch playbook
-scripts/              catalog, doc generator, smoke tests
+scripts/
+  sync-template.mjs   propagates _template/ into every app; --check for CI
+  test-integration.mjs 55 end-to-end checks against a real Postgres
+  db-apply.mjs        apply the schema; --twice proves idempotency
+  smoke.mjs           boots every app with no env
+  gen-hub-catalog.mjs generates the banner site's catalog; --check for CI
+  gen-docs.mjs        regenerates this README and the per-app docs
 \`\`\`
 
 ## Adding an eleventh product
@@ -345,7 +393,17 @@ cd apps/11-yourproduct
 sed -i 's|@abetworks/PRODUCT_SLUG|@abetworks/yourproduct|; s|PRODUCT_DESCRIPTION|Your tagline|' package.json
 \`\`\`
 
-Then write \`lib/product.ts\` (copy, pricing, inputs, example) and \`lib/engine.ts\` (one function: \`run(input) => RunResult\`). The landing page, demo UI, REST API, MCP server, Docker build and result renderer all work without modification.
+Then write \`lib/product.ts\` (copy, pricing, inputs, example) and \`lib/engine.ts\` (one function: \`run(input) => RunResult\`), and run:
+
+\`\`\`bash
+pnpm sync && pnpm install && pnpm verify
+\`\`\`
+
+Landing page, demo UI, auth, dashboard, billing, quotas, REST API, MCP server, monitoring, Docker
+build and 42 tests all work without modification. The banner site picks it up from
+\`scripts/catalog.json\` via \`pnpm run gen:hub\`.
+
+**Full walkthrough with checklists: [FRAMEWORK.md § 4](./FRAMEWORK.md#4-build-a-new-product-in-six-steps).**
 
 ## MCP tools
 
@@ -361,11 +419,35 @@ Every server takes \`SFS_API_URL\` and optional \`SFS_API_KEY\`, and derives its
 - [docs/PORTFOLIO.md](docs/PORTFOLIO.md) — the full portfolio with positioning and revenue model per product
 - [docs/LAUNCH-PLAYBOOK.md](docs/LAUNCH-PLAYBOOK.md) — sequencing all ten launches without burning the audience
 
+## What you need to deploy
+
+Nothing, to run the demos. To take money, four things — all free to start:
+
+| | Service | Free tier |
+|---|---|---|
+| Hosting | Vercel | Hobby (Pro at $20/mo once commercial) |
+| Postgres | Neon | 0.5 GB, scale-to-zero |
+| Payments | Razorpay (India) or Stripe | No monthly fee |
+| Email | Resend | 3,000/month |
+
+Full table including monitoring, uptime and analytics:
+[FRAMEWORK.md § 8](./FRAMEWORK.md#8-free-services-the-whole-stack-at-0month).
+Every variable is documented in \`_template/.env.example\`.
+
 ## Status
 
-All ten: \`tsc --noEmit\` clean, \`next build\` clean, and passing \`scripts/smoke.mjs\` end to end — server boots, landing page and demo render, engine returns real output.
+- **430/430** unit tests — 42 per product, 10 for the banner site
+- **55/55** integration checks against a real PostgreSQL 15, verified on two different products
+- **11/11** typecheck, **11/11** production build, **10/10** smoke with no environment variables
+- Schema verified idempotent by applying it twice
 
 Every engine has been run against real input. PingDeck and AnswerReady were verified against live third-party sites, including real TLS certificates and real RDAP registry responses.
+
+Four framework bugs were found and fixed by these tests, each of which would have broken production:
+a \`pgcrypto\` extension dependency many managed providers do not grant; a schema loaded via
+\`readFileSync\` from a path that does not exist in a Vercel bundle; one shared rate-limit bucket
+across all routes, so a login burst locked out password resets; and metrics reporting the database as
+down whenever a table had not been created yet.
 
 ---
 

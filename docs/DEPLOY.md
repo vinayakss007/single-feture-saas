@@ -1,8 +1,38 @@
 # Deploy
 
-Ten apps, ten deployments. Each is independent — nothing is shared at runtime, so one can go down or get rewritten without touching the others.
+Eleven deployments: the **abetworks.in banner site** at the apex, and ten products on subdomains.
+Each is independent — nothing is shared at runtime, so one can go down or get rewritten without
+touching the others.
 
-## Vercel (recommended, fastest)
+```
+abetworks.in                    site/              the banner site
+  ├── dealbrief.abetworks.in    apps/01-dealbrief
+  ├── churnsignal.abetworks.in  apps/02-churnsignal
+  └── … eight more
+```
+
+## The banner site first
+
+Deploy this before the products so there is always one URL to point people at.
+
+1. **New Project** → import `vinayakss007/single-feture-saas`
+2. **Root Directory** → `site`
+3. Domain → `abetworks.in`, with `www.abetworks.in` redirecting to it
+4. Environment → `NEXT_PUBLIC_SITE_URL=https://abetworks.in`
+
+It prerenders to a single static page, so it costs nothing to serve.
+
+**Launching products one at a time?** The hub links to `https://<slug>.abetworks.in` by default. Until
+a product has its real domain, override just that one:
+
+```bash
+NEXT_PUBLIC_PRODUCT_URL_DEALBRIEF=https://dealbrief-abc123.vercel.app
+```
+
+Remove the override once DNS is live. `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` repoints all ten at once,
+which is what you want for a staging apex.
+
+## Vercel — the products
 
 Each app needs its own Vercel project pointing at the same repository, with a different root directory.
 
