@@ -11,11 +11,12 @@
     "test": "pnpm -r run test",
     "lint": "pnpm run typecheck",
     "smoke": "node scripts/smoke.mjs",
+    "mcp": "node scripts/test-mcp.mjs",
     "integration": "node scripts/test-integration.mjs",
     "gen:hub": "node scripts/gen-hub-catalog.mjs",
     "gen:hub:check": "node scripts/gen-hub-catalog.mjs --check",
     "gen:docs": "node scripts/gen-docs.mjs",
-    "verify": "pnpm run sync:check && pnpm run gen:hub:check && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke",
+    "verify": "pnpm run sync:check && pnpm run gen:hub:check && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke && pnpm run mcp",
     "db:apply": "node scripts/db-apply.mjs",
     "clean": "rm -rf apps/*/.next apps/*/node_modules node_modules"
   },

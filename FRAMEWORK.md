@@ -358,14 +358,42 @@ that only break when wired together:
   a login burst locked out password resets)
 - Cron auth; security headers; **CORS open on `/api/v1/*` but not on auth, keys or billing**
 
-### Layer 3 — Suite-wide
+### Layer 3 — MCP protocol, per product: 8 checks
 
 ```bash
-pnpm verify   # sync:check → gen:hub:check → typecheck → test → build → smoke
+pnpm run mcp                          # all products
+node scripts/test-mcp.mjs --app 11-aiactnotice
+```
+
+Speaks real newline-delimited JSON-RPC to each `mcp/server.mjs` over stdio — no SDK, because the
+point is to prove the wire format is right and a client library would paper over exactly the mistakes
+worth catching.
+
+Per product: `initialize` returns the protocol version and advertises tools; a notification produces
+no reply and does not desynchronise the stream; `tools/list` returns one snake_case tool with a
+specific description and a schema whose required fields all exist in its properties; `tools/call`
+with the product's own sample returns a real result; an unknown tool is refused with `-32602`; an
+unsupported method returns `-32601`; empty arguments surface as a **tool** error rather than a
+protocol error or a crash; and **nothing but JSON-RPC is ever written to stdout**, since one stray
+`console.log` breaks the transport for every client.
+
+Because the server derives its schema from the product's own `GET /api/v1/run`, this also proves the
+agent-facing contract cannot drift from the REST one: change a product's inputs without updating the
+schema and `tools/call` fails here.
+
+### Layer 4 — Suite-wide
+
+```bash
+pnpm verify   # sync:check → gen:hub:check → typecheck → test → build → smoke → mcp
 ```
 
 `pnpm smoke` boots every app with **no environment variables at all** and asserts the landing page,
 demo, health endpoint and API respond — which is rule 3, enforced.
+
+Both `smoke` and `mcp` strip the variables that switch a product out of demo mode before spawning
+anything, rather than inheriting your shell. A check whose job is proving "works with no
+configuration" cannot itself depend on configuration — inheriting made `pnpm smoke` pass or fail
+depending on rows a previous run had left in the database.
 
 ### The bar
 

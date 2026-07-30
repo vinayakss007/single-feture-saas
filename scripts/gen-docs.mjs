@@ -331,7 +331,7 @@ cd apps/01-dealbrief && pnpm dev
 Verify everything:
 
 \`\`\`bash
-pnpm verify           # sync:check → gen:hub:check → typecheck → test → build → smoke
+pnpm verify           # sync:check → gen:hub:check → typecheck → test → build → smoke → mcp
 \`\`\`
 
 Or step by step:
@@ -344,6 +344,7 @@ pnpm typecheck        # tsc --noEmit across all twenty plus the site
 pnpm test             # 42 unit tests per product, 10 for the site — 850 total
 pnpm build            # production build across all twenty-one
 pnpm smoke            # boots each app with NO env vars, asserts real output
+pnpm run mcp          # real JSON-RPC over stdio against all 20 MCP servers
 pnpm run gen:docs     # regenerate this README and the per-app docs
 
 # Full stack against a real Postgres — 55 checks
@@ -441,7 +442,8 @@ Every variable is documented in \`_template/.env.example\`.
 ## Status
 
 - **850/850** unit tests — 42 per product, 10 for the banner site
-- **55/55** integration checks against a real PostgreSQL 15, verified on two different products
+- **160/160** MCP protocol checks — real JSON-RPC over stdio, 8 per product
+- **55/55** integration checks against a real PostgreSQL 15, verified on three different products
 - **21/21** typecheck, **21/21** production build, **20/20** smoke with no environment variables
 - Schema verified idempotent by applying it twice
 

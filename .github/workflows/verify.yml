@@ -72,6 +72,11 @@ jobs:
       - name: Smoke (no env)
         run: pnpm smoke
 
+      # The agent-facing contract. Real JSON-RPC over stdio against every product's
+      # mcp/server.mjs — the one surface nothing else covered.
+      - name: MCP protocol
+        run: pnpm run mcp
+
       - name: Schema is idempotent
         run: node scripts/db-apply.mjs --twice
         env:
