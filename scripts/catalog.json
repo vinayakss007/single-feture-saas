@@ -1,0 +1,240 @@
+{
+  "suite": {
+    "name": "Abet Works — Single-Feature SaaS Suite",
+    "company": "Abet Works",
+    "site": "https://abetworks.in",
+    "repo": "vinayakss007/single-feture-saas"
+  },
+  "products": [
+    {
+      "dir": "01-dealbrief",
+      "slug": "dealbrief",
+      "name": "DealBrief",
+      "accent": "#4f46e5",
+      "category": "Revenue operations",
+      "tagline": "Turn any sales call transcript into a CRM-ready deal brief",
+      "job": "Sales call transcript in, qualified deal brief out.",
+      "price": "Free · $29/user/mo · usage from $0.04/brief",
+      "mcpTool": "dealbrief_analyze_call",
+      "engine": "MEDDICC coverage scoring, commitment extraction with owner and date attribution, nine risk rules, speaker aliasing and talk-ratio analysis.",
+      "differentiator": "A meeting recorder summarises what was said. DealBrief judges the deal — what is missing, what is at risk, and who owes what by when.",
+      "phTagline": "CRM-ready deal briefs from any sales call transcript",
+      "phFirstComment": "I built this because I have never once met a sales rep who enjoyed writing CRM notes, and I have never once seen a forecast review that did not stall on \"what is the actual next step here\".\n\nEvery meeting recorder now gives you an AI summary. A summary tells you what was said. It does not tell you that the economic buyer was never named, that nobody committed to a date, or that a competitor got mentioned twelve minutes in. Those are the things that decide whether the deal closes.\n\nSo DealBrief does the judging instead of the summarising. Paste a transcript and you get next actions attributed to whoever actually said them, MEDDICC gaps flagged against your current pipeline stage, risk flags with severity, a stakeholder map with talk ratios, and a CRM note you can paste without editing.\n\nIt is deterministic — no LLM in the path. Same transcript, same brief, zero cost per call, and nothing invented. There is a REST API and an MCP server too, so your agents can write the CRM update themselves.\n\nFree tier needs no signup. Curious what it says about your last call.",
+      "phGallery": [
+        "Paste a transcript — Zoom, Meet, Fireflies, Gong or your own notes. Speaker labels are optional.",
+        "Deal health scored out of 100, with MEDDICC coverage and every risk flag that fired.",
+        "Next actions extracted with the owner who committed and the date they gave.",
+        "A CRM activity note formatted to paste straight into the opportunity.",
+        "Same engine over REST and MCP, so your agents can update the CRM without you."
+      ],
+      "audience": "B2B sales teams, RevOps, sales managers running pipeline reviews"
+    },
+    {
+      "dir": "02-churnsignal",
+      "slug": "churnsignal",
+      "name": "ChurnSignal",
+      "accent": "#e11d48",
+      "category": "Customer success",
+      "tagline": "Paste a CSV, find out which customers are about to leave",
+      "job": "Account CSV in, ranked churn risk with reason codes out.",
+      "price": "Free · $49/mo · Enterprise custom",
+      "mcpTool": "churnsignal_score_accounts",
+      "engine": "Six weighted signals — usage trend, dormancy, seat adoption, support pressure, satisfaction, renewal proximity — normalised against the signals your export actually contains.",
+      "differentiator": "A health score without reason codes tells a CSM nothing. Every score here shows which signals fired, how many points each added, and the specific save play for the dominant one.",
+      "phTagline": "Churn risk scoring with reason codes, from a CSV",
+      "phFirstComment": "Proper customer health scoring means a warehouse, a modelling layer, and someone whose job it is to own them. Most teams under fifty people are never going to get there, so they run on vibes until someone cancels.\n\nChurnSignal is the version that fits in an afternoon. Export your accounts from wherever they live, paste the CSV, get a ranked risk list back.\n\nTwo things I was deliberate about. First, it is not machine learning — on a book of forty accounts an ML model is a random number generator with better marketing. It is a transparent weighted rules model, so you can read exactly why an account scored 78 and argue with it in a pipeline review. Second, every score comes with reason codes and a save play, because \"this account is 74% likely to churn\" does not tell anyone what to do on Monday morning.\n\nYour column names do not have to match a schema — common header variants are recognised automatically and any signal you did not export is excluded from the score rather than silently counted as healthy.\n\nFree tier, no signup, nothing stored. There is a REST API and an MCP server if you want it scored nightly.",
+      "phGallery": [
+        "Paste any account export. Column order and naming do not have to match a schema.",
+        "Revenue-weighted portfolio risk, with critical and watchlist counts and MRR at risk.",
+        "Per-account reason codes — which signals fired and how many points each contributed.",
+        "A specific save play per risk pattern. Dormant accounts need a different move to pricing friction.",
+        "Scored CSV back out, ready to re-import into your CRM."
+      ],
+      "audience": "SaaS founders, customer success teams, account managers"
+    },
+    {
+      "dir": "03-pricepulse",
+      "slug": "pricepulse",
+      "name": "PricePulse",
+      "accent": "#0891b2",
+      "category": "Competitive intelligence",
+      "tagline": "Know the moment a competitor changes their pricing page",
+      "job": "Two pricing page snapshots in, classified commercial diff out.",
+      "price": "Free · $39/mo · Enterprise custom",
+      "mcpTool": "pricepulse_diff_pricing",
+      "engine": "Parses both snapshots into a structured plan model — price, period, seats, quotas, trial length, feature placement — then classifies differences into thirteen change types weighted by commercial impact.",
+      "differentiator": "Visual diff tools fire on a rotated testimonial and a changed copyright year. This one parses the plans first, so only changes that affect what a buyer pays or gets ever surface.",
+      "phTagline": "A commercial diff for competitor pricing pages, not a text diff",
+      "phFirstComment": "Every page-monitoring tool I tried had the same problem: it alerted on the copyright year rolling over and on a rotated testimonial. After a week of that, nobody opens the alerts, and then you find out about the real change from a lost deal.\n\nPricePulse parses both snapshots into a plan model first — plans, prices, seat counts, API quotas, trial lengths and which features sit in which tier — and only then compares. So it can tell you \"SSO moved from Enterprise to Professional\", which is the change that reprices your entire deal, rather than \"31 lines differ\".\n\nThirteen change types, ranked by commercial impact, each with the positioning response a rep can use on the next call. Plus a Slack alert and a battlecard update in markdown, ready to paste.\n\nOn why you paste snapshots instead of giving me a URL: the honest version of URL monitoring is a scheduler, and you probably already have one. The diff engine is the hard part and it is free here. It also means pages behind a login work fine.\n\nDeterministic, no LLM, no per-call cost. REST API and MCP server included.",
+      "phGallery": [
+        "Paste yesterday's pricing page and today's. Plain text is enough.",
+        "Commercial impact score, with high-impact changes separated from noise.",
+        "Feature tier shifts called out explicitly — the change that quietly reprices your deals.",
+        "Plan-by-plan comparison table showing what was repriced, added or killed.",
+        "A Slack alert and a battlecard update, generated and ready to paste."
+      ],
+      "audience": "Product marketing, pricing owners, competitive intelligence, founders"
+    },
+    {
+      "dir": "04-consentscan",
+      "slug": "consentscan",
+      "name": "ConsentScan",
+      "accent": "#059669",
+      "category": "Privacy compliance",
+      "tagline": "Scan any website for India DPDP and GDPR consent compliance",
+      "job": "URL in, prioritised DPDP and GDPR finding list out.",
+      "price": "Free · $59/mo · Enterprise custom",
+      "mcpTool": "consentscan_audit_site",
+      "engine": "Fetches the page and its privacy policy, then runs 24 checks: 16 tracker signatures, cookie classification from Set-Cookie headers, 11 consent platform signatures, nine privacy-notice disclosure checks and five security headers.",
+      "differentiator": "Every finding names the specific DPDP section or GDPR article it touches, and is ordered by penalty exposure. Most scanners just say \"cookie banner missing\".",
+      "phTagline": "Find your DPDP and GDPR violations before a regulator does",
+      "phFirstComment": "If you collect a name, an email or a phone number from anyone in India, the DPDP Act makes you a Data Fiduciary with notice, consent and grievance obligations. Most Indian sites have none of them in place, and the maximum penalty for consent failures is ₹250 crore.\n\nThe most common violation is also the most invisible: Google Analytics, Meta Pixel and Hotjar all load on first paint, long before the cookie banner appears. A banner that does not actually block anything is decoration, not compliance. ConsentScan detects exactly that case — it tells you when you have a consent platform installed and trackers firing anyway.\n\n24 checks in about eight seconds. It fetches your privacy policy and reads it rather than assuming a link is enough, so it can tell you that you have no consent withdrawal mechanism and no named Grievance Officer, which DPDP specifically requires and GDPR does not phrase the same way.\n\nEvery finding cites the obligation it breaches and the specific fix, ordered by penalty exposure.\n\nOne honest caveat: this is not legal advice and I would be suspicious of any tool that claimed to be. Use it to brief your counsel, not to replace them.\n\nFree, no signup, nothing stored.",
+      "phGallery": [
+        "Enter any URL. The scan takes about eight seconds.",
+        "Compliance score with high-severity findings separated, weighted by which regime matters to you.",
+        "Trackers detected in the initial HTML — the ones that run before consent is possible.",
+        "Cookies on the first response, classified as necessary, analytics or advertising.",
+        "A remediation checklist citing the DPDP section or GDPR article behind each finding."
+      ],
+      "audience": "Indian SMBs, web agencies, anyone with EU users, compliance owners"
+    },
+    {
+      "dir": "05-invoiceparse",
+      "slug": "invoiceparse",
+      "name": "InvoiceParse",
+      "accent": "#7c3aed",
+      "category": "Finance automation",
+      "tagline": "Turn any invoice into clean data — and catch the GST errors",
+      "job": "Invoice text in, validated structured data and ledger CSV out.",
+      "price": "Free · $39/mo · $0.01/invoice at volume",
+      "mcpTool": "invoiceparse_extract_and_validate",
+      "engine": "Label-driven extraction rather than layout templates, plus 15 validation rules including the real GSTIN mod-36 check digit, state code and embedded PAN structure, inter-state versus intra-state tax logic, and every total re-derived from its parts.",
+      "differentiator": "Most parsers regex-match a 15-character string and call the GSTIN valid. This runs the actual check-digit algorithm, so a typo that would cost you input tax credit six months later gets caught now.",
+      "phTagline": "Invoice data extraction that actually validates the GST",
+      "phFirstComment": "Two things happen with invoices at almost every Indian company. Someone types numbers from a PDF into a ledger, and nobody re-adds the invoice.\n\nSo invalid GSTINs pass straight through — and a GSTIN that looks right but fails its check digit means your input tax credit gets rejected months later, long after you paid the vendor. And arithmetic errors sail past: CGST that does not equal SGST, a subtotal that does not match the line items, IGST charged on an intra-state supply.\n\nInvoiceParse does both jobs. It extracts the header fields and line items from pasted text — no per-vendor templates, because it looks for the labels every tax invoice carries rather than for positions on a page. Then it validates: the real GSTIN mod-36 check digit, the state code, the embedded PAN structure, inter-state versus intra-state tax logic from the two state codes, and every total re-derived from its parts with the exact discrepancy reported.\n\nThe demo invoice looks correct at a glance. It is not — the seller is in Maharashtra and the buyer in Karnataka, so charging CGST plus SGST instead of IGST is wrong. That is the kind of thing this catches.\n\nOutput is JSON plus a ledger CSV for Tally or Zoho Books. Free, nothing stored, REST API and MCP server included.",
+      "phGallery": [
+        "Paste invoice text from a PDF, OCR output or an email body.",
+        "Validation score with blocking issues separated from warnings.",
+        "GSTIN verified properly — state code, embedded PAN and the real mod-36 check digit.",
+        "Line items extracted with HSN codes, and every total re-computed from the parts.",
+        "Ledger-ready CSV with the tax split already separated, one row per line item."
+      ],
+      "audience": "Indian accountants, finance teams, B2B marketplaces, AP automation"
+    },
+    {
+      "dir": "06-coldangle",
+      "slug": "coldangle",
+      "name": "ColdAngle",
+      "accent": "#ea580c",
+      "category": "Outbound sales",
+      "tagline": "Cold email openers that prove you actually did the research",
+      "job": "Public research text in, grounded openers and a deliverability audit out.",
+      "price": "Free · $29/mo · Agency custom",
+      "mcpTool": "coldangle_write_opener",
+      "engine": "Nine research angle types ranked by reply likelihood, each quoting the sentence it was found in, plus 14 content-side deliverability checks and a specificity score.",
+      "differentiator": "Every clause traces back to a line in the text you pasted. If the fact is not there, the opener does not assert it — which is why it never produces \"I loved your recent post about digital transformation\".",
+      "phTagline": "Cold email openers grounded in a fact you actually found",
+      "phFirstComment": "AI personalisation is obvious personalisation. \"I loved your recent post about digital transformation\" fools nobody, reads worse than honest brevity, and burns your domain doing it.\n\nThe reason is structural: if you let a model invent the specificity, it will. So ColdAngle does not. You paste what you actually found — their about page, a job ad, a funding announcement, a founder's post — and it extracts the usable angles, ranks them by how likely each is to earn a reply, and shows you the exact sentence each one came from. Every clause in the output traces back to your input. No LLM in the path.\n\nNine angle types. The strongest by far is \"they described the problem themselves\", because then you are not pitching a problem, you are quoting theirs back to them. A funding round is next, because budget objections are weakest in the ninety days after a round closes. A mission statement is worth nothing and it says so.\n\nYou also get three complete emails, all under 120 words, and a fourteen-point deliverability audit that catches trigger words, shouting, link stuffing and \"just checking in\" before you send.\n\nIf your research text has nothing usable in it, it tells you that instead of making something up. That is a signal to find a better source.",
+      "phGallery": [
+        "Paste what you found — about page, job ad, press release or a founder's post.",
+        "Angles ranked by reply likelihood, each quoting the sentence it came from.",
+        "Three complete emails, all under 120 words.",
+        "A fourteen-point deliverability audit before you send.",
+        "Specificity score — if it is low, it is a template and it will be treated like one."
+      ],
+      "audience": "Founders doing their own outbound, SDRs, agencies running sequences"
+    },
+    {
+      "dir": "07-repurpose10",
+      "slug": "repurpose10",
+      "name": "Repurpose10",
+      "accent": "#db2777",
+      "category": "Content marketing",
+      "tagline": "One thing you wrote becomes ten platform-native posts",
+      "job": "One long-form piece in, eleven platform-native outputs out.",
+      "price": "Free · $29/mo · Agency custom",
+      "mcpTool": "repurpose10_fan_out",
+      "engine": "Hook scoring across seven signals, key-point extraction per paragraph, then generation inside each platform's real character limit — including counting links as 23 characters on X.",
+      "differentiator": "It selects and restructures your sentences rather than rewriting them. Your voice survives and no fact gets invented.",
+      "phTagline": "Turn one post into ten, each written for its platform",
+      "phFirstComment": "Cross-posting identical text is why most repurposing gets no reach. A LinkedIn post dropped into X gets truncated. An X thread dropped into LinkedIn looks like a ransom note. And doing it properly is forty minutes of counting characters and moving links around — real work with zero creative value.\n\nRepurpose10 does that forty minutes. Eleven outputs: X thread, X single, LinkedIn, Instagram, YouTube title and description, newsletter intro, Reddit, Quora, Threads and a WhatsApp broadcast. Each generated inside the platform's actual limit, with the character count shown against it, so nothing gets silently truncated at publish time.\n\nThe part I care about most: it does not rewrite your words with a model. It selects, ranks and restructures the sentences you already wrote. A model rewriting your copy is how a distinctive voice turns into the same beige paragraph everyone else is publishing, and how facts quietly get invented.\n\nIt also ranks your candidate hooks. Every long piece has one sentence that would work as an opener, it is almost never the first sentence, and it almost never gets promoted. You get the top five scored, with the reason each scored well.\n\nPlus platform conventions respected — link in the first comment for LinkedIn, no hashtags at all for Reddit, question framing for Quora — and a posting schedule so ten posts do not all land on the same morning.",
+      "phGallery": [
+        "Paste a blog post, newsletter, transcript or documentation page.",
+        "Eleven outputs, each inside its platform's real character limit.",
+        "Hook candidates ranked, with the reason each one scores.",
+        "Character usage per format, so nothing gets truncated at publish time.",
+        "A posting schedule across the week, because ten posts on one morning is spam."
+      ],
+      "audience": "Solo creators, content teams, agencies managing client calendars"
+    },
+    {
+      "dir": "08-pingdeck",
+      "slug": "pingdeck",
+      "name": "PingDeck",
+      "accent": "#2563eb",
+      "category": "Monitoring",
+      "tagline": "The three outages nobody monitors, checked in one place",
+      "job": "URLs in, availability plus certificate and domain expiry out.",
+      "price": "Free · $19/mo · $79/mo agency",
+      "mcpTool": "pingdeck_check_endpoints",
+      "engine": "Manual redirect-chain following for real timing, a genuine TLS handshake reading the peer certificate with SAN hostname matching, and registry RDAP lookup for domain expiry.",
+      "differentiator": "Uptime tools are a commodity. Expiring certificates and expiring domains cause a large share of small-site outages and almost nothing checks both — here they are free.",
+      "phTagline": "Uptime plus the SSL and domain expiry nobody monitors",
+      "phFirstComment": "Certificates expire on a Saturday. Auto-renewal works right up until the day it silently does not, and then every browser shows an interstitial and your traffic goes to zero until someone notices.\n\nDomains are worse. The renewal notice went to an inbox nobody reads, on a card that expired. That kills the site and the email on the domain at the same time, which is exactly why nobody finds out quickly.\n\nPingDeck checks all three failure classes in one call. The TLS check is a real handshake — it reads the peer certificate for issuer, subject alternative names and the not-after date, and tells you whether the hostname actually matches. The domain check queries the registry directly over RDAP, so a lapsing domain shows up weeks out. And the HTTP check follows redirects manually so you see every hop, because chained redirects are the most common quiet performance bug.\n\nYou also get a self-contained HTML status page with no external dependencies. Host it on a different provider to your app — a status page that goes down with the thing it monitors is not a status page.\n\nFree tier checks ten URLs on demand. Continuous checking and alerting is the paid tier, but the certificate and domain checks are free, because those are the ones that actually catch people out.",
+      "phGallery": [
+        "Paste up to ten URLs. The scheme is optional.",
+        "Overall health with per-endpoint status, response time and redirect count.",
+        "Real certificate detail — issuer, subject, days remaining and hostname match.",
+        "Domain registration expiry straight from the registry over RDAP.",
+        "A self-contained status page. One file, no dependencies, host it anywhere."
+      ],
+      "audience": "Small teams, agencies managing client sites, solo operators"
+    },
+    {
+      "dir": "09-answerready",
+      "slug": "answerready",
+      "name": "AnswerReady",
+      "accent": "#0d9488",
+      "category": "AI search optimisation",
+      "tagline": "Find out whether AI search can actually read your site",
+      "job": "URL in, AI answer-engine readiness score and the two missing files out.",
+      "price": "Free · $39/mo · Agency custom",
+      "mcpTool": "answerready_audit_page",
+      "engine": "A real robots.txt group parser with longest-match precedence checked against seven AI crawlers, no-JavaScript content measurement, JSON-LD extraction and type inventory, and quotability signals. Generates llms.txt and a JSON-LD block from your real content.",
+      "differentiator": "Ranking tools measure backlinks. None of them tell you that you are blocking OAI-SearchBot, or that your content does not exist without JavaScript — which is what decides whether you get cited in an answer.",
+      "phTagline": "Can ChatGPT and Perplexity actually read your site?",
+      "phFirstComment": "A lot of sites added GPTBot to robots.txt in 2023 to protect their content. The result in 2026 is being invisible in the answers where buyers now start their research. Most of those teams do not know it is still there.\n\nAnswerReady shows you your site the way an answer engine sees it. It parses your robots.txt properly — real user-agent groups, longest-match-wins precedence — and reports per crawler whether GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot and Bytespider can reach the page, and which rule decided it.\n\nThen the check almost nothing else does: how much content exists without JavaScript. Most AI crawlers do not execute it, so if your page is a client-rendered shell they see an empty div and your competitor gets cited instead. It measures the real text in the server response and tells you.\n\nPlus structured data types present and missing, quotability signals, and it generates the two files you are probably missing — an llms.txt built from your actual content and a valid JSON-LD block populated from your real page.\n\nOn llms.txt: adoption is still growing, so treat it as cheap insurance rather than a guarantee. It costs you one file.\n\nWhether to allow AI crawlers is a business decision and the report does not make it for you. But you should know which choice you have currently made.",
+      "phGallery": [
+        "Enter any page you want cited in AI answers.",
+        "Readiness score, with critical crawler blocks called out first.",
+        "Per-crawler access, and the exact robots.txt rule that decided it.",
+        "Content measured without JavaScript — what a non-rendering crawler actually receives.",
+        "A generated llms.txt and JSON-LD block, built from your real content."
+      ],
+      "audience": "SEO owners, content marketers, founders losing traffic to AI answers"
+    },
+    {
+      "dir": "10-promptshield",
+      "slug": "promptshield",
+      "name": "PromptShield",
+      "accent": "#4338ca",
+      "category": "AI security",
+      "tagline": "One API call between untrusted text and your agent",
+      "job": "Untrusted text in, verdict plus redacted text out.",
+      "price": "Free 1k/mo · $0.20/1k calls · self-hosted custom",
+      "mcpTool": "promptshield_scan_text",
+      "engine": "14 injection rules across nine attack classes, plus 12 PII and secret types with Luhn validation for card numbers and Verhoeff validation for Aadhaar, so a 12-digit order reference is never reported as a national ID.",
+      "differentiator": "A model asked to judge untrusted text is itself reading untrusted text and can be talked out of its judgement. Deterministic rules cannot be persuaded, run in single-digit milliseconds and cost nothing per call.",
+      "phTagline": "Prompt injection and PII firewall for AI agents, in one call",
+      "phFirstComment": "The moment your agent reads a support ticket, a scraped page or an uploaded document, an attacker controls part of your prompt. That is the whole attack surface, and most teams ship without addressing it.\n\nIt only becomes an incident because of tools. A model that can only talk produces a bad answer. A model with email, database or shell access produces a breach. Injection risk scales exactly with the permissions you handed it.\n\nPromptShield goes in front. One POST with the text your agent is about to read, and you get a verdict — allow, review or block — every detection with its class and the matched span, and a redacted copy with PII replaced by stable typed tokens like [CARD_1] so the model never sees the value but your application still can.\n\nNine attack classes: instruction override, persona hijack, system-prompt exfiltration, tool abuse, delimiter injection, encoding evasion, markdown exfiltration channels, non-English override and authority spoofing.\n\nDeliberately not a model. A model asked to judge untrusted text is reading untrusted text and can be argued out of its judgement — and it adds latency and cost to every request. Rules cannot be persuaded. Under five milliseconds, no inference cost.\n\nCard numbers are Luhn-checked and Aadhaar numbers Verhoeff-checked, so your 12-digit order reference does not get reported as a national ID.\n\nAnd the honest part: nothing stops all prompt injection. Anyone telling you otherwise is selling something. This is the first layer. Keep your tool permissions minimal too.",
+      "phGallery": [
+        "POST the text your agent is about to read. One call, no configuration.",
+        "Allow, review or block — with the threshold set by the policy you chose.",
+        "Every detection with its attack class and the exact matched span.",
+        "PII and secrets replaced with stable typed tokens you can reverse on your side.",
+        "Three policy levels, so an agent with shell access can be stricter than a summariser."
+      ],
+      "audience": "Teams shipping AI agents to production, platform and security engineers"
+    }
+  ]
+}
