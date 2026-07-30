@@ -56,6 +56,10 @@ Nine rules. Each one is enforced by a test, a script, or the type system — not
 test. That is the pattern for every exception: **declare it in the config, document the reason, and
 substitute a weaker test — never delete one.**
 
+It remains the only exception across all twenty products. Products 11–20 were built after this rule
+was written and none of them needed it — which is the evidence that the rule is workable rather than
+merely aspirational.
+
 ---
 
 ## 2. Architecture
@@ -180,6 +184,9 @@ stdio) · `db/schema.sql` · `middleware.ts` · `Dockerfile` · `vercel.json` wi
 ## 4. Build a new product in six steps
 
 Budget: **one to two days.** You write two files.
+
+Products 11–20 were each built exactly this way. Nothing in `_template/` changed to accommodate any
+of them, which is the only real test of whether this is a framework or just a folder of shared files.
 
 ### Step 1 — Scaffold
 
@@ -354,7 +361,7 @@ that only break when wired together:
 ### Layer 3 — Suite-wide
 
 ```bash
-pnpm verify   # sync:check → typecheck → test → build → smoke
+pnpm verify   # sync:check → gen:hub:check → typecheck → test → build → smoke
 ```
 
 `pnpm smoke` boots every app with **no environment variables at all** and asserts the landing page,

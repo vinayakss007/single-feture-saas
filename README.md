@@ -8,8 +8,8 @@
 - **[FRAMEWORK.md](./FRAMEWORK.md)** — the standard. Architecture, the nine rules, how to build a new
   product in six steps, the money path, testing and monitoring standards, the free-service stack, and
   the launch, security and operations checklists. **Read this first.**
-- **[ROADMAP.md](./ROADMAP.md)** — ten more researched product ideas (11–20), each buildable on the
-  framework by writing two files.
+- **[ROADMAP.md](./ROADMAP.md)** — the market research behind products 11–20. All ten are now built,
+  each by writing only `lib/product.ts` and `lib/engine.ts` with no framework change.
 
 Each product ships six surfaces, so it can be sold to humans, to backends and to agents:
 
@@ -44,6 +44,16 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`08-pingdeck`](apps/08-pingdeck) | **PingDeck** | URLs in, availability plus certificate and domain expiry out. | Monitoring | Free · $19/mo · $79/mo agency |
 | [`09-answerready`](apps/09-answerready) | **AnswerReady** | URL in, AI answer-engine readiness score and the two missing files out. | AI search optimisation | Free · $39/mo · Agency custom |
 | [`10-promptshield`](apps/10-promptshield) | **PromptShield** | Untrusted text in, verdict plus redacted text out. | AI security | Free 1k/mo · $0.20/1k calls · self-hosted custom |
+| [`11-aiactnotice`](apps/11-aiactnotice) | **AIActNotice** | AI system description in, risk tier and Article 50 notice out. | AI governance | Free · ₹2,499/mo · Enterprise custom |
+| [`12-a11ygate`](apps/12-a11ygate) | **A11yGate** | HTML in, WCAG failures with fixes and a publishable accessibility statement out. | Accessibility compliance | Free · ₹1,999/mo · Agency custom |
+| [`13-gstmatch`](apps/13-gstmatch) | **GSTMatch** | Two CSVs in, input tax credit at risk in rupees out. | Tax compliance | Free · ₹1,499/mo · Enterprise custom |
+| [`14-einvoiceguard`](apps/14-einvoiceguard) | **eInvoiceGuard** | Invoice payload in, portal error codes and a corrected payload out. | Finance automation | Free · ₹1,999/mo · Platform custom |
+| [`15-subaudit`](apps/15-subaudit) | **SubAudit** | Statement CSV in, subscription map with duplicates and renewals out. | Finance operations | Free · ₹1,499/mo · Enterprise custom |
+| [`16-policypack`](apps/16-policypack) | **PolicyPack** | Company profile in, policy set with control mapping and gap list out. | Security compliance | Free · ₹2,499/mo · Enterprise custom |
+| [`17-vendortrace`](apps/17-vendortrace) | **VendorTrace** | Vendor list in, Article 30 register and subprocessor page out. | Privacy compliance | Free · ₹1,999/mo · Enterprise custom |
+| [`18-payslipin`](apps/18-payslipin) | **PaySlipIN** | Annual CTC in, full payslip with PF, ESI, PT and TDS out. | Payroll compliance | Free · ₹999/mo · Practice custom |
+| [`19-dmarcfix`](apps/19-dmarcfix) | **DMARCFix** | Email auth records in, lookup count, failures and corrected records out. | Email deliverability | Free · ₹1,499/mo · Agency custom |
+| [`20-contractclock`](apps/20-contractclock) | **ContractClock** | Contract text in, deadlines and a calendar file out. | Contract operations | Free · ₹1,999/mo · Enterprise custom |
 
 ## Why these ten
 
@@ -92,12 +102,12 @@ pnpm verify           # sync:check → gen:hub:check → typecheck → test → 
 Or step by step:
 
 ```bash
-pnpm sync             # propagate _template/ into all ten, regenerate lib/schema.ts
+pnpm sync             # propagate _template/ into all twenty, regenerate lib/schema.ts
 pnpm sync:check       # fail if any product has drifted from the framework
 pnpm run gen:hub      # regenerate the banner site's product catalog
-pnpm typecheck        # tsc --noEmit across all ten plus the site
-pnpm test             # 42 unit tests per product, 10 for the site — 430 total
-pnpm build            # production build across all eleven
+pnpm typecheck        # tsc --noEmit across all twenty plus the site
+pnpm test             # 42 unit tests per product, 10 for the site — 850 total
+pnpm build            # production build across all twenty-one
 pnpm smoke            # boots each app with NO env vars, asserts real output
 pnpm run gen:docs     # regenerate this README and the per-app docs
 
@@ -131,7 +141,7 @@ _template/            THE FRAMEWORK — 55 shared files, the single source of tr
   db/schema.sql       one schema shared by all products, idempotent
   tests/              42 tests every product must pass
 FRAMEWORK.md          the standard: rules, architecture, checklists, free services
-ROADMAP.md            products 11-20, researched
+ROADMAP.md            the research behind products 11-20
 docs/                 deploy guide, portfolio, launch playbook
 scripts/
   sync-template.mjs   propagates _template/ into every app; --check for CI
@@ -178,6 +188,16 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | PingDeck | `pingdeck_check_endpoints` | `apps/08-pingdeck/mcp/server.mjs` |
 | AnswerReady | `answerready_audit_page` | `apps/09-answerready/mcp/server.mjs` |
 | PromptShield | `promptshield_scan_text` | `apps/10-promptshield/mcp/server.mjs` |
+| AIActNotice | `aiactnotice_classify_system` | `apps/11-aiactnotice/mcp/server.mjs` |
+| A11yGate | `a11ygate_audit_html` | `apps/12-a11ygate/mcp/server.mjs` |
+| GSTMatch | `gstmatch_reconcile_2b` | `apps/13-gstmatch/mcp/server.mjs` |
+| eInvoiceGuard | `einvoiceguard_validate_payload` | `apps/14-einvoiceguard/mcp/server.mjs` |
+| SubAudit | `subaudit_find_subscriptions` | `apps/15-subaudit/mcp/server.mjs` |
+| PolicyPack | `policypack_generate_policies` | `apps/16-policypack/mcp/server.mjs` |
+| VendorTrace | `vendortrace_build_register` | `apps/17-vendortrace/mcp/server.mjs` |
+| PaySlipIN | `payslipin_compute_payslip` | `apps/18-payslipin/mcp/server.mjs` |
+| DMARCFix | `dmarcfix_audit_records` | `apps/19-dmarcfix/mcp/server.mjs` |
+| ContractClock | `contractclock_extract_deadlines` | `apps/20-contractclock/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 
@@ -204,9 +224,9 @@ Every variable is documented in `_template/.env.example`.
 
 ## Status
 
-- **430/430** unit tests — 42 per product, 10 for the banner site
+- **850/850** unit tests — 42 per product, 10 for the banner site
 - **55/55** integration checks against a real PostgreSQL 15, verified on two different products
-- **11/11** typecheck, **11/11** production build, **10/10** smoke with no environment variables
+- **21/21** typecheck, **21/21** production build, **20/20** smoke with no environment variables
 - Schema verified idempotent by applying it twice
 
 Every engine has been run against real input. PingDeck and AnswerReady were verified against live third-party sites, including real TLS certificates and real RDAP registry responses.

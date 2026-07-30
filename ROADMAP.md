@@ -1,8 +1,16 @@
-# Products 11–20: the next ten, researched
+# Products 11–20: the research, and what got built
 
-Ten more single-feature SaaS products, chosen from market research in July 2026. Every one of them
-is **buildable on [the framework](./FRAMEWORK.md) by writing two files** — `lib/product.ts` and
-`lib/engine.ts` — and inheriting accounts, billing, quotas, API, MCP, monitoring and 42 tests.
+> **Status: all ten are built and shipping.** Every one was produced by writing exactly two files —
+> `lib/product.ts` and `lib/engine.ts` — with **no change to `_template/`**. They inherit accounts,
+> billing, quotas, the REST API, the MCP server, monitoring and 42 tests from the framework.
+>
+> None needed `probesNetwork: true`, so all ten are deterministic. Three real bugs were found and
+> fixed while building them, each in the product's own headline feature: GSTMatch failing to match
+> `INV/2026/0412` against `inv-2026-412`, SubAudit double-counting a subscription that was both a
+> duplicate and stale, and ContractClock reading a 12-month term as 360 days and picking the wrong
+> notice period. Notes on each are in the detail below.
+
+Ten single-feature SaaS products, chosen from market research in July 2026.
 
 ## What the research actually said
 
@@ -181,6 +189,21 @@ in rather than resolved.
 found nothing is honest in a way that a confident wrong answer is not.
 
 ---
+
+## What was built, and what changed
+
+| Product | Engine approach | Bug found while building |
+|---|---|---|
+| AIActNotice | Decision table over the Act's articles, FNV-1a evidence hash | — |
+| A11yGate | 34 regex checks over markup, contrast from inline styles | — |
+| GSTMatch | Segment-wise invoice normalisation, GSTIN checksum | **Separator stripping before zero-normalisation broke matching** |
+| eInvoiceGuard | 40+ schema checks with real portal error codes | — |
+| SubAudit | 180+ vendor patterns, cadence from median gap | **Double-counted duplicate-and-stale; flagged AWS+GCP as waste** |
+| PolicyPack | Deterministic template composition | — |
+| VendorTrace | 150+ vendor dataset, transfer-rule derivation | Completeness score read 93% with an unknown vendor |
+| PaySlipIN | Statutory arithmetic, both tax regimes | — |
+| DMARCFix | SPF mechanism parsing with known nested costs | — |
+| ContractClock | Date and duration extraction, clause matching | **12-month term as 360 days; picked fee-notice over termination notice** |
 
 ## Build order
 

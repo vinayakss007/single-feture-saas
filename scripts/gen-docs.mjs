@@ -258,8 +258,8 @@ function rootReadme() {
 - **[FRAMEWORK.md](./FRAMEWORK.md)** — the standard. Architecture, the nine rules, how to build a new
   product in six steps, the money path, testing and monitoring standards, the free-service stack, and
   the launch, security and operations checklists. **Read this first.**
-- **[ROADMAP.md](./ROADMAP.md)** — ten more researched product ideas (11–20), each buildable on the
-  framework by writing two files.
+- **[ROADMAP.md](./ROADMAP.md)** — the market research behind products 11–20. All ten are now built,
+  each by writing only \`lib/product.ts\` and \`lib/engine.ts\` with no framework change.
 
 Each product ships six surfaces, so it can be sold to humans, to backends and to agents:
 
@@ -333,12 +333,12 @@ pnpm verify           # sync:check → gen:hub:check → typecheck → test → 
 Or step by step:
 
 \`\`\`bash
-pnpm sync             # propagate _template/ into all ten, regenerate lib/schema.ts
+pnpm sync             # propagate _template/ into all twenty, regenerate lib/schema.ts
 pnpm sync:check       # fail if any product has drifted from the framework
 pnpm run gen:hub      # regenerate the banner site's product catalog
-pnpm typecheck        # tsc --noEmit across all ten plus the site
-pnpm test             # 42 unit tests per product, 10 for the site — 430 total
-pnpm build            # production build across all eleven
+pnpm typecheck        # tsc --noEmit across all twenty plus the site
+pnpm test             # 42 unit tests per product, 10 for the site — 850 total
+pnpm build            # production build across all twenty-one
 pnpm smoke            # boots each app with NO env vars, asserts real output
 pnpm run gen:docs     # regenerate this README and the per-app docs
 
@@ -372,7 +372,7 @@ _template/            THE FRAMEWORK — 55 shared files, the single source of tr
   db/schema.sql       one schema shared by all products, idempotent
   tests/              42 tests every product must pass
 FRAMEWORK.md          the standard: rules, architecture, checklists, free services
-ROADMAP.md            products 11-20, researched
+ROADMAP.md            the research behind products 11-20
 docs/                 deploy guide, portfolio, launch playbook
 scripts/
   sync-template.mjs   propagates _template/ into every app; --check for CI
@@ -436,9 +436,9 @@ Every variable is documented in \`_template/.env.example\`.
 
 ## Status
 
-- **430/430** unit tests — 42 per product, 10 for the banner site
+- **850/850** unit tests — 42 per product, 10 for the banner site
 - **55/55** integration checks against a real PostgreSQL 15, verified on two different products
-- **11/11** typecheck, **11/11** production build, **10/10** smoke with no environment variables
+- **21/21** typecheck, **21/21** production build, **20/20** smoke with no environment variables
 - Schema verified idempotent by applying it twice
 
 Every engine has been run against real input. PingDeck and AnswerReady were verified against live third-party sites, including real TLS certificates and real RDAP registry responses.
