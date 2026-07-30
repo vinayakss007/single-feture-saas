@@ -1,4 +1,4 @@
-import type { ResultItem, RunInput, RunResult, Severity } from "./types";
+import type { ResultItem, RunInput, RunResult, Severity } from "./types.ts";
 
 /**
  * ConsentScan engine — fetches a live page and maps technical facts to

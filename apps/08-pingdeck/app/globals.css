@@ -43,3 +43,26 @@ body {
 .accent-fade {
   background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft) 0%, transparent 70%);
 }
+
+
+/* Shared form control, used by the auth screens and the dashboard. */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input::placeholder {
+  color: #9aa3b5;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}

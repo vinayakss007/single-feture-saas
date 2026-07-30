@@ -1,4 +1,4 @@
-import type { ProductConfig } from "./types";
+import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
   slug: "repurpose10",

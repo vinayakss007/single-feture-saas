@@ -1,4 +1,4 @@
-import type { ResultItem, RunInput, RunResult, Severity } from "./types";
+import type { ResultItem, RunInput, RunResult, Severity } from "./types.ts";
 
 /**
  * InvoiceParse engine — label-driven extraction plus arithmetic verification.

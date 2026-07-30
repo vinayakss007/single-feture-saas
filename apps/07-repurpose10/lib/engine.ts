@@ -1,4 +1,4 @@
-import type { ResultItem, RunInput, RunResult } from "./types";
+import type { ResultItem, RunInput, RunResult } from "./types.ts";
 
 /**
  * Repurpose10 engine — selection and restructuring, not rewriting.

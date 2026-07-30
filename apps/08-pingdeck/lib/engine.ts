@@ -1,5 +1,5 @@
 import tls from "node:tls";
-import type { ResultItem, RunInput, RunResult, Severity } from "./types";
+import type { ResultItem, RunInput, RunResult, Severity } from "./types.ts";
 
 /**
  * PingDeck engine — three independent failure classes, checked for real.

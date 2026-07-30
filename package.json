@@ -2,18 +2,23 @@
   "name": "abetworks-single-feature-saas",
   "private": true,
   "version": "1.0.0",
-  "description": "10 enterprise-ready, single-feature SaaS products by Abet Works. Each ships a landing page, a working product, a REST API and an MCP server.",
+  "description": "The Abet Works framework for single-feature SaaS, plus ten products built on it. Each ships a landing page, a working product, accounts, billing, metering, a REST API and an MCP server.",
   "scripts": {
+    "sync": "node scripts/sync-template.mjs",
+    "sync:check": "node scripts/sync-template.mjs --check",
     "build": "pnpm -r --parallel run build",
     "typecheck": "pnpm -r --parallel run typecheck",
+    "test": "pnpm -r run test",
     "lint": "pnpm run typecheck",
     "smoke": "node scripts/smoke.mjs",
-    "docs": "node scripts/gen-docs.mjs",
-    "verify": "pnpm run typecheck && pnpm run build && pnpm run smoke",
+    "integration": "node scripts/test-integration.mjs",
+    "gen:docs": "node scripts/gen-docs.mjs",
+    "verify": "pnpm run sync:check && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run smoke",
+    "db:apply": "node scripts/db-apply.mjs",
     "clean": "rm -rf apps/*/.next apps/*/node_modules node_modules"
   },
   "packageManager": "pnpm@10.11.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

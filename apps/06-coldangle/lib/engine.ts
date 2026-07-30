@@ -1,4 +1,4 @@
-import type { ResultItem, RunInput, RunResult, Severity } from "./types";
+import type { ResultItem, RunInput, RunResult, Severity } from "./types.ts";
 
 /**
  * ColdAngle engine — templates filled with facts, never facts invented to fill

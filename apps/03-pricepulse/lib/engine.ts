@@ -1,4 +1,4 @@
-import type { ResultItem, RunInput, RunResult, Severity } from "./types";
+import type { ResultItem, RunInput, RunResult, Severity } from "./types.ts";
 
 /**
  * PricePulse engine — a commercial diff, not a text diff.
