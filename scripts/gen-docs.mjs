@@ -1,0 +1,438 @@
+#!/usr/bin/env node
+/**
+ * Generates per-app README.md and LAUNCH.md, plus the root README and the
+ * portfolio table, from scripts/catalog.json.
+ *
+ * The catalog is the single source of launch-facing copy so the ten products
+ * never drift apart in how they describe themselves.
+ *
+ *   node scripts/gen-docs.mjs
+ */
+
+import { readFileSync, writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const catalog = JSON.parse(readFileSync(join(root, "scripts/catalog.json"), "utf8"));
+const { suite, products } = catalog;
+
+function appReadme(p) {
+  const envKey = `${p.slug.toUpperCase()}_KEY`;
+  return `# ${p.name}
+
+**${p.tagline}**
+
+${p.job} One job, four surfaces: a marketing site, a working app, a REST endpoint and an MCP server.
+
+- **Category** — ${p.category}
+- **Built for** — ${p.audience}
+- **Pricing** — ${p.price}
+- **Accent** — \`${p.accent}\`
+
+## Why it exists
+
+${p.differentiator}
+
+## How the engine works
+
+${p.engine}
+
+It is deterministic. The same input always produces the same output, there is no model in the request path, and a call costs nothing to serve. That is a design decision, not a limitation — it is what makes the result defensible in a review and cheap enough to run on every record.
+
+## Run it locally
+
+\`\`\`bash
+pnpm install          # from the repo root, once
+pnpm dev              # from this folder
+\`\`\`
+
+Then open <http://localhost:3000> for the marketing site and <http://localhost:3000/app> for the working product.
+
+## REST API
+
+The endpoint describes itself, so you never have to guess at the schema:
+
+\`\`\`bash
+curl https://${p.slug}.abetworks.in/api/v1/run
+\`\`\`
+
+That returns the input schema and a complete working example. To run it:
+
+\`\`\`bash
+curl -X POST https://${p.slug}.abetworks.in/api/v1/run \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer $${envKey}" \\
+  -d @payload.json
+\`\`\`
+
+Responses are \`{ ok: true, data: RunResult }\` or \`{ ok: false, error: string }\`. \`data.json\` is the machine-readable payload; the other fields drive the UI.
+
+| Route | Method | Purpose |
+|---|---|---|
+| \`/api/v1/run\` | GET | Input schema, example payload and MCP tool metadata |
+| \`/api/v1/run\` | POST | Run the engine |
+| \`/api/health\` | GET | Liveness, version and whether auth is enabled |
+
+Auth is off when \`API_KEYS\` is unset — which is what you want for a launch-day demo. Set it before you charge.
+
+## MCP server
+
+\`\`\`json
+{
+  "mcpServers": {
+    "${p.slug}": {
+      "command": "node",
+      "args": ["./mcp/server.mjs"],
+      "env": {
+        "SFS_API_URL": "https://${p.slug}.abetworks.in",
+        "SFS_API_KEY": "your_key"
+      }
+    }
+  }
+}
+\`\`\`
+
+Exposes one tool, \`${p.mcpTool}\`. The tool schema is fetched from \`GET /api/v1/run\` at startup, so the agent-facing contract can never drift from the REST contract.
+
+## Deploy
+
+**Vercel** — set the root directory to \`apps/${p.dir}\`, framework Next.js. Nothing else to configure.
+
+**Docker**
+
+\`\`\`bash
+docker build -t ${p.slug} .
+docker run -p 3000:3000 -e API_KEYS=your_key ${p.slug}
+\`\`\`
+
+## Environment
+
+| Variable | Default | Purpose |
+|---|---|---|
+| \`NEXT_PUBLIC_SITE_URL\` | \`http://localhost:3000\` | Canonical and Open Graph URLs |
+| \`API_KEYS\` | _(empty)_ | Comma-separated keys. Empty means the API is open |
+| \`RATE_LIMIT_PER_MIN\` | \`60\` | Per key or per IP. \`0\` disables the limiter |
+
+## Files that matter
+
+\`\`\`
+lib/product.ts   all landing copy, pricing, FAQ, input schema and the example payload
+lib/engine.ts    the entire product — run(input) => RunResult
+lib/api.ts       auth, rate limiting, input validation
+mcp/server.mjs   MCP stdio bridge, zero dependencies
+\`\`\`
+
+To change what this product says, edit \`lib/product.ts\`. To change what it does, edit \`lib/engine.ts\`. Nothing else needs touching.
+
+---
+
+Part of the [${suite.name}](../../README.md) by [${suite.company}](${suite.site}).
+`;
+}
+
+function appLaunch(p) {
+  return `# ${p.name} — launch kit
+
+Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is written to be used as-is.
+
+## Pre-flight
+
+- [ ] Deployed and reachable on a real domain (\`${p.slug}.abetworks.in\`)
+- [ ] \`NEXT_PUBLIC_SITE_URL\` set to that domain so Open Graph tags resolve
+- [ ] \`/app\` loads and the **Load example** button produces a result in one click
+- [ ] \`/api/health\` returns \`ok: true\`
+- [ ] \`GET /api/v1/run\` returns the schema and example
+- [ ] Tested on a phone — the demo is the pitch, and most launch traffic is mobile
+- [ ] \`API_KEYS\` left **unset** for launch day, so nobody hits an auth wall
+- [ ] \`RATE_LIMIT_PER_MIN\` raised to at least 120 for the traffic spike
+- [ ] Five gallery images exported at 1270×760
+- [ ] Someone available to answer comments for the first six hours
+
+## Product Hunt
+
+**Name** — ${p.name}
+
+**Tagline** (60 char limit)
+
+> ${p.phTagline}
+
+**Description**
+
+> ${p.tagline}. ${p.job} ${p.differentiator}
+
+**Topics** — ${p.category}, Artificial Intelligence, SaaS, Developer Tools, API
+
+**First comment** — post this immediately after the launch goes live
+
+> ${p.phFirstComment.split("\n").join("\n> ")}
+
+## Gallery — five images
+
+${p.phGallery.map((g, i) => `${i + 1}. ${g}`).join("\n")}
+
+Shoot each one as a real screenshot of the live product with the example loaded. Do not mock these up — the whole promise is that it works right now, and a mockup reads as one.
+
+## Hacker News
+
+Show HN posts do better with a plain title and an honest comment.
+
+**Title**
+
+> Show HN: ${p.name} – ${p.phTagline.toLowerCase()}
+
+**Comment** — lead with the technical decision, not the benefit
+
+> ${p.engine}
+>
+> ${p.differentiator}
+>
+> It is deterministic on purpose — no model in the request path, so the same input always gives the same output, there is no per-call cost, and the logic can be read and argued with. There is a REST endpoint that publishes its own schema and an MCP server for agent use.
+>
+> Free tier needs no signup. Happy to answer anything about the approach, including where it falls short.
+
+## Reddit
+
+Pick one subreddit and read its self-promotion rules first. Most ban it outright, and a ban costs more than the traffic is worth.
+
+**Title**
+
+> ${p.phTagline}
+
+**Body** — no links in the body, offer the link in a comment
+
+> ${p.job}
+>
+> ${p.differentiator}
+>
+> Built it because ${p.tagline.charAt(0).toLowerCase()}${p.tagline.slice(1)} is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+
+## Launch-day post for X and LinkedIn
+
+> ${p.phTagline}.
+>
+> ${p.job}
+>
+> ${p.differentiator}
+>
+> Free, no signup: ${suite.site}
+
+## Pricing at launch
+
+${p.price}
+
+Keep the free tier genuinely useful on launch day. Conversion comes from the API and the automation tiers, not from crippling the demo — and a demo that does not work is the fastest way to waste a launch.
+
+## After launch
+
+- [ ] Reply to every comment in the first six hours, including the critical ones
+- [ ] Log what people actually pasted in — it tells you which input format to support next
+- [ ] Watch \`/api/health\` and the rate limiter for abuse
+- [ ] Publish the numbers a week later. A launch retro post reliably outperforms the launch
+
+---
+
+Part of the [${suite.name}](../../README.md) by [${suite.company}](${suite.site}).
+`;
+}
+
+function rootReadme() {
+  const rows = products
+    .map(
+      (p) =>
+        `| [\`${p.dir}\`](apps/${p.dir}) | **${p.name}** | ${p.job} | ${p.category} | ${p.price} |`,
+    )
+    .join("\n");
+
+  const toolRows = products
+    .map((p) => `| ${p.name} | \`${p.mcpTool}\` | \`apps/${p.dir}/mcp/server.mjs\` |`)
+    .join("\n");
+
+  return `# ${suite.name}
+
+Ten enterprise-ready SaaS products. Each does **exactly one job**, and each ships with four surfaces so it can be sold to humans, to backends and to agents:
+
+1. a **marketing site** — hero, problem, features, pricing, FAQ
+2. a **working product** at \`/app\` — no signup, no API key, no empty state
+3. a **REST API** at \`POST /api/v1/run\` that publishes its own schema
+4. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/${suite.repo.split("/")[0]}/aw-agent-fleet) can use it as a tool
+
+Every product is independently deployable. Nothing is shared at runtime.
+
+## The ten
+
+| Folder | Product | The one job it does | Category | Pricing |
+|---|---|---|---|---|
+${rows}
+
+## Why these ten
+
+Three groups, chosen deliberately.
+
+**Defensible by correctness** — ConsentScan, InvoiceParse and PromptShield encode regulation and checksums. The India DPDP Act, the GSTIN mod-36 check digit, Luhn and Verhoeff validation, GDPR articles. This is knowledge work that does not get cloned by a prompt.
+
+**Proven willingness to pay** — DealBrief, ChurnSignal, PricePulse and Repurpose10 sit in the four categories that already sustain $19–99/month products: meeting intelligence, churn, competitor tracking and content repurposing.
+
+**Cheap to run and fast to launch** — ColdAngle, PingDeck and AnswerReady have near-zero marginal cost and an obvious launch narrative.
+
+All ten feed the existing Abet Works stack: DealBrief and ColdAngle write into NuCRM, every product can be scheduled by FlowForge, and all ten are MCP tools for Agent Fleet.
+
+## The one design decision that matters
+
+**No LLM in the request path.** Every engine is deterministic.
+
+That is not a limitation, it is the product. It means:
+
+- the same input always produces the same output, so a result can be defended in a pipeline review or an audit
+- a call costs nothing to serve, so it can run on every record rather than on a sample
+- latency is single-digit milliseconds
+- nothing is ever invented — ColdAngle cannot praise a post that does not exist, and PromptShield cannot be talked out of its own verdict
+
+Where a model genuinely helps, it belongs on top as optional polish, never underneath as the logic.
+
+## Quick start
+
+\`\`\`bash
+pnpm install                        # installs all ten
+pnpm --filter @abetworks/dealbrief dev
+\`\`\`
+
+Or work in one app directly:
+
+\`\`\`bash
+cd apps/01-dealbrief && pnpm dev
+\`\`\`
+
+Verify everything:
+
+\`\`\`bash
+pnpm typecheck        # tsc --noEmit across all ten
+pnpm build            # production build across all ten
+node scripts/smoke.mjs # boots each app, runs its own example, asserts real output
+\`\`\`
+
+\`scripts/smoke.mjs\` is worth understanding: it reads each product's example payload from that product's own \`GET /api/v1/run\` schema endpoint and POSTs it back. So it verifies the documented contract and the real one agree, not just that the server starts.
+
+## Repository layout
+
+\`\`\`
+apps/                 ten independently deployable Next.js apps
+  01-dealbrief/
+    lib/product.ts    all copy, pricing, FAQ, input schema, example payload
+    lib/engine.ts     the entire product: run(input) => RunResult
+    lib/api.ts        auth, rate limiting, validation
+    lib/types.ts      shared contracts
+    app/page.tsx      landing page, driven entirely by product.ts
+    app/app/page.tsx  the working demo
+    app/api/          REST endpoints
+    components/       landing sections, input runner, result renderer
+    mcp/server.mjs    MCP stdio bridge, zero dependencies
+    Dockerfile        multi-stage, standalone output, healthcheck
+    LAUNCH.md         Product Hunt / HN / Reddit kit
+  02-churnsignal/ … 10-promptshield/
+_template/            canonical shared kit — copy this to add an eleventh
+docs/                 deploy guide, portfolio, launch playbook
+scripts/              catalog, doc generator, smoke tests
+\`\`\`
+
+## Adding an eleventh product
+
+The architecture exists to make this cheap. Two files:
+
+\`\`\`bash
+cp -r _template apps/11-yourproduct
+cd apps/11-yourproduct
+sed -i 's|@abetworks/PRODUCT_SLUG|@abetworks/yourproduct|; s|PRODUCT_DESCRIPTION|Your tagline|' package.json
+\`\`\`
+
+Then write \`lib/product.ts\` (copy, pricing, inputs, example) and \`lib/engine.ts\` (one function: \`run(input) => RunResult\`). The landing page, demo UI, REST API, MCP server, Docker build and result renderer all work without modification.
+
+## MCP tools
+
+| Product | Tool name | Server |
+|---|---|---|
+${toolRows}
+
+Every server takes \`SFS_API_URL\` and optional \`SFS_API_KEY\`, and derives its tool schema from the live API.
+
+## Docs
+
+- [docs/DEPLOY.md](docs/DEPLOY.md) — Vercel, Docker, domains, env vars, going from free to paid
+- [docs/PORTFOLIO.md](docs/PORTFOLIO.md) — the full portfolio with positioning and revenue model per product
+- [docs/LAUNCH-PLAYBOOK.md](docs/LAUNCH-PLAYBOOK.md) — sequencing all ten launches without burning the audience
+
+## Status
+
+All ten: \`tsc --noEmit\` clean, \`next build\` clean, and passing \`scripts/smoke.mjs\` end to end — server boots, landing page and demo render, engine returns real output.
+
+Every engine has been run against real input. PingDeck and AnswerReady were verified against live third-party sites, including real TLS certificates and real RDAP registry responses.
+
+---
+
+By [${suite.company}](${suite.site}).
+`;
+}
+
+function portfolio() {
+  return `# Portfolio
+
+Positioning, moat and revenue model for each of the ten products.
+
+${products
+  .map(
+    (p, i) => `## ${String(i + 1).padStart(2, "0")}. ${p.name}
+
+**${p.tagline}**
+
+| | |
+|---|---|
+| Folder | [\`apps/${p.dir}\`](../apps/${p.dir}) |
+| Category | ${p.category} |
+| The one job | ${p.job} |
+| Buyer | ${p.audience} |
+| Pricing | ${p.price} |
+| MCP tool | \`${p.mcpTool}\` |
+| Suggested domain | \`${p.slug}.abetworks.in\` |
+
+**Why it wins.** ${p.differentiator}
+
+**How it works.** ${p.engine}
+
+**Launch kit.** [\`apps/${p.dir}/LAUNCH.md\`](../apps/${p.dir}/LAUNCH.md)
+`,
+  )
+  .join("\n---\n\n")}
+
+---
+
+## Revenue model summary
+
+Three pricing shapes across the suite, matched to how each product actually gets used.
+
+**Per-seat** (DealBrief) — used by named individuals every day, so seats align with value.
+
+**Flat monthly** (ChurnSignal, PricePulse, ConsentScan, InvoiceParse, ColdAngle, Repurpose10, PingDeck, AnswerReady) — used by a team a few times a week. Flat pricing removes the friction of counting.
+
+**Usage-based** (PromptShield, and InvoiceParse at volume) — sits in a request path where volume is the only sensible unit.
+
+Every product has a genuinely useful free tier. That is deliberate: with ten products the cheapest possible distribution is a working demo that needs no signup, and a crippled demo wastes the launch it took to earn the traffic.
+
+---
+
+By [${catalog.suite.company}](${catalog.suite.site}).
+`;
+}
+
+// ---------------------------------------------------------------------------
+
+let written = 0;
+for (const p of products) {
+  writeFileSync(join(root, "apps", p.dir, "README.md"), appReadme(p));
+  writeFileSync(join(root, "apps", p.dir, "LAUNCH.md"), appLaunch(p));
+  written += 2;
+}
+writeFileSync(join(root, "README.md"), rootReadme());
+writeFileSync(join(root, "docs/PORTFOLIO.md"), portfolio());
+written += 2;
+
+console.log(`Generated ${written} files for ${products.length} products.`);
