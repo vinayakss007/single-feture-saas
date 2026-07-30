@@ -506,6 +506,50 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/23-vaxdue/LAUNCH.md`](../apps/23-vaxdue/LAUNCH.md)
 
+---
+
+## 24. LoanTruth
+
+**The real interest rate on your loan, not the one you were quoted**
+
+| | |
+|---|---|
+| Folder | [`apps/24-loantruth`](../apps/24-loantruth) |
+| Category | Personal finance |
+| The one job | Sanction letter terms in, true APR and amortisation out. |
+| Buyer | Anyone taking a home, car, personal or business loan, and anyone already paying one off |
+| Pricing | Free · ₹499/mo · Broker custom |
+| MCP tool | `loantruth_analyse_loan` |
+| Suggested domain | `loantruth.abetworks.in` |
+
+**Why it wins.** Every EMI calculator computes the payment. None tells you that fees deducted from disbursal mean you pay interest on money you never received — on the sample loan that is 0.36 points of hidden APR, and no sanction letter states it.
+
+**How it works.** Reducing-balance EMI and full amortisation, effective APR solved by bisection against the amount actually disbursed after fees, GST on the processing fee, prepayment re-amortisation, one-point rate-shock pricing, and the month the outstanding balance finally halves.
+
+**Launch kit.** [`apps/24-loantruth/LAUNCH.md`](../apps/24-loantruth/LAUNCH.md)
+
+---
+
+## 25. TripSplit
+
+**Settle a group trip in three transfers instead of eleven**
+
+| | |
+|---|---|
+| Folder | [`apps/25-tripsplit`](../apps/25-tripsplit) |
+| Category | Travel money |
+| The one job | Shared expenses in, minimal set of transfers out. |
+| Buyer | Anyone who has organised a group trip, a shared house, or a weekend away and ended up as the accountant |
+| Pricing | Free · ₹299/mo · Teams custom |
+| MCP tool | `tripsplit_settle_expenses` |
+| Suggested domain | `tripsplit.abetworks.in` |
+
+**Why it wins.** Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat — with no account to create and nothing stored afterwards.
+
+**How it works.** Multi-currency normalisation, per-expense participant subsets with blank meaning everyone, net balance computation, and greedy largest-creditor-to-largest-debtor pairing that settles in at most n-1 transfers.
+
+**Launch kit.** [`apps/25-tripsplit/LAUNCH.md`](../apps/25-tripsplit/LAUNCH.md)
+
 
 ---
 

@@ -301,5 +301,29 @@ export const products: HubProduct[] = [
     "accent": "#c026d3",
     "mcpTool": "vaxdue_check_schedule",
     "differentiator": "A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again."
+  },
+  {
+    "dir": "24-loantruth",
+    "slug": "loantruth",
+    "name": "LoanTruth",
+    "tagline": "The real interest rate on your loan, not the one you were quoted",
+    "job": "Sanction letter terms in, true APR and amortisation out.",
+    "category": "Personal finance",
+    "audience": "Anyone taking a home, car, personal or business loan, and anyone already paying one off",
+    "accent": "#1d4ed8",
+    "mcpTool": "loantruth_analyse_loan",
+    "differentiator": "Every EMI calculator computes the payment. None tells you that fees deducted from disbursal mean you pay interest on money you never received — on the sample loan that is 0.36 points of hidden APR, and no sanction letter states it."
+  },
+  {
+    "dir": "25-tripsplit",
+    "slug": "tripsplit",
+    "name": "TripSplit",
+    "tagline": "Settle a group trip in three transfers instead of eleven",
+    "job": "Shared expenses in, minimal set of transfers out.",
+    "category": "Travel money",
+    "audience": "Anyone who has organised a group trip, a shared house, or a weekend away and ended up as the accountant",
+    "accent": "#ca8a04",
+    "mcpTool": "tripsplit_settle_expenses",
+    "differentiator": "Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat — with no account to create and nothing stored afterwards."
   }
 ];

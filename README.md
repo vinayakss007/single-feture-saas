@@ -57,6 +57,8 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`21-medibillcheck`](apps/21-medibillcheck) | **MediBillCheck** | Itemised hospital bill in, questionable charges and a query letter out. | Health finance | Free · ₹999/mo · Claims custom |
 | [`22-labtrack`](apps/22-labtrack) | **LabTrack** | Lab report values in, range flags and trends across reports out. | Health records | Free · ₹499/mo · Clinic custom |
 | [`23-vaxdue`](apps/23-vaxdue) | **VaxDue** | Date of birth and doses given in, overdue and upcoming schedule out. | Child health | Free · ₹299/mo · Clinic custom |
+| [`24-loantruth`](apps/24-loantruth) | **LoanTruth** | Sanction letter terms in, true APR and amortisation out. | Personal finance | Free · ₹499/mo · Broker custom |
+| [`25-tripsplit`](apps/25-tripsplit) | **TripSplit** | Shared expenses in, minimal set of transfers out. | Travel money | Free · ₹299/mo · Teams custom |
 
 ## Why these twenty
 
@@ -209,6 +211,8 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | MediBillCheck | `medibillcheck_audit_bill` | `apps/21-medibillcheck/mcp/server.mjs` |
 | LabTrack | `labtrack_check_values` | `apps/22-labtrack/mcp/server.mjs` |
 | VaxDue | `vaxdue_check_schedule` | `apps/23-vaxdue/mcp/server.mjs` |
+| LoanTruth | `loantruth_analyse_loan` | `apps/24-loantruth/mcp/server.mjs` |
+| TripSplit | `tripsplit_settle_expenses` | `apps/25-tripsplit/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 

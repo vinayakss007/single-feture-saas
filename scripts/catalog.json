@@ -521,6 +521,50 @@
         "Catch-up handled honestly, including the one hard age limit",
         "A printable card for the clinic"
       ]
+    },
+    {
+      "dir": "24-loantruth",
+      "slug": "loantruth",
+      "name": "LoanTruth",
+      "category": "Personal finance",
+      "tagline": "The real interest rate on your loan, not the one you were quoted",
+      "job": "Sanction letter terms in, true APR and amortisation out.",
+      "price": "Free \u00b7 \u20b9499/mo \u00b7 Broker custom",
+      "mcpTool": "loantruth_analyse_loan",
+      "engine": "Reducing-balance EMI and full amortisation, effective APR solved by bisection against the amount actually disbursed after fees, GST on the processing fee, prepayment re-amortisation, one-point rate-shock pricing, and the month the outstanding balance finally halves.",
+      "differentiator": "Every EMI calculator computes the payment. None tells you that fees deducted from disbursal mean you pay interest on money you never received \u2014 on the sample loan that is 0.36 points of hidden APR, and no sanction letter states it.",
+      "audience": "Anyone taking a home, car, personal or business loan, and anyone already paying one off",
+      "accent": "#1d4ed8",
+      "phTagline": "The real interest rate on your loan, not the one you were quoted",
+      "phFirstComment": "The rate a lender quotes is not the rate you pay. Processing fee, GST on that fee, and insurance are deducted from disbursal \u2014 so you are charged interest on the full sanctioned amount while receiving less than it. No sanction letter states the resulting APR.\n\nSo this solves it, by bisection rather than a closed-form approximation, because approximations drift precisely where fees are large \u2014 the case worth exposing.\n\nThe number that changes behaviour, though, is a different one: the month your outstanding balance finally halves. On a twenty-year loan that is around month 160, not month 120. Once you can see that, prepaying early stops being an abstract idea.\n\nIt is explicit about what it does not know \u2014 legal, valuation, CERSAI and stamp charges are billed outside the sanction letter and are not in the APR unless you enter them. It also does not apply tax relief, because that depends on your regime and your other claims, and folding in an assumed benefit would make the headline wrong for most people.",
+      "phGallery": [
+        "True APR against the quoted rate, with the gap in points",
+        "The month your outstanding balance finally halves",
+        "Prepayment saving and months removed, re-amortised",
+        "Six questions for the loan officer, written to be answered"
+      ]
+    },
+    {
+      "dir": "25-tripsplit",
+      "slug": "tripsplit",
+      "name": "TripSplit",
+      "category": "Travel money",
+      "tagline": "Settle a group trip in three transfers instead of eleven",
+      "job": "Shared expenses in, minimal set of transfers out.",
+      "price": "Free \u00b7 \u20b9299/mo \u00b7 Teams custom",
+      "mcpTool": "tripsplit_settle_expenses",
+      "engine": "Multi-currency normalisation, per-expense participant subsets with blank meaning everyone, net balance computation, and greedy largest-creditor-to-largest-debtor pairing that settles in at most n-1 transfers.",
+      "differentiator": "Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat \u2014 with no account to create and nothing stored afterwards.",
+      "audience": "Anyone who has organised a group trip, a shared house, or a weekend away and ended up as the accountant",
+      "accent": "#ca8a04",
+      "phTagline": "Settle a group trip in three transfers instead of eleven",
+      "phFirstComment": "Someone books the hotel, someone else pays for the car, three people cover dinners, and two things were only shared by half the group. Unpicking it takes an evening and a spreadsheet nobody trusts.\n\nWorking out each person's share is bookkeeping. Turning a web of debts into the fewest payments is the interesting part, and it is the difference between everyone sending four awkward transfers and three people sending one each.\n\nTwo deliberate choices. A blank participants column means everyone, because that is what people actually leave blank. And an expense in a currency you gave no rate for is excluded and reported rather than converted at a guess \u2014 a wrong rate quietly applied to a third of the trip is much worse than a line you can see is missing.\n\nIt also does not overclaim: finding the provably smallest set of transfers is NP-hard, so the output says the result is very good rather than optimal. On six friends and a weekend that distinction is academic, but saying it is what makes the rest trustworthy.",
+      "phGallery": [
+        "The smallest practical set of transfers, with amounts",
+        "Every person's paid, share and net position",
+        "Uneven splits where only some of you shared",
+        "A message ready to paste into the group chat"
+      ]
     }
   ]
 }
