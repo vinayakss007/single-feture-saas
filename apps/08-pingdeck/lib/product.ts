@@ -1,4 +1,4 @@
-import type { ProductConfig } from "./types";
+import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
   slug: "pingdeck",
@@ -172,4 +172,15 @@ export const product: ProductConfig = {
     description:
       "Check a list of URLs for availability, response time and redirect chain, plus read the live TLS certificate expiry and query the registry for domain registration expiry. Returns per-URL status, days remaining on certificates and domains, an overall health score, and a self-contained HTML status page.",
   },
+
+  /**
+   * The one product in the suite that reaches the network, because measuring the
+   * live internet is the entire feature. Response times, status codes and
+   * certificate expiry cannot be computed offline.
+   *
+   * Consequences, all deliberate: results are not cacheable, the engine can fail
+   * because someone else's server is down, and the shared determinism test is
+   * replaced by a shape-stability test.
+   */
+  probesNetwork: true,
 };

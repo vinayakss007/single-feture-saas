@@ -1,6 +1,6 @@
 # Portfolio
 
-Positioning, moat and revenue model for each of the ten products.
+Positioning, moat and revenue model for each of the twenty products.
 
 ## 01. DealBrief
 
@@ -220,6 +220,292 @@ Positioning, moat and revenue model for each of the ten products.
 
 **Launch kit.** [`apps/10-promptshield/LAUNCH.md`](../apps/10-promptshield/LAUNCH.md)
 
+---
+
+## 11. AIActNotice
+
+**Generate the EU AI Act transparency notice your product needs**
+
+| | |
+|---|---|
+| Folder | [`apps/11-aiactnotice`](../apps/11-aiactnotice) |
+| Category | AI governance |
+| The one job | AI system description in, risk tier and Article 50 notice out. |
+| Buyer | Anyone shipping AI into the EU — founders, product leads, DPOs, compliance owners |
+| Pricing | Free · ₹2,499/mo · Enterprise custom |
+| MCP tool | `aiactnotice_classify_system` |
+| Suggested domain | `aiactnotice.abetworks.in` |
+
+**Why it wins.** Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for.
+
+**How it works.** A decision table over the Act's own criteria: Article 5 prohibitions, Annex III sector plus output-type tests, Article 50 transparency triggers, and per-role obligation sets. Emits an FNV-1a content hash so two assessments can be compared.
+
+**Launch kit.** [`apps/11-aiactnotice/LAUNCH.md`](../apps/11-aiactnotice/LAUNCH.md)
+
+---
+
+## 12. A11yGate
+
+**Paste your HTML, get every WCAG 2.2 failure and the EAA statement**
+
+| | |
+|---|---|
+| Folder | [`apps/12-a11ygate`](../apps/12-a11ygate) |
+| Category | Accessibility compliance |
+| The one job | HTML in, WCAG failures with fixes and a publishable accessibility statement out. |
+| Buyer | EU e-commerce, banking, transport and SaaS teams, plus the agencies that build for them |
+| Pricing | Free · ₹1,999/mo · Agency custom |
+| MCP tool | `a11ygate_audit_html` |
+| Suggested domain | `a11ygate.abetworks.in` |
+
+**Why it wins.** Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report.
+
+**How it works.** 34 deterministic checks over raw markup: image alternatives, form labelling, heading structure, landmarks, link and button naming, language, duplicate ids, tables, iframes, focus order, autoplay, ARIA misuse, and contrast computed from inline styles.
+
+**Launch kit.** [`apps/12-a11ygate/LAUNCH.md`](../apps/12-a11ygate/LAUNCH.md)
+
+---
+
+## 13. GSTMatch
+
+**Reconcile GSTR-2B against your purchase register and see the ITC at risk**
+
+| | |
+|---|---|
+| Folder | [`apps/13-gstmatch`](../apps/13-gstmatch) |
+| Category | Tax compliance |
+| The one job | Two CSVs in, input tax credit at risk in rupees out. |
+| Buyer | Indian businesses filing GST, chartered accountants, finance teams |
+| Pricing | Free · ₹1,499/mo · Enterprise custom |
+| MCP tool | `gstmatch_reconcile_2b` |
+| Suggested domain | `gstmatch.abetworks.in` |
+
+**Why it wins.** Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence.
+
+**How it works.** Segment-wise invoice number normalisation so INV/2026/0412 matches inv-2026-412, GSTIN base-36 check-digit validation, four-way bucketing with a rounding tolerance, and per-supplier ranking by credit at risk.
+
+**Launch kit.** [`apps/13-gstmatch/LAUNCH.md`](../apps/13-gstmatch/LAUNCH.md)
+
+---
+
+## 14. eInvoiceGuard
+
+**Validate an e-invoice payload before the portal rejects it**
+
+| | |
+|---|---|
+| Folder | [`apps/14-einvoiceguard`](../apps/14-einvoiceguard) |
+| Category | Finance automation |
+| The one job | Invoice payload in, portal error codes and a corrected payload out. |
+| Buyer | Indian businesses on e-invoicing, SaaS exporters, ERP and billing engineers |
+| Pricing | Free · ₹1,999/mo · Platform custom |
+| MCP tool | `einvoiceguard_validate_payload` |
+| Suggested domain | `einvoiceguard.abetworks.in` |
+
+**Why it wins.** A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically.
+
+**How it works.** 40+ checks against IRP schema 1.1 and Peppol BIS 3.0: mandatory fields with real portal error codes, GSTIN check digits, HSN length by turnover, unit and state code lists, and recomputed line, header and tax totals including the CGST/SGST versus IGST split against place of supply.
+
+**Launch kit.** [`apps/14-einvoiceguard/LAUNCH.md`](../apps/14-einvoiceguard/LAUNCH.md)
+
+---
+
+## 15. SubAudit
+
+**Upload a card statement, get every subscription and renewal date**
+
+| | |
+|---|---|
+| Folder | [`apps/15-subaudit`](../apps/15-subaudit) |
+| Category | Finance operations |
+| The one job | Statement CSV in, subscription map with duplicates and renewals out. |
+| Buyer | Founders, finance leads, office managers and anyone who owns a company card |
+| Pricing | Free · ₹1,499/mo · Enterprise custom |
+| MCP tool | `subaudit_find_subscriptions` |
+| Suggested domain | `subaudit.abetworks.in` |
+
+**Why it wins.** Spend management platforms want to become your card, which is a procurement project. This wants a CSV you already have — no bank connection, no OAuth — and usually finds money on the first run.
+
+**How it works.** 180+ vendor patterns with payment-processor prefix stripping, billing cadence inferred from the median gap between charges, duplicate detection by category, price-rise detection across cycles, and staleness against each subscription's own cycle.
+
+**Launch kit.** [`apps/15-subaudit/LAUNCH.md`](../apps/15-subaudit/LAUNCH.md)
+
+---
+
+## 16. PolicyPack
+
+**Answer ten questions, get the SOC 2 policy set and your gap list**
+
+| | |
+|---|---|
+| Folder | [`apps/16-policypack`](../apps/16-policypack) |
+| Category | Security compliance |
+| The one job | Company profile in, policy set with control mapping and gap list out. |
+| Buyer | Startups facing their first security review, CTOs, and whoever got handed the questionnaire |
+| Pricing | Free · ₹2,499/mo · Enterprise custom |
+| MCP tool | `policypack_generate_policies` |
+| Suggested domain | `policypack.abetworks.in` |
+
+**Why it wins.** Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy.
+
+**How it works.** Deterministic template composition producing 12 to 16 policies depending on region and data types, each mapped to SOC 2 Trust Services Criteria and ISO 27001:2022 Annex A controls with the evidence it will be tested against, plus a gap list ordered by what auditors test first.
+
+**Launch kit.** [`apps/16-policypack/LAUNCH.md`](../apps/16-policypack/LAUNCH.md)
+
+---
+
+## 17. VendorTrace
+
+**Turn a vendor list into a subprocessor register with residency flags**
+
+| | |
+|---|---|
+| Folder | [`apps/17-vendortrace`](../apps/17-vendortrace) |
+| Category | Privacy compliance |
+| The one job | Vendor list in, Article 30 register and subprocessor page out. |
+| Buyer | DPOs, founders answering security questionnaires, SaaS companies under DPDP or GDPR |
+| Pricing | Free · ₹1,999/mo · Enterprise custom |
+| MCP tool | `vendortrace_build_register` |
+| Suggested domain | `vendortrace.abetworks.in` |
+
+**Why it wins.** Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them.
+
+**How it works.** 150+ vendor dataset with hosting jurisdiction and DPA availability, transfer mechanism derived from origin and destination under GDPR Chapter V and India DPDP, sensitive-category detection from the data description, and Article 30 register generation.
+
+**Launch kit.** [`apps/17-vendortrace/LAUNCH.md`](../apps/17-vendortrace/LAUNCH.md)
+
+---
+
+## 18. PaySlipIN
+
+**One CTC figure becomes a compliant Indian payslip**
+
+| | |
+|---|---|
+| Folder | [`apps/18-payslipin`](../apps/18-payslipin) |
+| Category | Payroll compliance |
+| The one job | Annual CTC in, full payslip with PF, ESI, PT and TDS out. |
+| Buyer | Small employers, HR consultants, chartered accountants and anyone doing payroll in a spreadsheet |
+| Pricing | Free · ₹999/mo · Practice custom |
+| MCP tool | `payslipin_compute_payslip` |
+| Suggested domain | `payslipin.abetworks.in` |
+
+**Why it wins.** A full HRMS is the wrong shape and price for four employees. This computes one correct payslip and shows every threshold it used, so you can check it against the current Finance Act rather than trusting a black box.
+
+**How it works.** Statutory arithmetic: salary structure from CTC with employer PF and gratuity taken out rather than added, PF with the ₹15,000 ceiling and the 8.33% EPS split, ESI eligibility, professional tax slabs for twelve states, and TDS under both regimes with slab-by-slab working, 87A rebate and surcharge.
+
+**Launch kit.** [`apps/18-payslipin/LAUNCH.md`](../apps/18-payslipin/LAUNCH.md)
+
+---
+
+## 19. DMARCFix
+
+**Paste your SPF, DKIM and DMARC records and get the corrected ones**
+
+| | |
+|---|---|
+| Folder | [`apps/19-dmarcfix`](../apps/19-dmarcfix) |
+| Category | Email deliverability |
+| The one job | Email auth records in, lookup count, failures and corrected records out. |
+| Buyer | Founders whose email lands in spam, ops and platform engineers, agencies running client domains |
+| Pricing | Free · ₹1,499/mo · Agency custom |
+| MCP tool | `dmarcfix_audit_records` |
+| Suggested domain | `dmarcfix.abetworks.in` |
+
+**Why it wins.** SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI.
+
+**How it works.** SPF mechanism parsing with nested include costs for 30 known providers counted against the hard limit of ten, multiple-record and unsafe-all detection, DMARC tag parsing with alignment analysis, sender coverage checks, and the Gmail and Yahoo bulk-sender requirements.
+
+**Launch kit.** [`apps/19-dmarcfix/LAUNCH.md`](../apps/19-dmarcfix/LAUNCH.md)
+
+---
+
+## 20. ContractClock
+
+**Paste a contract, get every deadline and auto-renewal trap**
+
+| | |
+|---|---|
+| Folder | [`apps/20-contractclock`](../apps/20-contractclock) |
+| Category | Contract operations |
+| The one job | Contract text in, deadlines and a calendar file out. |
+| Buyer | Ops and finance leads, procurement, founders signing their own contracts, agencies managing client vendors |
+| Pricing | Free · ₹1,999/mo · Enterprise custom |
+| MCP tool | `contractclock_extract_deadlines` |
+| Suggested domain | `contractclock.abetworks.in` |
+
+**Why it wins.** Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug.
+
+**How it works.** Date extraction across four written formats, duration parsing including written numbers, auto-renewal and notice clause matching at sentence level, renewal roll-forward for contracts that have already renewed, last-safe-cancellation arithmetic, and iCalendar output with alarms.
+
+**Launch kit.** [`apps/20-contractclock/LAUNCH.md`](../apps/20-contractclock/LAUNCH.md)
+
+---
+
+## 21. MediBillCheck
+
+**Find the errors in a hospital bill before you pay it**
+
+| | |
+|---|---|
+| Folder | [`apps/21-medibillcheck`](../apps/21-medibillcheck) |
+| Category | Health finance |
+| The one job | Itemised hospital bill in, questionable charges and a query letter out. |
+| Buyer | Anyone paying a hospital bill in India, plus the family members who end up handling it |
+| Pricing | Free · ₹999/mo · Claims custom |
+| MCP tool | `medibillcheck_audit_bill` |
+| Suggested domain | `medibillcheck.abetworks.in` |
+
+**Why it wins.** Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge.
+
+**How it works.** Line parsing with quantity-times-rate reconciliation and a lines-versus-stated-total check, twelve categories of commonly declined consumable, identical-amount duplicate detection, proportionate-deduction arithmetic from room cap and sum insured, and GST-on-exempt-services detection.
+
+**Launch kit.** [`apps/21-medibillcheck/LAUNCH.md`](../apps/21-medibillcheck/LAUNCH.md)
+
+---
+
+## 22. LabTrack
+
+**See which lab values are outside range, and which are moving**
+
+| | |
+|---|---|
+| Folder | [`apps/22-labtrack`](../apps/22-labtrack) |
+| Category | Health records |
+| The one job | Lab report values in, range flags and trends across reports out. |
+| Buyer | Anyone managing their own or a parent's test results across multiple reports and labs |
+| Pricing | Free · ₹499/mo · Clinic custom |
+| MCP tool | `labtrack_check_values` |
+| Suggested domain | `labtrack.abetworks.in` |
+
+**Why it wins.** Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box.
+
+**How it works.** 31 tests across seven panels with sex-specific reference ranges, the report's own stated range taking priority over the bundled one, percentage deviation outside range, separate handling of values far enough out that laboratories flag them, and per-test trend computation across multiple dated reports.
+
+**Launch kit.** [`apps/22-labtrack/LAUNCH.md`](../apps/22-labtrack/LAUNCH.md)
+
+---
+
+## 23. VaxDue
+
+**Which childhood vaccines are overdue, due now and next**
+
+| | |
+|---|---|
+| Folder | [`apps/23-vaxdue`](../apps/23-vaxdue) |
+| Category | Child health |
+| The one job | Date of birth and doses given in, overdue and upcoming schedule out. |
+| Buyer | Parents and grandparents tracking a child's immunisations, and the relative who ends up holding the card |
+| Pricing | Free · ₹299/mo · Clinic custom |
+| MCP tool | `vaxdue_check_schedule` |
+| Suggested domain | `vaxdue.abetworks.in` |
+
+**Why it wins.** A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again.
+
+**How it works.** 35 doses across the full childhood schedule with due ages, minimum ages and minimum inter-dose gaps, calendar dates computed from date of birth against an explicit as-at date, conservative matching of already-given doses, and the one upper age limit that genuinely forecloses catch-up.
+
+**Launch kit.** [`apps/23-vaxdue/LAUNCH.md`](../apps/23-vaxdue/LAUNCH.md)
+
 
 ---
 
@@ -229,11 +515,15 @@ Three pricing shapes across the suite, matched to how each product actually gets
 
 **Per-seat** (DealBrief) — used by named individuals every day, so seats align with value.
 
-**Flat monthly** (ChurnSignal, PricePulse, ConsentScan, InvoiceParse, ColdAngle, Repurpose10, PingDeck, AnswerReady) — used by a team a few times a week. Flat pricing removes the friction of counting.
+**Flat monthly** (everything else) — used by a team a few times a week, or a handful of times a month. Flat pricing removes the friction of counting, and for the compliance products it matches how the buyer thinks: the cost of the tool against the cost of the deadline.
 
-**Usage-based** (PromptShield, and InvoiceParse at volume) — sits in a request path where volume is the only sensible unit.
+**Usage-based** (PromptShield, and InvoiceParse and eInvoiceGuard at volume) — these sit in a request path, where volume is the only sensible unit.
 
-Every product has a genuinely useful free tier. That is deliberate: with ten products the cheapest possible distribution is a working demo that needs no signup, and a crippled demo wastes the launch it took to earn the traffic.
+**Deadline-priced** (AIActNotice, A11yGate, PolicyPack) — priced against what the alternative costs, not against usage. A lawyer reading your AI system description is ₹15,000 an hour; an accessibility audit is a four-figure engagement; a SOC 2 readiness project is several lakh. These are the only three tiers in the suite above ₹2,000, and that is why.
+
+**Monthly-recurring-by-nature** (GSTMatch, PaySlipIN) — run every filing or payroll cycle without anyone deciding to. Cheapest tiers in the suite and the best retention, because the alternative is a spreadsheet somebody has to maintain.
+
+Every product has a genuinely useful free tier. That is deliberate: with twenty products the cheapest possible distribution is a working demo that needs no signup, and a crippled demo wastes the launch it took to earn the traffic.
 
 ---
 

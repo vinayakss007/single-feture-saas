@@ -1,4 +1,4 @@
-import type { Band, ResultItem, RunInput, RunResult } from "./types";
+import type { Band, ResultItem, RunInput, RunResult } from "./types.ts";
 
 /**
  * ChurnSignal engine — a transparent weighted rules model.

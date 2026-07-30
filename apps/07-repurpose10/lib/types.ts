@@ -25,6 +25,17 @@ export type PricingTier = {
   features: string[];
   cta: string;
   highlight?: boolean;
+  /**
+   * Entitlements. Optional so a product can ship marketing copy first, but once
+   * you charge money these should be set explicitly rather than inherited from
+   * the defaults in `lib/plans.ts` — see FRAMEWORK.md step 4.
+   */
+  /** Metered runs included per calendar month. Use `Infinity` for uncapped. */
+  monthlyRuns?: number;
+  /** Whether this tier may create API keys and use the MCP server. */
+  apiAccess?: boolean;
+  /** Requests per minute allowed against /api/v1/run. */
+  rateLimitPerMin?: number;
 };
 
 export type ProductConfig = {
@@ -53,6 +64,17 @@ export type ProductConfig = {
   /** pre-filled example so the demo is never a blank page */
   sample: Record<string, string>;
   mcpTool: { name: string; description: string };
+  /**
+   * Set true only when `run()` reaches the network, so identical inputs can
+   * legitimately produce different output.
+   *
+   * The default is false and the shared test suite enforces determinism, because
+   * a deterministic engine is cacheable, testable and free to run. Opting out is
+   * a real cost — it means egress, timeouts, and a product that can fail because
+   * someone else's server is down — so it must be a deliberate declaration rather
+   * than something that creeps in.
+   */
+  probesNetwork?: boolean;
 };
 
 export type Severity = "high" | "medium" | "low";

@@ -21,13 +21,18 @@ export function Nav({ p }: { p: ProductConfig }) {
           <a href="/#pricing" className="hover:text-ink">Pricing</a>
           <a href="/#faq" className="hover:text-ink">FAQ</a>
         </nav>
-        <Link
-          href="/app"
-          className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
-          style={{ background: "var(--accent)" }}
-        >
-          Try it free
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/login" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-muted transition hover:text-ink sm:block">
+            Sign in
+          </Link>
+          <Link
+            href="/app"
+            className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+            style={{ background: "var(--accent)" }}
+          >
+            Try it free
+          </Link>
+        </div>
       </div>
     </header>
   );
@@ -250,7 +255,7 @@ export function Pricing({ p }: { p: ProductConfig }) {
       tint
     >
       <div className="grid gap-6 md:grid-cols-3">
-        {p.pricing.map((tier) => (
+        {p.pricing.map((tier, index) => (
           <div
             key={tier.name}
             className="flex flex-col rounded-2xl border bg-white p-7"
@@ -278,8 +283,21 @@ export function Pricing({ p }: { p: ProductConfig }) {
                 </li>
               ))}
             </ul>
+            {/*
+              Tier order is always [free, paid, enterprise]. Free and paid both go
+              to signup — you cannot check out without an account, and sending
+              someone to a checkout that then bounces them to a signup form is how
+              you lose them. `?plan=` is carried through so the dashboard can open
+              the right checkout straight away. Enterprise goes to a human.
+            */}
             <Link
-              href="/app"
+              href={
+                index === 2
+                  ? `mailto:${p.slug}@abetworks.in?subject=${encodeURIComponent(`${p.name} enterprise enquiry`)}`
+                  : index === 1
+                    ? "/signup?plan=pro"
+                    : "/signup"
+              }
               className="mt-7 rounded-xl border px-4 py-2.5 text-center text-sm font-semibold transition"
               style={
                 tier.highlight

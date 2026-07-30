@@ -1,8 +1,38 @@
 # Deploy
 
-Ten apps, ten deployments. Each is independent — nothing is shared at runtime, so one can go down or get rewritten without touching the others.
+Twenty-one deployments: the **abetworks.in banner site** at the apex, and twenty products on subdomains.
+Each is independent — nothing is shared at runtime, so one can go down or get rewritten without
+touching the others.
 
-## Vercel (recommended, fastest)
+```
+abetworks.in                    site/              the banner site
+  ├── dealbrief.abetworks.in    apps/01-dealbrief
+  ├── churnsignal.abetworks.in  apps/02-churnsignal
+  └── … eighteen more
+```
+
+## The banner site first
+
+Deploy this before the products so there is always one URL to point people at.
+
+1. **New Project** → import `vinayakss007/single-feture-saas`
+2. **Root Directory** → `site`
+3. Domain → `abetworks.in`, with `www.abetworks.in` redirecting to it
+4. Environment → `NEXT_PUBLIC_SITE_URL=https://abetworks.in`
+
+It prerenders to a single static page, so it costs nothing to serve.
+
+**Launching products one at a time?** The hub links to `https://<slug>.abetworks.in` by default. Until
+a product has its real domain, override just that one:
+
+```bash
+NEXT_PUBLIC_PRODUCT_URL_DEALBRIEF=https://dealbrief-abc123.vercel.app
+```
+
+Remove the override once DNS is live. `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` repoints all twenty at once,
+which is what you want for a staging apex.
+
+## Vercel — the products
 
 Each app needs its own Vercel project pointing at the same repository, with a different root directory.
 
@@ -13,12 +43,13 @@ Each app needs its own Vercel project pointing at the same repository, with a di
 5. Add environment variables (below)
 6. Deploy
 
-Repeat for the other nine. Each takes about two minutes.
+Repeat for the other nineteen. Each takes about two minutes — or script it with the Vercel CLI, since the only thing that differs is the root directory and the domain.
 
 ### Suggested domains
 
 | App | Domain |
 |---|---|
+| _(apex)_ | `abetworks.in` — the banner site |
 | 01-dealbrief | `dealbrief.abetworks.in` |
 | 02-churnsignal | `churnsignal.abetworks.in` |
 | 03-pricepulse | `pricepulse.abetworks.in` |
@@ -29,6 +60,16 @@ Repeat for the other nine. Each takes about two minutes.
 | 08-pingdeck | `pingdeck.abetworks.in` |
 | 09-answerready | `answerready.abetworks.in` |
 | 10-promptshield | `promptshield.abetworks.in` |
+| 11-aiactnotice | `aiactnotice.abetworks.in` |
+| 12-a11ygate | `a11ygate.abetworks.in` |
+| 13-gstmatch | `gstmatch.abetworks.in` |
+| 14-einvoiceguard | `einvoiceguard.abetworks.in` |
+| 15-subaudit | `subaudit.abetworks.in` |
+| 16-policypack | `policypack.abetworks.in` |
+| 17-vendortrace | `vendortrace.abetworks.in` |
+| 18-payslipin | `payslipin.abetworks.in` |
+| 19-dmarcfix | `dmarcfix.abetworks.in` |
+| 20-contractclock | `contractclock.abetworks.in` |
 
 Subdomains of one apex keep DNS simple and give every product the domain authority of the parent. Move a winner to its own apex later, once it earns it.
 
@@ -50,7 +91,7 @@ docker run -p 3000:3000 \
 
 The image runs as a non-root user, uses Next.js standalone output, sets `HOSTNAME=0.0.0.0` so it binds inside a container, and has a `HEALTHCHECK` against `/api/health`.
 
-Build all ten:
+Build all twenty:
 
 ```bash
 for d in apps/*/; do
@@ -70,28 +111,82 @@ For four of the ten it is the answer to a real objection:
 
 ## Environment variables
 
-Identical across all ten.
+**Every variable is documented in `_template/.env.example`, grouped by what it unlocks.** The short
+version is that nothing is required — with an empty `.env` every product boots and its demo works,
+metered by IP. You add variables to unlock capability.
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Canonical and Open Graph URLs. **Set this before launch** or your social previews break |
-| `API_KEYS` | _(empty)_ | Comma-separated keys. Empty means `/api/v1/run` is open |
-| `RATE_LIMIT_PER_MIN` | `60` | Per key, falling back to per IP. `0` disables the limiter |
+| Add this | And you get |
+|---|---|
+| _(nothing)_ | Landing page, live demo, REST API, MCP server. Metered per IP. **Demo mode.** |
+| `DATABASE_URL` | Accounts, login, password reset, dashboard, API keys, metered monthly quotas |
+| `RAZORPAY_*` or `STRIPE_*` | Checkout, subscriptions, webhooks, plan enforcement |
+| `RESEND_API_KEY` | Welcome, password-reset and dunning emails actually sent |
+| `ALERT_WEBHOOK_URL` | Slack/Discord alerts on 5xx bursts and webhook failures |
+| `CRON_SECRET` | The daily retention job runs |
+
+### The four that matter most
+
+| Variable | Why it matters |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URLs, Open Graph, payment redirects **and password-reset links**. No trailing slash. Get this wrong and reset emails point at localhost |
+| `DATABASE_URL` | Use the **pooled** connection string on serverless. The direct one exhausts Postgres connection slots |
+| `RATE_LIMIT_PER_MIN` | Leave **unset** in production so each plan gets its own limit. Setting it overrides every plan at once |
+| `CRON_SECRET` | Without it the purge route refuses to run, by design — a destructive endpoint should not be open |
+
+### Per-product payment ids
+
+Env names are namespaced by slug, so one project can hold all twenty:
+
+```
+RAZORPAY_PLAN_DEALBRIEF_PRO=plan_xxx
+STRIPE_PRICE_DEALBRIEF_PRO=price_xxx
+```
+
+Until one exists, the dashboard says paid plans are not configured rather than showing a button
+that fails.
+
+### Webhooks
+
+Point both providers at `https://<domain>/api/billing/webhook` — one URL handles both.
+
+- **Razorpay:** `subscription.activated`, `.charged`, `.halted`, `.cancelled`, `.completed`
+- **Stripe:** `checkout.session.completed`, `customer.subscription.*`, `invoice.payment_failed`
+
+Signatures are verified on raw bytes before parsing, and every event id is stored with a unique
+constraint, so provider retries cannot double-apply a plan change.
 
 ### Launch day vs charging day
 
-**Launch day** — leave `API_KEYS` unset and raise `RATE_LIMIT_PER_MIN` to at least 120. Every auth wall between a Product Hunt visitor and a working result costs you conversions, and the demo is the entire pitch.
+**Launch day** — deploy with `DATABASE_URL` set but no payment keys. Visitors get 15 anonymous runs a
+day, then a prompt to create a free account worth 25 runs a month. No auth wall in front of the
+demo, because the demo is the entire pitch.
 
-**Charging day** — set `API_KEYS`. The web demo keeps working because it calls the API from the same origin; only external callers need a key.
+**Charging day** — add the payment keys and the plan ids. Nothing else changes; the paywall was
+already enforcing quotas.
 
-The in-memory rate limiter resets on deploy and is per-instance, which is fine for launch traffic and wrong for a paid API SLA. When you start charging, move it to Redis or Vercel KV — `lib/api.ts` isolates it in one function for exactly that reason.
+### Monitoring
+
+| Endpoint | Point it at | Free tier |
+|---|---|---|
+| `/api/health` | UptimeRobot or Better Stack | 50 monitors / 10 monitors |
+| `/api/metrics` | Grafana Cloud (Prometheus scrape) | 10k series |
+
+`/api/health` returns 503 only when a dependency the deployment *claims* to have is broken. A
+deployment with no database is healthy, because demo mode is a valid configuration.
+
+The burst limiter is per-instance and in-memory, which is fine — the durable, billable limit is the
+monthly quota in Postgres, which is correct across instances. Add Upstash Redis only if you need a
+strict distributed burst limit.
+
+**Full deployment, security and operations checklists:
+[FRAMEWORK.md](../FRAMEWORK.md#9-launch-checklist).**
 
 ## Verify before you announce
 
 ```bash
 pnpm install
-pnpm typecheck          # tsc --noEmit, all ten
-pnpm build              # next build, all ten
+pnpm typecheck          # tsc --noEmit, all twenty plus the site
+pnpm build              # next build, all twenty plus the site
 node scripts/smoke.mjs  # boots each app, runs its own published example
 ```
 

@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0b1020;
+  --muted: #5b6478;
+  --line: #e6e8f0;
+  --brand: #4f46e5;
+  --brand-soft: #eef2ff;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Faint engineering grid behind the hero. */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(11, 16, 32, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 16, 32, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Warm glow under the hero, tinted by the brand. */
+.hero-glow {
+  background:
+    radial-gradient(48% 46% at 18% 0%, rgba(79, 70, 229, 0.13) 0%, transparent 68%),
+    radial-gradient(44% 44% at 82% 6%, rgba(8, 145, 178, 0.11) 0%, transparent 68%);
+}
+
+/*
+ * Product cards tint to their own accent on hover. The accent is set per card as
+ * --card-accent, so one rule covers all ten and the colour stays owned by the
+ * product rather than duplicated here.
+ */
+.product-card {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.22s, border-color 0.22s;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(80% 70% at 50% 0%, var(--card-accent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.22s;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--card-accent);
+  box-shadow: 0 14px 40px -18px var(--card-accent);
+}
+
+.product-card:hover::before {
+  opacity: 0.075;
+}
+
+.product-card:focus-within {
+  border-color: var(--card-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-accent) 18%, transparent);
+}
+
+/* The arrow on a card's call to action nudges right on hover. */
+.product-card .go-arrow {
+  transition: transform 0.22s;
+}
+
+.product-card:hover .go-arrow {
+  transform: translateX(3px);
+}
+
+/* Continuous marquee of product names in the hero. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Respect a stated preference for less motion. Decorative animation only. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .product-card {
+    transition: none;
+  }
+
+  .product-card:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,96 @@
+name: verify
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    # Twenty-one Next builds plus three integration runs against a real database.
+    timeout-minutes: 40
+
+    # A real Postgres, because the integration suite tests the things that only
+    # break when everything is wired together. Mocking the database here would
+    # test the mock.
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sfs
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      # All three actions are on majors whose runtime is node24. The v4 tags run on
+      # node20, which GitHub deprecated as the default JavaScript action runtime in
+      # June 2026 — the runner was already silently substituting node24, and that
+      # substitution goes away.
+      - uses: actions/checkout@v7
+
+      # No `version:` here on purpose. The action reads the `packageManager` field
+      # in package.json, and specifying both is a hard error: "Multiple versions of
+      # pnpm specified". One source of truth for the pnpm version, and it is the
+      # same field pnpm itself and corepack use locally.
+      - uses: pnpm/action-setup@v6
+
+      # `cache: pnpm` is set explicitly rather than relying on the automatic
+      # detection v5 added, because v6 narrowed that automatic path to npm only.
+      # Explicit is what actually caches the pnpm store here.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Fails if any product has drifted from _template/. This is what makes the
+      # framework a standard rather than a suggestion.
+      - name: Framework is in sync
+        run: pnpm sync:check
+
+      # Fails if the abetworks.in hub is advertising stale product copy.
+      - name: Hub catalog is current
+        run: pnpm run gen:hub:check
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      # Rule 3: every product must boot and work with no environment variables.
+      - name: Smoke (no env)
+        run: pnpm smoke
+
+      # The agent-facing contract. Real JSON-RPC over stdio against every product's
+      # mcp/server.mjs — the one surface nothing else covered.
+      - name: MCP protocol
+        run: pnpm run mcp
+
+      - name: Schema is idempotent
+        run: node scripts/db-apply.mjs --twice
+        env:
+          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/sfs
+
+      # Three products, deliberately spanning the suite: the first one built, one
+      # from the original ten, and one from the second ten. The framework layer is
+      # shared, so a failure on one is a failure on all twenty — but running more
+      # than one catches the case where a product's own config breaks a shared
+      # route, which is how the PaySlipIN pricing string broke a quota assertion.
+      - name: Integration (real Postgres)
+        run: |
+          node scripts/test-integration.mjs --app 01-dealbrief
+          node scripts/test-integration.mjs --app 05-invoiceparse
+          node scripts/test-integration.mjs --app 18-payslipin
+        env:
+          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/sfs
