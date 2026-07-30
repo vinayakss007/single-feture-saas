@@ -440,6 +440,72 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/20-contractclock/LAUNCH.md`](../apps/20-contractclock/LAUNCH.md)
 
+---
+
+## 21. MediBillCheck
+
+**Find the errors in a hospital bill before you pay it**
+
+| | |
+|---|---|
+| Folder | [`apps/21-medibillcheck`](../apps/21-medibillcheck) |
+| Category | Health finance |
+| The one job | Itemised hospital bill in, questionable charges and a query letter out. |
+| Buyer | Anyone paying a hospital bill in India, plus the family members who end up handling it |
+| Pricing | Free · ₹999/mo · Claims custom |
+| MCP tool | `medibillcheck_audit_bill` |
+| Suggested domain | `medibillcheck.abetworks.in` |
+
+**Why it wins.** Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge.
+
+**How it works.** Line parsing with quantity-times-rate reconciliation and a lines-versus-stated-total check, twelve categories of commonly declined consumable, identical-amount duplicate detection, proportionate-deduction arithmetic from room cap and sum insured, and GST-on-exempt-services detection.
+
+**Launch kit.** [`apps/21-medibillcheck/LAUNCH.md`](../apps/21-medibillcheck/LAUNCH.md)
+
+---
+
+## 22. LabTrack
+
+**See which lab values are outside range, and which are moving**
+
+| | |
+|---|---|
+| Folder | [`apps/22-labtrack`](../apps/22-labtrack) |
+| Category | Health records |
+| The one job | Lab report values in, range flags and trends across reports out. |
+| Buyer | Anyone managing their own or a parent's test results across multiple reports and labs |
+| Pricing | Free · ₹499/mo · Clinic custom |
+| MCP tool | `labtrack_check_values` |
+| Suggested domain | `labtrack.abetworks.in` |
+
+**Why it wins.** Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box.
+
+**How it works.** 31 tests across seven panels with sex-specific reference ranges, the report's own stated range taking priority over the bundled one, percentage deviation outside range, separate handling of values far enough out that laboratories flag them, and per-test trend computation across multiple dated reports.
+
+**Launch kit.** [`apps/22-labtrack/LAUNCH.md`](../apps/22-labtrack/LAUNCH.md)
+
+---
+
+## 23. VaxDue
+
+**Which childhood vaccines are overdue, due now and next**
+
+| | |
+|---|---|
+| Folder | [`apps/23-vaxdue`](../apps/23-vaxdue) |
+| Category | Child health |
+| The one job | Date of birth and doses given in, overdue and upcoming schedule out. |
+| Buyer | Parents and grandparents tracking a child's immunisations, and the relative who ends up holding the card |
+| Pricing | Free · ₹299/mo · Clinic custom |
+| MCP tool | `vaxdue_check_schedule` |
+| Suggested domain | `vaxdue.abetworks.in` |
+
+**Why it wins.** A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again.
+
+**How it works.** 35 doses across the full childhood schedule with due ages, minimum ages and minimum inter-dose gaps, calendar dates computed from date of birth against an explicit as-at date, conservative matching of already-given doses, and the one upper age limit that genuinely forecloses catch-up.
+
+**Launch kit.** [`apps/23-vaxdue/LAUNCH.md`](../apps/23-vaxdue/LAUNCH.md)
+
 
 ---
 

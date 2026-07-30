@@ -265,5 +265,41 @@ export const products: HubProduct[] = [
     "accent": "#7e22ce",
     "mcpTool": "contractclock_extract_deadlines",
     "differentiator": "Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug."
+  },
+  {
+    "dir": "21-medibillcheck",
+    "slug": "medibillcheck",
+    "name": "MediBillCheck",
+    "tagline": "Find the errors in a hospital bill before you pay it",
+    "job": "Itemised hospital bill in, questionable charges and a query letter out.",
+    "category": "Health finance",
+    "audience": "Anyone paying a hospital bill in India, plus the family members who end up handling it",
+    "accent": "#0e7490",
+    "mcpTool": "medibillcheck_audit_bill",
+    "differentiator": "Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge."
+  },
+  {
+    "dir": "22-labtrack",
+    "slug": "labtrack",
+    "name": "LabTrack",
+    "tagline": "See which lab values are outside range, and which are moving",
+    "job": "Lab report values in, range flags and trends across reports out.",
+    "category": "Health records",
+    "audience": "Anyone managing their own or a parent's test results across multiple reports and labs",
+    "accent": "#0f766e",
+    "mcpTool": "labtrack_check_values",
+    "differentiator": "Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box."
+  },
+  {
+    "dir": "23-vaxdue",
+    "slug": "vaxdue",
+    "name": "VaxDue",
+    "tagline": "Which childhood vaccines are overdue, due now and next",
+    "job": "Date of birth and doses given in, overdue and upcoming schedule out.",
+    "category": "Child health",
+    "audience": "Parents and grandparents tracking a child's immunisations, and the relative who ends up holding the card",
+    "accent": "#c026d3",
+    "mcpTool": "vaxdue_check_schedule",
+    "differentiator": "A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again."
   }
 ];

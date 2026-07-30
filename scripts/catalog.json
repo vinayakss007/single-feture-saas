@@ -455,6 +455,72 @@
         "Ambiguous dates flagged with both readings",
         "An .ics calendar file with two-week reminders"
       ]
+    },
+    {
+      "dir": "21-medibillcheck",
+      "slug": "medibillcheck",
+      "name": "MediBillCheck",
+      "category": "Health finance",
+      "tagline": "Find the errors in a hospital bill before you pay it",
+      "job": "Itemised hospital bill in, questionable charges and a query letter out.",
+      "price": "Free \u00b7 \u20b9999/mo \u00b7 Claims custom",
+      "mcpTool": "medibillcheck_audit_bill",
+      "engine": "Line parsing with quantity-times-rate reconciliation and a lines-versus-stated-total check, twelve categories of commonly declined consumable, identical-amount duplicate detection, proportionate-deduction arithmetic from room cap and sum insured, and GST-on-exempt-services detection.",
+      "differentiator": "Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge.",
+      "audience": "Anyone paying a hospital bill in India, plus the family members who end up handling it",
+      "accent": "#0e7490",
+      "phTagline": "Find the errors in a hospital bill before you pay it",
+      "phFirstComment": "You are exhausted, someone is unwell, there is a queue behind you, and the bill is eleven pages. The only number anyone reads is the total. Errors found after payment are far harder to reverse.\n\nSo this checks the parts that are objectively checkable: does quantity times rate equal the line, do the lines equal the stated total, is the same amount charged twice, and are there consumables your insurer will decline.\n\nThe finding people are most surprised by is the proportionate deduction. Exceed your policy's room rent cap and most indemnity policies scale down the surgeon, anaesthetist and nursing charges by the same ratio. On the sample bill that is \u20b986,000 \u2014 far more than the room difference itself. People discover it from the settlement letter weeks later, when the room is long since vacated.\n\nWhat it will not do is tell you whether a treatment was necessary, or whether a rate is fair. Those are a clinical judgement and a pricing opinion respectively, and a bill parser has no business offering either. Saying so is what makes the rest credible.",
+      "phGallery": [
+        "Every finding as a rupee figure with its line number",
+        "The proportionate deduction your room category triggers",
+        "Twelve categories of consumable insurers routinely decline",
+        "A query letter that offers to settle the undisputed balance"
+      ]
+    },
+    {
+      "dir": "22-labtrack",
+      "slug": "labtrack",
+      "name": "LabTrack",
+      "category": "Health records",
+      "tagline": "See which lab values are outside range, and which are moving",
+      "job": "Lab report values in, range flags and trends across reports out.",
+      "price": "Free \u00b7 \u20b9499/mo \u00b7 Clinic custom",
+      "mcpTool": "labtrack_check_values",
+      "engine": "31 tests across seven panels with sex-specific reference ranges, the report's own stated range taking priority over the bundled one, percentage deviation outside range, separate handling of values far enough out that laboratories flag them, and per-test trend computation across multiple dated reports.",
+      "differentiator": "Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box.",
+      "audience": "Anyone managing their own or a parent's test results across multiple reports and labs",
+      "accent": "#0f766e",
+      "phTagline": "Which lab values are outside range, and which ones are moving",
+      "phFirstComment": "Reports arrive as PDFs, get read once, and are filed. Nobody lines up March against September \u2014 which is exactly where the useful information is, because the direction of travel matters more than a single number.\n\nThe refusal is the design here, not a disclaimer. It never suggests what a result might mean, never proposes a cause, never names a condition. Interpreting a value needs your history, your examination and your medications, and a text box has none of them.\n\nWhat it does instead is the two things a person genuinely cannot do quickly: check thirty values against thirty ranges without missing one, and compute what changed since last time.\n\nOne detail I care about: where your report states its own reference range, that is the range used, and each finding says so. Assays differ between labs, so the paper the value came from is the only range that actually applies to it. Using a bundled range over a stated one would generate false flags, and a false flag about your own blood work is worse than silence.",
+      "phGallery": [
+        "Every value with the percentage it sits outside its range",
+        "Your report's own stated range takes priority, and it says so",
+        "Trends per test across every report you paste",
+        "A summary written for a fifteen-minute appointment"
+      ]
+    },
+    {
+      "dir": "23-vaxdue",
+      "slug": "vaxdue",
+      "name": "VaxDue",
+      "category": "Child health",
+      "tagline": "Which childhood vaccines are overdue, due now and next",
+      "job": "Date of birth and doses given in, overdue and upcoming schedule out.",
+      "price": "Free \u00b7 \u20b9299/mo \u00b7 Clinic custom",
+      "mcpTool": "vaxdue_check_schedule",
+      "engine": "35 doses across the full childhood schedule with due ages, minimum ages and minimum inter-dose gaps, calendar dates computed from date of birth against an explicit as-at date, conservative matching of already-given doses, and the one upper age limit that genuinely forecloses catch-up.",
+      "differentiator": "A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again.",
+      "audience": "Parents and grandparents tracking a child's immunisations, and the relative who ends up holding the card",
+      "accent": "#c026d3",
+      "phTagline": "Which childhood vaccines are overdue, due now and next",
+      "phFirstComment": "A paper card that gets lost, a chart written in weeks and months, and doses spread over eighteen years. Working out what is due today means counting weeks from a birthday by hand.\n\nThis gives calendar dates instead, computed from the date of birth, so they go straight into a diary. It marks every dose free-at-a-government-facility or usually-paid, because that is the distinction nobody explains when you are quoted a total.\n\nTwo things I was careful about. Being late almost never means restarting a series \u2014 catch-up continues from where it stopped \u2014 so every overdue row says that, rather than leaving a parent to panic. The exception is rotavirus, which has a genuine upper age limit, and there it says plainly that this is not something to catch up.\n\nAnd matching is deliberately conservative. If a dose you listed as given could not be matched, it appears in an explicit unmatched list rather than being silently accepted \u2014 wrongly marking a dose as given is the more dangerous error of the two.\n\nIt schedules. It does not advise. Vaccine decisions belong to a paediatrician.",
+      "phGallery": [
+        "Overdue, due now and upcoming as calendar dates",
+        "Every dose marked free or usually paid",
+        "Catch-up handled honestly, including the one hard age limit",
+        "A printable card for the clinic"
+      ]
     }
   ]
 }

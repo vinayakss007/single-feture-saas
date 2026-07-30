@@ -54,6 +54,9 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`18-payslipin`](apps/18-payslipin) | **PaySlipIN** | Annual CTC in, full payslip with PF, ESI, PT and TDS out. | Payroll compliance | Free · ₹999/mo · Practice custom |
 | [`19-dmarcfix`](apps/19-dmarcfix) | **DMARCFix** | Email auth records in, lookup count, failures and corrected records out. | Email deliverability | Free · ₹1,499/mo · Agency custom |
 | [`20-contractclock`](apps/20-contractclock) | **ContractClock** | Contract text in, deadlines and a calendar file out. | Contract operations | Free · ₹1,999/mo · Enterprise custom |
+| [`21-medibillcheck`](apps/21-medibillcheck) | **MediBillCheck** | Itemised hospital bill in, questionable charges and a query letter out. | Health finance | Free · ₹999/mo · Claims custom |
+| [`22-labtrack`](apps/22-labtrack) | **LabTrack** | Lab report values in, range flags and trends across reports out. | Health records | Free · ₹499/mo · Clinic custom |
+| [`23-vaxdue`](apps/23-vaxdue) | **VaxDue** | Date of birth and doses given in, overdue and upcoming schedule out. | Child health | Free · ₹299/mo · Clinic custom |
 
 ## Why these twenty
 
@@ -203,6 +206,9 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | PaySlipIN | `payslipin_compute_payslip` | `apps/18-payslipin/mcp/server.mjs` |
 | DMARCFix | `dmarcfix_audit_records` | `apps/19-dmarcfix/mcp/server.mjs` |
 | ContractClock | `contractclock_extract_deadlines` | `apps/20-contractclock/mcp/server.mjs` |
+| MediBillCheck | `medibillcheck_audit_bill` | `apps/21-medibillcheck/mcp/server.mjs` |
+| LabTrack | `labtrack_check_values` | `apps/22-labtrack/mcp/server.mjs` |
+| VaxDue | `vaxdue_check_schedule` | `apps/23-vaxdue/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 
