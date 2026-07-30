@@ -6,7 +6,7 @@
   "scripts": {
     "sync": "node scripts/sync-template.mjs",
     "sync:check": "node scripts/sync-template.mjs --check",
-    "build": "pnpm -r --parallel run build",
+    "build": "pnpm -r run build",
     "typecheck": "pnpm -r --parallel run typecheck",
     "test": "pnpm -r run test",
     "lint": "pnpm run typecheck",

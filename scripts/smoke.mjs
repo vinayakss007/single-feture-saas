@@ -72,6 +72,42 @@ function app0(appPath) {
   return parts[parts.length - 1];
 }
 
+/**
+ * Variables that switch a product out of demo mode.
+ *
+ * This script exists to prove rule 3 — every product boots and works with an empty
+ * environment — so it has to *control* the environment rather than inherit whatever
+ * happens to be in the developer's shell.
+ *
+ * Inheriting was a real bug, not a theoretical one. With a DATABASE_URL exported,
+ * runs are metered against the anonymous daily cap and persisted, so `pnpm smoke`
+ * would pass or fail depending on how many rows a previous run had left in the
+ * database. A check that enforces "works with no configuration" cannot itself
+ * depend on configuration.
+ */
+const DEMO_MODE_OVERRIDES = [
+  "DATABASE_URL",
+  "API_KEYS",
+  "RATE_LIMIT_PER_MIN",
+  "ANON_DAILY_LIMIT",
+  "RAZORPAY_KEY_ID",
+  "RAZORPAY_KEY_SECRET",
+  "RAZORPAY_WEBHOOK_SECRET",
+  "STRIPE_SECRET_KEY",
+  "STRIPE_WEBHOOK_SECRET",
+  "RESEND_API_KEY",
+  "CRON_SECRET",
+  "METRICS_TOKEN",
+  "ALERT_WEBHOOK_URL",
+  "NEXT_PUBLIC_SITE_URL",
+];
+
+function demoModeEnv(extra) {
+  const env = { ...process.env, ...extra };
+  for (const key of DEMO_MODE_OVERRIDES) delete env[key];
+  return env;
+}
+
 async function testApp(app, port) {
   const appPath = join(appsDir, app);
   const serverPath = findStandaloneServer(appPath);
@@ -87,7 +123,7 @@ async function testApp(app, port) {
     cwd: serverRoot,
     // Next's standalone server binds to process.env.HOSTNAME, which defaults to
     // the machine hostname rather than loopback. Same reason the Dockerfile sets it.
-    env: { ...process.env, PORT: String(port), HOSTNAME: "0.0.0.0", NODE_ENV: "production" },
+    env: demoModeEnv({ PORT: String(port), HOSTNAME: "0.0.0.0", NODE_ENV: "production" }),
     stdio: ["ignore", "pipe", "pipe"],
   });
 
