@@ -46,13 +46,16 @@ export async function GET(req: Request) {
   }
 
   const retentionDays = Number(process.env.USAGE_RETENTION_DAYS ?? 400);
+  const ipRetentionDays = Number(process.env.IP_RETENTION_DAYS ?? 30);
+
   const result = await queryOne<{
     sessions: number;
     resets: number;
     webhooks: number;
     usage: number;
-  }>(`SELECT * FROM purge_expired($1)`, [retentionDays]);
+    ips_cleared: number;
+  }>(`SELECT * FROM purge_expired($1, $2)`, [retentionDays, ipRetentionDays]);
 
-  log("info", "cron.purge", "retention job complete", { ...result, retentionDays });
-  return NextResponse.json({ ok: true, data: { ...result, retentionDays } });
+  log("info", "cron.purge", "retention job complete", { ...result, retentionDays, ipRetentionDays });
+  return NextResponse.json({ ok: true, data: { ...result, retentionDays, ipRetentionDays } });
 }

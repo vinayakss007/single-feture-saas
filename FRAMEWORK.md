@@ -430,11 +430,28 @@ token, or a full API key.
 
 ### Retention
 
-`/api/cron/purge`, daily at 03:00 via `vercel.json`, `Bearer CRON_SECRET`. Deletes expired sessions,
-spent reset tokens, and processed webhooks over 30 days old. **Usage events are kept 400 days** —
-far longer than everything else, because they are the evidence behind an invoice and a billing
-dispute six months later has to be answerable. Without `CRON_SECRET` the route refuses to run rather
-than exposing a destructive endpoint.
+`/api/cron/purge`, daily at 03:00 via `vercel.json`, `Bearer CRON_SECRET`. Without `CRON_SECRET` the
+route refuses to run rather than exposing a destructive endpoint.
+
+| What | Kept for | Why |
+|------|----------|-----|
+| Sessions | until expiry | No value once spent |
+| Reset tokens | until used or expired | Single-use by design |
+| Processed webhooks | 30 days | Unprocessed ones are never deleted — they are bugs that still need replaying |
+| Usage events | **400 days** | They are the evidence behind an invoice. A billing dispute six months later has to be answerable |
+| **IP on a usage row** | **30 days, then nulled** | The row survives; only the identifier goes |
+
+That last row is the one worth understanding. An IP is recorded *only* for an anonymous caller —
+`recordUsage` writes `null` for anyone authenticated, so no row ever holds both an IP and a user id.
+Its only purpose is enforcing the daily anonymous allowance, which resets every day. Keeping it for
+the full 400-day usage retention would be personal data held long after the purpose it was collected
+for expired, which is exactly what data minimisation prohibits. So it is nulled at 30 days while the
+row is kept for volume counts.
+
+The same reasoning is why `usage_events.user_id` is `ON DELETE SET NULL` rather than `ON DELETE
+CASCADE`: deleting an account anonymises its metering history instead of destroying the billing
+record. Combined with IP nulling, an erasure request leaves rows that are genuinely anonymous rather
+than merely detached.
 
 ---
 

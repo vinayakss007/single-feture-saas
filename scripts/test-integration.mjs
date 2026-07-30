@@ -783,8 +783,10 @@ async function testCronAndRetention() {
   await check("the schema is idempotent — purge_expired survives re-application", async () => {
     const schema = readFileSync(join(APP_DIR, "db", "schema.sql"), "utf8");
     await db.query(schema);
-    const [row] = await sql(`SELECT * FROM purge_expired(400)`);
-    assert("sessions" in row && "usage" in row, "purge_expired should still return its four counts");
+    const [row] = await sql(`SELECT * FROM purge_expired(400, 30)`);
+    for (const col of ["sessions", "resets", "webhooks", "usage", "ips_cleared"]) {
+      assert(col in row, `purge_expired should return ${col}`);
+    }
   });
 }
 

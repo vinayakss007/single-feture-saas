@@ -181,15 +181,35 @@ CREATE TRIGGER subscriptions_touch BEFORE UPDATE ON subscriptions
 -- later has to be answerable. Sessions, reset tokens and processed webhooks have
 -- no such value once they are spent.
 --
--- Dropped rather than replaced because the return type changed; CREATE OR REPLACE
--- cannot alter a function's signature.
-DROP FUNCTION IF EXISTS purge_expired();
-DROP FUNCTION IF EXISTS purge_expired(integer);
-
-CREATE FUNCTION purge_expired(usage_retention_days integer DEFAULT 400)
-RETURNS TABLE(sessions bigint, resets bigint, webhooks bigint, usage bigint) AS $$
+-- Dropped rather than replaced because the return type changes as retention rules
+-- are added, and CREATE OR REPLACE cannot alter a function's signature.
+--
+-- Every overload is dropped by looking them up, rather than by listing signatures
+-- explicitly. A hardcoded list has to be extended every time an argument is added,
+-- and forgetting means the second application of this file fails with "function
+-- already exists" — which breaks the idempotency the whole migrate() strategy
+-- depends on. That is exactly the bug this replaced.
+DO $$
 DECLARE
-  s bigint; r bigint; w bigint; u bigint;
+  fn record;
+BEGIN
+  FOR fn IN
+    SELECT oid::regprocedure AS signature
+      FROM pg_proc
+     WHERE proname = 'purge_expired'
+       AND pronamespace = 'public'::regnamespace
+  LOOP
+    EXECUTE format('DROP FUNCTION IF EXISTS %s', fn.signature);
+  END LOOP;
+END $$;
+
+CREATE FUNCTION purge_expired(
+  usage_retention_days integer DEFAULT 400,
+  ip_retention_days integer DEFAULT 30
+)
+RETURNS TABLE(sessions bigint, resets bigint, webhooks bigint, usage bigint, ips_cleared bigint) AS $$
+DECLARE
+  s bigint; r bigint; w bigint; u bigint; i bigint;
 BEGIN
   DELETE FROM sessions WHERE expires_at < now();
   GET DIAGNOSTICS s = ROW_COUNT;
@@ -206,6 +226,22 @@ BEGIN
    WHERE created_at < now() - (usage_retention_days * interval '1 day');
   GET DIAGNOSTICS u = ROW_COUNT;
 
-  RETURN QUERY SELECT s, r, w, u;
+  -- Anonymise old IP addresses without deleting the row.
+  --
+  -- An IP is only ever recorded for an anonymous caller, and its only purpose is
+  -- enforcing the daily allowance — which resets every day. Keeping it for the
+  -- full 400-day usage retention would be personal data held long after the
+  -- purpose it was collected for has expired, which is precisely what data
+  -- minimisation prohibits. The row itself is kept, because volume counts are
+  -- still useful; only the identifier goes.
+  --
+  -- Authenticated rows never have an IP, so this only ever touches anonymous ones.
+  UPDATE usage_events
+     SET ip = NULL
+   WHERE ip IS NOT NULL
+     AND created_at < now() - (ip_retention_days * interval '1 day');
+  GET DIAGNOSTICS i = ROW_COUNT;
+
+  RETURN QUERY SELECT s, r, w, u, i;
 END;
 $$ LANGUAGE plpgsql;

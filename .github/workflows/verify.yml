@@ -67,9 +67,15 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/sfs
 
+      # Three products, deliberately spanning the suite: the first one built, one
+      # from the original ten, and one from the second ten. The framework layer is
+      # shared, so a failure on one is a failure on all twenty — but running more
+      # than one catches the case where a product's own config breaks a shared
+      # route, which is how the PaySlipIN pricing string broke a quota assertion.
       - name: Integration (real Postgres)
         run: |
           node scripts/test-integration.mjs --app 01-dealbrief
           node scripts/test-integration.mjs --app 05-invoiceparse
+          node scripts/test-integration.mjs --app 18-payslipin
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/sfs
