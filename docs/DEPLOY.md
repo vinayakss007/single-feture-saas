@@ -1,6 +1,6 @@
 # Deploy
 
-Eleven deployments: the **abetworks.in banner site** at the apex, and ten products on subdomains.
+Twenty-one deployments: the **abetworks.in banner site** at the apex, and twenty products on subdomains.
 Each is independent — nothing is shared at runtime, so one can go down or get rewritten without
 touching the others.
 
@@ -8,7 +8,7 @@ touching the others.
 abetworks.in                    site/              the banner site
   ├── dealbrief.abetworks.in    apps/01-dealbrief
   ├── churnsignal.abetworks.in  apps/02-churnsignal
-  └── … eight more
+  └── … eighteen more
 ```
 
 ## The banner site first
@@ -29,7 +29,7 @@ a product has its real domain, override just that one:
 NEXT_PUBLIC_PRODUCT_URL_DEALBRIEF=https://dealbrief-abc123.vercel.app
 ```
 
-Remove the override once DNS is live. `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` repoints all ten at once,
+Remove the override once DNS is live. `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` repoints all twenty at once,
 which is what you want for a staging apex.
 
 ## Vercel — the products
@@ -43,12 +43,13 @@ Each app needs its own Vercel project pointing at the same repository, with a di
 5. Add environment variables (below)
 6. Deploy
 
-Repeat for the other nine. Each takes about two minutes.
+Repeat for the other nineteen. Each takes about two minutes — or script it with the Vercel CLI, since the only thing that differs is the root directory and the domain.
 
 ### Suggested domains
 
 | App | Domain |
 |---|---|
+| _(apex)_ | `abetworks.in` — the banner site |
 | 01-dealbrief | `dealbrief.abetworks.in` |
 | 02-churnsignal | `churnsignal.abetworks.in` |
 | 03-pricepulse | `pricepulse.abetworks.in` |
@@ -59,6 +60,16 @@ Repeat for the other nine. Each takes about two minutes.
 | 08-pingdeck | `pingdeck.abetworks.in` |
 | 09-answerready | `answerready.abetworks.in` |
 | 10-promptshield | `promptshield.abetworks.in` |
+| 11-aiactnotice | `aiactnotice.abetworks.in` |
+| 12-a11ygate | `a11ygate.abetworks.in` |
+| 13-gstmatch | `gstmatch.abetworks.in` |
+| 14-einvoiceguard | `einvoiceguard.abetworks.in` |
+| 15-subaudit | `subaudit.abetworks.in` |
+| 16-policypack | `policypack.abetworks.in` |
+| 17-vendortrace | `vendortrace.abetworks.in` |
+| 18-payslipin | `payslipin.abetworks.in` |
+| 19-dmarcfix | `dmarcfix.abetworks.in` |
+| 20-contractclock | `contractclock.abetworks.in` |
 
 Subdomains of one apex keep DNS simple and give every product the domain authority of the parent. Move a winner to its own apex later, once it earns it.
 
@@ -80,7 +91,7 @@ docker run -p 3000:3000 \
 
 The image runs as a non-root user, uses Next.js standalone output, sets `HOSTNAME=0.0.0.0` so it binds inside a container, and has a `HEALTHCHECK` against `/api/health`.
 
-Build all ten:
+Build all twenty:
 
 ```bash
 for d in apps/*/; do
@@ -124,7 +135,7 @@ metered by IP. You add variables to unlock capability.
 
 ### Per-product payment ids
 
-Env names are namespaced by slug, so one project can hold all ten:
+Env names are namespaced by slug, so one project can hold all twenty:
 
 ```
 RAZORPAY_PLAN_DEALBRIEF_PRO=plan_xxx
@@ -174,8 +185,8 @@ strict distributed burst limit.
 
 ```bash
 pnpm install
-pnpm typecheck          # tsc --noEmit, all ten
-pnpm build              # next build, all ten
+pnpm typecheck          # tsc --noEmit, all twenty plus the site
+pnpm build              # next build, all twenty plus the site
 node scripts/smoke.mjs  # boots each app, runs its own published example
 ```
 

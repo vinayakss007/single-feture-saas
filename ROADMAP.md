@@ -49,7 +49,7 @@ finance-ops products, two technical products. All deterministic. None is an LLM 
 
 ---
 
-## The ten
+## The ten, as built
 
 | # | Product | One line | Who pays | Why now | Pro price |
 |---|---------|----------|----------|---------|-----------|

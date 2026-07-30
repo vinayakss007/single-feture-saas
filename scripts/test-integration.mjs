@@ -410,6 +410,35 @@ async function testFreePlanAndQuota() {
     assertEqual(after, before, "a rejected request must not be billed");
   });
 
+  await check("usage is scoped to this product only", async () => {
+    /*
+     * Checked behaviourally, via the quota headers, rather than by searching the
+     * dashboard HTML for a magic number.
+     *
+     * The string-search version passed for nineteen products and failed for
+     * PaySlipIN, whose pricing page legitimately contains "₹999" — a false
+     * positive that looked exactly like a cross-product usage leak. Asserting on
+     * the number the quota actually counted tests the thing we care about and
+     * cannot be confused by page copy.
+     *
+     * Deliberately placed before quota exhaustion: once the quota is spent every
+     * run returns 402 and the headers no longer move, so this has to run while
+     * there is still allowance left.
+     */
+    const before = Number((await post("/api/v1/run", SAMPLE)).headers.get("x-quota-used"));
+
+    await sql(
+      `INSERT INTO usage_events (product, user_id, endpoint, status, units)
+       VALUES ('some-other-product', $1, '/api/v1/run', 200, 999)`,
+      [userId],
+    );
+
+    const after = Number((await post("/api/v1/run", SAMPLE)).headers.get("x-quota-used"));
+    assertEqual(after, before + 1, "999 units billed to another product must not count against this one");
+
+    await sql(`DELETE FROM usage_events WHERE product = 'some-other-product'`);
+  });
+
   await check("exhausting the monthly quota returns 402", async () => {
     // Fast-forward by inserting usage directly rather than making 25 real calls.
     await sql(
@@ -433,16 +462,6 @@ async function testFreePlanAndQuota() {
     assertEqual(row.status, 402, "status");
   });
 
-  await check("usage is scoped to this product only", async () => {
-    await sql(
-      `INSERT INTO usage_events (product, user_id, endpoint, status, units)
-       VALUES ('some-other-product', $1, '/api/v1/run', 200, 999)`,
-      [userId],
-    );
-    const res = await get("/dashboard");
-    assert(!res.text.includes("999"), "another product's usage leaked into this one");
-    await sql(`DELETE FROM usage_events WHERE product = 'some-other-product'`);
-  });
 }
 
 async function testAnonymousLimit() {

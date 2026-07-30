@@ -1,6 +1,6 @@
 # Portfolio
 
-Positioning, moat and revenue model for each of the ten products.
+Positioning, moat and revenue model for each of the twenty products.
 
 ## 01. DealBrief
 
@@ -449,11 +449,15 @@ Three pricing shapes across the suite, matched to how each product actually gets
 
 **Per-seat** (DealBrief) — used by named individuals every day, so seats align with value.
 
-**Flat monthly** (ChurnSignal, PricePulse, ConsentScan, InvoiceParse, ColdAngle, Repurpose10, PingDeck, AnswerReady) — used by a team a few times a week. Flat pricing removes the friction of counting.
+**Flat monthly** (everything else) — used by a team a few times a week, or a handful of times a month. Flat pricing removes the friction of counting, and for the compliance products it matches how the buyer thinks: the cost of the tool against the cost of the deadline.
 
-**Usage-based** (PromptShield, and InvoiceParse at volume) — sits in a request path where volume is the only sensible unit.
+**Usage-based** (PromptShield, and InvoiceParse and eInvoiceGuard at volume) — these sit in a request path, where volume is the only sensible unit.
 
-Every product has a genuinely useful free tier. That is deliberate: with ten products the cheapest possible distribution is a working demo that needs no signup, and a crippled demo wastes the launch it took to earn the traffic.
+**Deadline-priced** (AIActNotice, A11yGate, PolicyPack) — priced against what the alternative costs, not against usage. A lawyer reading your AI system description is ₹15,000 an hour; an accessibility audit is a four-figure engagement; a SOC 2 readiness project is several lakh. These are the only three tiers in the suite above ₹2,000, and that is why.
+
+**Monthly-recurring-by-nature** (GSTMatch, PaySlipIN) — run every filing or payroll cycle without anyone deciding to. Cheapest tiers in the suite and the best retention, because the alternative is a spreadsheet somebody has to maintain.
+
+Every product has a genuinely useful free tier. That is deliberate: with twenty products the cheapest possible distribution is a working demo that needs no signup, and a crippled demo wastes the launch it took to earn the traffic.
 
 ---
 

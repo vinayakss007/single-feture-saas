@@ -1,6 +1,6 @@
-# Abet Works — Single-Feature SaaS Framework + Ten Products
+# Abet Works — Single-Feature SaaS Framework + Twenty Products
 
-**A documented standard for building single-feature SaaS, plus ten products built on it.**
+**A documented standard for building single-feature SaaS, plus twenty products built on it.**
 
 - **[site/](./site)** — **abetworks.in**, the banner site. One page that puts every product one click
   away, with a products menu that links straight out to each one. Generated from the same catalog as
@@ -30,7 +30,7 @@ With no environment variables at all, every product boots and its demo works, me
 `DATABASE_URL` and it becomes the full product with accounts and billing. Add payment keys and it
 takes money. Same build throughout — no flags, no separate demo deployment.
 
-## The ten
+## The twenty
 
 | Folder | Product | The one job it does | Category | Pricing |
 |---|---|---|---|---|
@@ -55,17 +55,21 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`19-dmarcfix`](apps/19-dmarcfix) | **DMARCFix** | Email auth records in, lookup count, failures and corrected records out. | Email deliverability | Free · ₹1,499/mo · Agency custom |
 | [`20-contractclock`](apps/20-contractclock) | **ContractClock** | Contract text in, deadlines and a calendar file out. | Contract operations | Free · ₹1,999/mo · Enterprise custom |
 
-## Why these ten
+## Why these twenty
 
-Three groups, chosen deliberately.
+Five groups. The first ten were chosen on category strength; the second ten came from market research in July 2026, written up in [ROADMAP.md](./ROADMAP.md).
 
-**Defensible by correctness** — ConsentScan, InvoiceParse and PromptShield encode regulation and checksums. The India DPDP Act, the GSTIN mod-36 check digit, Luhn and Verhoeff validation, GDPR articles. This is knowledge work that does not get cloned by a prompt.
+**Regulatory deadline** — AIActNotice, A11yGate, PolicyPack and VendorTrace. People pay for deadlines. EU AI Act Article 50 applies from 2 August 2026, the European Accessibility Act has been enforceable since June 2025, and subprocessor disclosure is now a standard questionnaire item. Existing tooling in these categories is priced for companies running a whole governance programme, which leaves a large gap underneath it.
 
-**Proven willingness to pay** — DealBrief, ChurnSignal, PricePulse and Repurpose10 sit in the four categories that already sustain $19–99/month products: meeting intelligence, churn, competitor tracking and content repurposing.
+**Indian finance and payroll** — GSTMatch, eInvoiceGuard, PaySlipIN and InvoiceParse. Monthly, unavoidable, and every alternative is an ERP integration. Best retention in the suite because they run every filing or payroll cycle without anyone deciding to.
 
-**Cheap to run and fast to launch** — ColdAngle, PingDeck and AnswerReady have near-zero marginal cost and an obvious launch narrative.
+**Defensible by correctness** — ConsentScan and PromptShield encode regulation and checksums: the DPDP Act, the GSTIN mod-36 check digit, Luhn and Verhoeff validation, GDPR articles. Knowledge work that does not get cloned by a prompt.
 
-All ten feed the existing Abet Works stack: DealBrief and ColdAngle write into NuCRM, every product can be scheduled by FlowForge, and all ten are MCP tools for Agent Fleet.
+**Proven willingness to pay** — DealBrief, ChurnSignal, PricePulse and Repurpose10 sit in four categories that already sustain $19–99/month products: meeting intelligence, churn, competitor tracking and content repurposing.
+
+**Finds money or time on the first run** — SubAudit, ContractClock, DMARCFix, ColdAngle, PingDeck and AnswerReady. Near-zero marginal cost and a demo that produces a number the visitor did not know: recoverable spend, a cancellation deadline already missed, an SPF record silently failing.
+
+All twenty feed the existing Abet Works stack: DealBrief and ColdAngle write into NuCRM, every product can be scheduled by FlowForge, and all twenty are MCP tools for Agent Fleet.
 
 ## The one design decision that matters
 
@@ -83,7 +87,7 @@ Where a model genuinely helps, it belongs on top as optional polish, never under
 ## Quick start
 
 ```bash
-pnpm install                        # installs all ten
+pnpm install                        # installs all twenty plus the site
 pnpm --filter @abetworks/dealbrief dev
 ```
 
@@ -205,7 +209,7 @@ Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its too
 
 - [docs/DEPLOY.md](docs/DEPLOY.md) — Vercel, Docker, domains, env vars, going from free to paid
 - [docs/PORTFOLIO.md](docs/PORTFOLIO.md) — the full portfolio with positioning and revenue model per product
-- [docs/LAUNCH-PLAYBOOK.md](docs/LAUNCH-PLAYBOOK.md) — sequencing all ten launches without burning the audience
+- [docs/LAUNCH-PLAYBOOK.md](docs/LAUNCH-PLAYBOOK.md) — sequencing twenty launches without burning the audience
 
 ## What you need to deploy
 

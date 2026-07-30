@@ -7,7 +7,7 @@ One page that puts every Abet Works product one click away. Deployed at the **ap
 abetworks.in                 ← this site
   ├── dealbrief.abetworks.in
   ├── churnsignal.abetworks.in
-  └── … eight more
+  └── … eighteen more
 ```
 
 ## Why it is not under `apps/`
@@ -28,7 +28,7 @@ pnpm run gen:hub          # regenerate
 pnpm run gen:hub:check    # fail if stale (runs in CI and in pnpm verify)
 ```
 
-Retyping ten taglines into a hub page is how a shop window ends up advertising a product that
+Retyping twenty taglines into a hub page is how a shop window ends up advertising a product that
 renamed itself two months ago.
 
 ## Links
@@ -37,7 +37,7 @@ renamed itself two months ago.
 
 | Variable | Effect |
 |---|---|
-| `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` | Repoints **all ten** at once — a staging apex, or local hosts |
+| `NEXT_PUBLIC_PRODUCT_DOMAIN_BASE` | Repoints **all twenty** at once — a staging apex, or local hosts |
 | `NEXT_PUBLIC_PRODUCT_URL_<SLUG>` | Overrides one product. Needed mid-launch when nine are on the real domain and the tenth is still on a preview URL |
 | `NEXT_PUBLIC_SITE_URL` | This site's own origin, for canonical tags and Open Graph |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Footer and enterprise CTA |

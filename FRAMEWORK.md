@@ -290,7 +290,7 @@ STRIPE_SECRET_KEY=…  STRIPE_WEBHOOK_SECRET=…
 STRIPE_PRICE_YOURPRODUCT_PRO=price_xxx
 ```
 
-Env names are derived from the slug, so ten products share one project without collision.
+Env names are derived from the slug, so twenty products share one project without collision.
 `purchasablePlans()` returns `[]` until a price id exists, and the dashboard then says paid plans
 are not configured instead of showing a button that 500s.
 
@@ -440,7 +440,7 @@ than exposing a destructive endpoint.
 
 ## 8. Free services: the whole stack at ₹0/month
 
-Run all ten products on free tiers until you have paying customers. Every one of these is wired in
+Run all twenty products on free tiers until you have paying customers. Every one of these is wired in
 already; you add a key.
 
 | Need | Service | Free tier | Notes |
@@ -465,7 +465,7 @@ already; you add a key.
 | **Status page** | Better Stack | Free | Or self-host with `08-pingdeck` |
 
 **Realistic cost at launch: ₹0.** First real cost is Vercel Pro at $20/month, and only once you are
-commercial. Neon and Resend free tiers comfortably cover the first hundred paying customers.
+commercial. Neon and Resend free tiers comfortably cover the first hundred paying customers, and one database serves all twenty products.
 
 ### Where the free tiers actually bite
 
@@ -585,7 +585,7 @@ Never patch one app.
 1. Change `_template/`.
 2. Add a test to `_template/tests/` (or `scripts/test-integration.mjs` if it needs a database).
 3. `pnpm sync` — propagates to all products, regenerates `lib/schema.ts`.
-4. `pnpm verify` — all ten must still pass.
+4. `pnpm verify` — all twenty must still pass.
 5. If it needs a new env var, document it in `_template/.env.example`. Undocumented variables are
    the reason deployments fail at 2 a.m.
 6. If it needs a new dependency, add it to `REQUIRED_DEPS` in `scripts/sync-template.mjs`, not to
