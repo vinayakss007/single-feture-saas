@@ -28,15 +28,22 @@ jobs:
           --health-retries 10
 
     steps:
-      - uses: actions/checkout@v4
+      # All three actions are on majors whose runtime is node24. The v4 tags run on
+      # node20, which GitHub deprecated as the default JavaScript action runtime in
+      # June 2026 — the runner was already silently substituting node24, and that
+      # substitution goes away.
+      - uses: actions/checkout@v7
 
       # No `version:` here on purpose. The action reads the `packageManager` field
       # in package.json, and specifying both is a hard error: "Multiple versions of
       # pnpm specified". One source of truth for the pnpm version, and it is the
       # same field pnpm itself and corepack use locally.
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      # `cache: pnpm` is set explicitly rather than relying on the automatic
+      # detection v5 added, because v6 narrowed that automatic path to npm only.
+      # Explicit is what actually caches the pnpm store here.
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: pnpm
