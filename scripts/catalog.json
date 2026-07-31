@@ -565,6 +565,28 @@
         "Uneven splits where only some of you shared",
         "A message ready to paste into the group chat"
       ]
+    },
+    {
+      "dir": "26-flightright",
+      "slug": "flightright",
+      "name": "FlightRight",
+      "category": "Travel rights",
+      "tagline": "What the airline actually owes you, and the letter to claim it",
+      "job": "Flight disruption details in, entitlements and a claim letter out.",
+      "price": "Free \u00b7 \u20b9399/mo \u00b7 Travel desk custom",
+      "mcpTool": "flightright_assess_claim",
+      "engine": "Regime selection by route rather than carrier nationality, EU261 distance bands including the long-haul halving rule, DGCA cancellation and denied-boarding bands capped against fare, and separation of compensation from refund and duty of care so an extraordinary-circumstance defence only removes what it actually removes.",
+      "differentiator": "Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter.",
+      "audience": "Anyone whose flight was delayed, cancelled or overbooked, and who was offered a voucher",
+      "accent": "#0284c7",
+      "phTagline": "What the airline actually owes you, and the letter to claim it",
+      "phFirstComment": "Compensation, refund and duty of care are three separate entitlements with three different tests. Airlines routinely offer a voucher against one and let you believe the matter is closed \u2014 and accepting a voucher can extinguish the cash claim.\n\nThe most valuable line on the page is about weather. An extraordinary circumstance removes the fixed compensation only; the obligation to refund or reroute and to feed and house you is unaffected. That is where most claimants stop, and they stop too early.\n\nThe second is that a technical fault is not an extraordinary circumstance under EU261 \u2014 the aircraft is the airline's responsibility. It remains the most common reason given for refusal, so the letter answers it before they raise it.\n\nIt is honest about being an assessment, not advice: whether a circumstance was genuinely extraordinary has been litigated extensively and can turn on facts only the airline holds. It also flags that limitation periods are real and vary, rather than burying that in a footer.",
+      "phGallery": [
+        "The right regime chosen by route, not by airline nationality",
+        "Compensation, refund and duty of care separated",
+        "Which entitlements survive a weather excuse",
+        "A claim letter that refuses a voucher in advance"
+      ]
     }
   ]
 }

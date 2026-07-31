@@ -550,6 +550,28 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/25-tripsplit/LAUNCH.md`](../apps/25-tripsplit/LAUNCH.md)
 
+---
+
+## 26. FlightRight
+
+**What the airline actually owes you, and the letter to claim it**
+
+| | |
+|---|---|
+| Folder | [`apps/26-flightright`](../apps/26-flightright) |
+| Category | Travel rights |
+| The one job | Flight disruption details in, entitlements and a claim letter out. |
+| Buyer | Anyone whose flight was delayed, cancelled or overbooked, and who was offered a voucher |
+| Pricing | Free · ₹399/mo · Travel desk custom |
+| MCP tool | `flightright_assess_claim` |
+| Suggested domain | `flightright.abetworks.in` |
+
+**Why it wins.** Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter.
+
+**How it works.** Regime selection by route rather than carrier nationality, EU261 distance bands including the long-haul halving rule, DGCA cancellation and denied-boarding bands capped against fare, and separation of compensation from refund and duty of care so an extraordinary-circumstance defence only removes what it actually removes.
+
+**Launch kit.** [`apps/26-flightright/LAUNCH.md`](../apps/26-flightright/LAUNCH.md)
+
 
 ---
 

@@ -325,5 +325,17 @@ export const products: HubProduct[] = [
     "accent": "#ca8a04",
     "mcpTool": "tripsplit_settle_expenses",
     "differentiator": "Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat — with no account to create and nothing stored afterwards."
+  },
+  {
+    "dir": "26-flightright",
+    "slug": "flightright",
+    "name": "FlightRight",
+    "tagline": "What the airline actually owes you, and the letter to claim it",
+    "job": "Flight disruption details in, entitlements and a claim letter out.",
+    "category": "Travel rights",
+    "audience": "Anyone whose flight was delayed, cancelled or overbooked, and who was offered a voucher",
+    "accent": "#0284c7",
+    "mcpTool": "flightright_assess_claim",
+    "differentiator": "Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter."
   }
 ];
