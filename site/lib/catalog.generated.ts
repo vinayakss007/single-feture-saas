@@ -445,5 +445,65 @@ export const products: HubProduct[] = [
     "accent": "#155e75",
     "mcpTool": "schoolfee_compare",
     "differentiator": "Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to."
+  },
+  {
+    "dir": "36-resumeats",
+    "slug": "resumeats",
+    "name": "ResumeATS",
+    "tagline": "What an ATS actually sees in your resume",
+    "job": "Resume text and job description in, ATS parse score with keyword match rate and rejection flags out.",
+    "category": "Career tools",
+    "audience": "Job seekers in India and globally, career coaches, resume writers, placement consultants",
+    "accent": "#dc2626",
+    "mcpTool": "resume_ats_scan",
+    "differentiator": "Not a resume builder — an ATS simulator that shows exactly what gets extracted, what gets lost, and why 70% of resumes are rejected before a human reads them."
+  },
+  {
+    "dir": "37-rtidraft",
+    "slug": "rtidraft",
+    "name": "RTIDraft",
+    "tagline": "The RTI application that gets answered, not ignored",
+    "job": "Authority type, department, and information request in, formatted RTI application with legal citations and fee details out.",
+    "category": "Legal tools",
+    "audience": "Indian citizens filing RTI applications, RTI activists, journalists, NGOs, legal aid organizations",
+    "accent": "#854d0e",
+    "mcpTool": "rti_draft",
+    "differentiator": "Not a legal advice tool — a properly formatted RTI application generator that gets the technicalities right so your valid question actually gets answered."
+  },
+  {
+    "dir": "38-carcost",
+    "slug": "carcost",
+    "name": "CarCost",
+    "tagline": "The real cost of owning this car, not just the EMI",
+    "job": "Car price, state, fuel type, and loan details in, true 5-year ownership cost with cost-per-km out.",
+    "category": "Personal finance",
+    "audience": "Indian car buyers, auto journalists, financial planners, car comparison researchers",
+    "accent": "#1a2e05",
+    "mcpTool": "car_cost_compute",
+    "differentiator": "Not a car listing — a financial calculator that shows what you think it costs (EMI) vs what it actually costs (EMI + fuel + insurance + service + depreciation)."
+  },
+  {
+    "dir": "39-petdose",
+    "slug": "petdose",
+    "name": "PetDose",
+    "tagline": "What your pet weighs and when each dose is due",
+    "job": "Species, breed, weight, and last treatment dates in, next due dates with weight-based dosing out.",
+    "category": "Pet care",
+    "audience": "Pet owners in India, veterinarians, pet boarding facilities, animal shelters",
+    "accent": "#92400e",
+    "mcpTool": "pet_dose_schedule",
+    "differentiator": "Not a pet health app — a preventative care calculator that tells you exactly what dose, which product, and when it is due based on your pet's actual weight and schedule."
+  },
+  {
+    "dir": "40-packlist",
+    "slug": "packlist",
+    "name": "PackList",
+    "tagline": "The packing list for this trip, this weather, this many days",
+    "job": "Destination type, duration, weather, and activities in, complete categorised packing list with quantities and bag space estimate out.",
+    "category": "Travel tools",
+    "audience": "Travellers, business travellers, backpackers, digital nomads, travel planners",
+    "accent": "#3f6212",
+    "mcpTool": "packing_list",
+    "differentiator": "Not a generic travel checklist — a packing calculator that gives exact quantities for this trip, this weather, this many days, with these activities, in this bag."
   }
 ];

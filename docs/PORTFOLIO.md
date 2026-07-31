@@ -770,6 +770,116 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/35-schoolfee/LAUNCH.md`](../apps/35-schoolfee/LAUNCH.md)
 
+---
+
+## 36. ResumeATS
+
+**What an ATS actually sees in your resume**
+
+| | |
+|---|---|
+| Folder | [`apps/36-resumeats`](../apps/36-resumeats) |
+| Category | Career tools |
+| The one job | Resume text and job description in, ATS parse score with keyword match rate and rejection flags out. |
+| Buyer | Job seekers in India and globally, career coaches, resume writers, placement consultants |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `resume_ats_scan` |
+| Suggested domain | `resumeats.abetworks.in` |
+
+**Why it wins.** Not a resume builder — an ATS simulator that shows exactly what gets extracted, what gets lost, and why 70% of resumes are rejected before a human reads them.
+
+**How it works.** Section parsing (contact, summary, experience, education, skills, certifications), keyword match rate against job description, quantified achievement count, action verb scoring, employment gap detection, format friendliness scoring, and ATS-parsed view generation.
+
+**Launch kit.** [`apps/36-resumeats/LAUNCH.md`](../apps/36-resumeats/LAUNCH.md)
+
+---
+
+## 37. RTIDraft
+
+**The RTI application that gets answered, not ignored**
+
+| | |
+|---|---|
+| Folder | [`apps/37-rtidraft`](../apps/37-rtidraft) |
+| Category | Legal tools |
+| The one job | Authority type, department, and information request in, formatted RTI application with legal citations and fee details out. |
+| Buyer | Indian citizens filing RTI applications, RTI activists, journalists, NGOs, legal aid organizations |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `rti_draft` |
+| Suggested domain | `rtidraft.abetworks.in` |
+
+**Why it wins.** Not a legal advice tool — a properly formatted RTI application generator that gets the technicalities right so your valid question actually gets answered.
+
+**How it works.** RTI Act 2005 compliant application generation with authority-specific PIO addressing, state-wise fee structures (central Rs 10, varying by state), Section 6(1) citation, 30-day timeline, appeal process (Section 19), and common rejection mistake detection.
+
+**Launch kit.** [`apps/37-rtidraft/LAUNCH.md`](../apps/37-rtidraft/LAUNCH.md)
+
+---
+
+## 38. CarCost
+
+**The real cost of owning this car, not just the EMI**
+
+| | |
+|---|---|
+| Folder | [`apps/38-carcost`](../apps/38-carcost) |
+| Category | Personal finance |
+| The one job | Car price, state, fuel type, and loan details in, true 5-year ownership cost with cost-per-km out. |
+| Buyer | Indian car buyers, auto journalists, financial planners, car comparison researchers |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `car_cost_compute` |
+| Suggested domain | `carcost.abetworks.in` |
+
+**Why it wins.** Not a car listing — a financial calculator that shows what you think it costs (EMI) vs what it actually costs (EMI + fuel + insurance + service + depreciation).
+
+**How it works.** On-road price computation (state-specific road tax, registration, TCS, insurance), 5-year running cost projection (fuel at state prices, service schedule, tyre replacement, insurance with depreciating IDV), loan EMI and total interest, depreciation at Indian market rates, cost-per-km, and petrol vs diesel breakeven.
+
+**Launch kit.** [`apps/38-carcost/LAUNCH.md`](../apps/38-carcost/LAUNCH.md)
+
+---
+
+## 39. PetDose
+
+**What your pet weighs and when each dose is due**
+
+| | |
+|---|---|
+| Folder | [`apps/39-petdose`](../apps/39-petdose) |
+| Category | Pet care |
+| The one job | Species, breed, weight, and last treatment dates in, next due dates with weight-based dosing out. |
+| Buyer | Pet owners in India, veterinarians, pet boarding facilities, animal shelters |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `pet_dose_schedule` |
+| Suggested domain | `petdose.abetworks.in` |
+
+**Why it wins.** Not a pet health app — a preventative care calculator that tells you exactly what dose, which product, and when it is due based on your pet's actual weight and schedule.
+
+**How it works.** Core vaccine schedule computation (DHPP/rabies for dogs, FVRCP/rabies for cats with correct intervals), age-based deworming frequency (puppy vs adult), monthly flea/tick and heartworm prevention tracking, weight-band dosing for ivermectin/milbemycin/fipronil/praziquantel, overdue detection, and breed-specific drug sensitivity warnings.
+
+**Launch kit.** [`apps/39-petdose/LAUNCH.md`](../apps/39-petdose/LAUNCH.md)
+
+---
+
+## 40. PackList
+
+**The packing list for this trip, this weather, this many days**
+
+| | |
+|---|---|
+| Folder | [`apps/40-packlist`](../apps/40-packlist) |
+| Category | Travel tools |
+| The one job | Destination type, duration, weather, and activities in, complete categorised packing list with quantities and bag space estimate out. |
+| Buyer | Travellers, business travellers, backpackers, digital nomads, travel planners |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `packing_list` |
+| Suggested domain | `packlist.abetworks.in` |
+
+**Why it wins.** Not a generic travel checklist — a packing calculator that gives exact quantities for this trip, this weather, this many days, with these activities, in this bag.
+
+**How it works.** Clothing quantity calculation (days adjusted for laundry availability), weather-appropriate layering (hot/warm/cool/cold/rainy), activity-specific gear lists (hiking/swimming/formal/photography/camping), carry-on weight optimization (7kg/40L limit enforcement), essential vs optional marking, and bag space estimation.
+
+**Launch kit.** [`apps/40-packlist/LAUNCH.md`](../apps/40-packlist/LAUNCH.md)
+
 
 ---
 

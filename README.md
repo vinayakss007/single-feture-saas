@@ -69,6 +69,11 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`33-racepace`](apps/33-racepace) | **RacePace** | Race distance and training data in, per-km pace plan with three strategies out. | Fitness & endurance | Free · $19/mo · Enterprise custom |
 | [`34-weddingbudget`](apps/34-weddingbudget) | **WeddingBudget** | Wedding parameters in, 12-category budget with city/season multipliers and savings plan out. | Personal finance | Free · $29/mo · Enterprise custom |
 | [`35-schoolfee`](apps/35-schoolfee) | **SchoolFee** | Fee structures for up to 3 schools in, true total cost comparison with inflation projection out. | Personal finance | Free · $19/mo · Enterprise custom |
+| [`36-resumeats`](apps/36-resumeats) | **ResumeATS** | Resume text and job description in, ATS parse score with keyword match rate and rejection flags out. | Career tools | Free · $19/mo · Enterprise custom |
+| [`37-rtidraft`](apps/37-rtidraft) | **RTIDraft** | Authority type, department, and information request in, formatted RTI application with legal citations and fee details out. | Legal tools | Free · $9/mo · Enterprise custom |
+| [`38-carcost`](apps/38-carcost) | **CarCost** | Car price, state, fuel type, and loan details in, true 5-year ownership cost with cost-per-km out. | Personal finance | Free · $19/mo · Enterprise custom |
+| [`39-petdose`](apps/39-petdose) | **PetDose** | Species, breed, weight, and last treatment dates in, next due dates with weight-based dosing out. | Pet care | Free · $19/mo · Enterprise custom |
+| [`40-packlist`](apps/40-packlist) | **PackList** | Destination type, duration, weather, and activities in, complete categorised packing list with quantities and bag space estimate out. | Travel tools | Free · $9/mo · Enterprise custom |
 
 ## Why these twenty
 
@@ -233,6 +238,11 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | RacePace | `racepace_plan_race` | `apps/33-racepace/mcp/server.mjs` |
 | WeddingBudget | `weddingbudget_calculate` | `apps/34-weddingbudget/mcp/server.mjs` |
 | SchoolFee | `schoolfee_compare` | `apps/35-schoolfee/mcp/server.mjs` |
+| ResumeATS | `resume_ats_scan` | `apps/36-resumeats/mcp/server.mjs` |
+| RTIDraft | `rti_draft` | `apps/37-rtidraft/mcp/server.mjs` |
+| CarCost | `car_cost_compute` | `apps/38-carcost/mcp/server.mjs` |
+| PetDose | `pet_dose_schedule` | `apps/39-petdose/mcp/server.mjs` |
+| PackList | `packing_list` | `apps/40-packlist/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 
