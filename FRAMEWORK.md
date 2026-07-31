@@ -175,9 +175,30 @@ GET  /api/cron/purge     retention, Bearer CRON_SECRET
 
 ### Everything else
 
-`components/` (landing sections, demo runner, auth form, dashboard) · `mcp/server.mjs` (MCP over
-stdio) · `db/schema.sql` · `middleware.ts` · `Dockerfile` · `vercel.json` with the cron ·
+`components/` (landing sections, demo runner, guided form, auth form, dashboard) · `mcp/server.mjs`
+(MCP over stdio) · `db/schema.sql` · `middleware.ts` · `Dockerfile` · `vercel.json` with the cron ·
 `tests/` (4 files, 42 tests) · `.env.example` documenting every variable.
+
+### The demo form has two modes, chosen from the input shape
+
+`components/conversation.tsx` is a guided, one-question-per-screen form: large type, progress bar,
+`Enter` to advance, `1`–`9` to pick an option, `Esc` to go back, a review step you can edit from, and
+a server validation failure that jumps to the offending question rather than showing a banner.
+
+It is not applied everywhere, because it is not always better. Ten fields on one screen makes a
+visitor read all ten before answering any — that is where guided helps. A single large paste does not
+benefit from a full-screen ceremony around "paste your HTML here" — that is where it hurts.
+
+So `runner.tsx` derives the default:
+
+| Input shape | Default | Products |
+|---|---|---|
+| ≥3 fields, no dominant paste | **guided** | 8 of 25 — AIActNotice (10 fields), PaySlipIN (11), LoanTruth (9), PolicyPack (10), DMARCFix, VaxDue, MediBillCheck, ColdAngle |
+| One textarea of ≥10 rows and ≤4 fields | **classic** | 17 of 25 — A11yGate, GSTMatch, TripSplit, ContractClock and the rest |
+
+Either way the visitor can switch with one click, and a product can override the heuristic with
+`formMode: "guided" | "classic"` in its config. The override exists so a product that the rule reads
+wrongly can say so explicitly rather than someone weakening the rule for everyone.
 
 ---
 

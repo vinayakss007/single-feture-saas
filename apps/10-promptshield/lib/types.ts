@@ -75,6 +75,15 @@ export type ProductConfig = {
    * than something that creeps in.
    */
   probesNetwork?: boolean;
+  /**
+   * Overrides which demo form is shown first.
+   *
+   * Left unset, `components/runner.tsx` derives it from the shape of the inputs:
+   * several short questions get the guided one-at-a-time form, a single large paste
+   * gets the classic all-fields form. Set this only where that heuristic reads a
+   * product wrongly — the visitor can switch either way.
+   */
+  formMode?: "guided" | "classic";
 };
 
 export type Severity = "high" | "medium" | "low";
