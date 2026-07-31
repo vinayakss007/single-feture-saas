@@ -532,19 +532,26 @@ export async function run(input: RunInput): Promise<RunResult> {
       { label: "Privacy notice", value: policyUrl ? (policyText ? "Read" : "Broken") : "Missing" },
     ],
     sections: [
-      { title: `High severity (${high.length})`, items: toItems(high) },
-      { title: `Medium severity (${medium.length})`, items: toItems(medium) },
-      { title: `Low severity — security hygiene (${low.length})`, items: toItems(low) },
-      {
-        title: `Trackers detected in initial HTML (${foundTrackers.length})`,
-        items: foundTrackers.map((t) => ({
-          title: t.name,
-          body: `Category: ${t.category}. ${t.category === "Marketing" ? "May be functional depending on configuration." : "Requires prior consent under both DPDP and GDPR."}`,
-          tag: t.category,
-          severity: t.category === "Marketing" ? "low" : "high",
-        })),
-      },
-      { title: `Passed checks (${passed.length})`, items: passed },
+      ...(high.length > 0 ? [{ title: `High severity (${high.length})`, items: toItems(high) }] : []),
+      ...(medium.length > 0 ? [{ title: `Medium severity (${medium.length})`, items: toItems(medium) }] : []),
+      ...(low.length > 0 ? [{ title: `Low severity — security hygiene (${low.length})`, items: toItems(low) }] : []),
+      ...(foundTrackers.length > 0
+        ? [
+            {
+              title: `Trackers detected in initial HTML (${foundTrackers.length})`,
+              items: foundTrackers.map((t) => ({
+                title: t.name,
+                body: `Category: ${t.category}. ${t.category === "Marketing" ? "May be functional depending on configuration." : "Requires prior consent under both DPDP and GDPR."}`,
+                tag: t.category,
+                severity: (t.category === "Marketing" ? "low" : "high") as Severity,
+              })),
+            },
+          ]
+        : []),
+      ...(passed.length > 0 ? [{ title: `Passed checks (${passed.length})`, items: passed }] : []),
+      ...(high.length === 0 && medium.length === 0 && low.length === 0 && foundTrackers.length === 0
+        ? [{ title: "All checks passed", items: [{ body: "No consent or privacy issues found.", severity: "low" as Severity }] }]
+        : []),
     ],
     ...(cookieRows.length > 0
       ? {

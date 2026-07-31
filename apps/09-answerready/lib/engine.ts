@@ -528,9 +528,9 @@ export async function run(input: RunInput): Promise<RunResult> {
       rows: crawlerRows,
     },
     sections: [
-      { title: `High impact (${high.length})`, items: toItems(high) },
-      { title: `Medium impact (${medium.length})`, items: toItems(medium) },
-      { title: `Low impact (${low.length})`, items: toItems(low) },
+      ...(high.length > 0 ? [{ title: `High impact (${high.length})`, items: toItems(high) }] : []),
+      ...(medium.length > 0 ? [{ title: `Medium impact (${medium.length})`, items: toItems(medium) }] : []),
+      ...(low.length > 0 ? [{ title: `Low impact (${low.length})`, items: toItems(low) }] : []),
       {
         title: `Passing (${checks.length - failed.length} of ${checks.length})`,
         items: checks.filter((c) => c.passed).map((c) => ({ title: c.label, body: c.detail, tag: c.id })),

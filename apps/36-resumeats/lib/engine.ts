@@ -357,10 +357,12 @@ export function run(input: RunInput): RunResult {
         title: "Warnings",
         items: flags.filter((f) => f.severity === "medium"),
       },
-      {
-        title: "Suggestions",
-        items: flags.filter((f) => f.severity === "low"),
-      },
+      ...(flags.filter((f) => f.severity === "low").length > 0
+        ? [{
+            title: "Suggestions",
+            items: flags.filter((f) => f.severity === "low"),
+          }]
+        : []),
       {
         title: "Missing Keywords (add these where they genuinely apply)",
         items: topMissing.length > 0 ? [{

@@ -522,9 +522,12 @@ export async function run(input: RunInput): Promise<RunResult> {
       ]),
     },
     sections: [
-      { title: `Needs attention now (${problemItems("high").length})`, items: problemItems("high") },
-      { title: `Degraded (${problemItems("medium").length})`, items: problemItems("medium") },
-      { title: `Worth tidying (${problemItems("low").length})`, items: problemItems("low") },
+      ...(problemItems("high").length > 0 ? [{ title: `Needs attention now (${problemItems("high").length})`, items: problemItems("high") }] : []),
+      ...(problemItems("medium").length > 0 ? [{ title: `Degraded (${problemItems("medium").length})`, items: problemItems("medium") }] : []),
+      ...(problemItems("low").length > 0 ? [{ title: `Worth tidying (${problemItems("low").length})`, items: problemItems("low") }] : []),
+      ...(problemItems("high").length === 0 && problemItems("medium").length === 0 && problemItems("low").length === 0
+        ? [{ title: "All endpoints operational", items: [{ body: "Every endpoint responded within tolerance.", severity: "low" as Severity }] }]
+        : []),
       {
         title: "Certificate detail",
         items: monitors.map((m) => ({

@@ -128,7 +128,7 @@ function parseSnapshot(text: string): Plan[] {
       continue;
     }
     if (/unlimited\s+(?:seats?|users?)/i.test(line) && current.seats === null) {
-      current.seats = Number.POSITIVE_INFINITY;
+      current.seats = null; // null = unlimited, which JSON can actually represent
       continue;
     }
 

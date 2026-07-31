@@ -503,16 +503,32 @@ export function run(input: RunInput): RunResult {
         }
       : {}),
     sections: [
-      {
-        title: `Blocking issues (${high.length})`,
-        items: high.map((i) => ({ title: i.title, body: `${i.detail}\n\nRule: ${i.rule}`, severity: "high" as Severity })),
-      },
-      {
-        title: `Warnings (${issues.length - high.length})`,
-        items: issues
-          .filter((i) => i.severity !== "high")
-          .map((i) => ({ title: i.title, body: `${i.detail}\n\nRule: ${i.rule}`, severity: i.severity })),
-      },
+      ...(high.length > 0
+        ? [
+            {
+              title: `Blocking issues (${high.length})`,
+              items: high.map((i) => ({ title: i.title, body: `${i.detail}\n\nRule: ${i.rule}`, severity: "high" as Severity })),
+            },
+          ]
+        : []),
+      ...(issues.length - high.length > 0
+        ? [
+            {
+              title: `Warnings (${issues.length - high.length})`,
+              items: issues
+                .filter((i) => i.severity !== "high")
+                .map((i) => ({ title: i.title, body: `${i.detail}\n\nRule: ${i.rule}`, severity: i.severity })),
+            },
+          ]
+        : []),
+      ...(high.length === 0 && issues.length === 0
+        ? [
+            {
+              title: "No validation issues",
+              items: [{ body: "All field checks, arithmetic and GST rules passed. The invoice is ready to post.", severity: "low" as Severity }],
+            },
+          ]
+        : []),
       {
         title: "Extracted header fields",
         items: [

@@ -131,7 +131,7 @@ export function run(input: RunInput): RunResult {
       { label: "Calories (protein sources)", value: String(totalCalories), hint: "Excludes rice/roti" },
     ],
     sections: [
-      ...mealPlan.map((m) => ({
+      ...mealPlan.filter((m) => m.items.length > 0).map((m) => ({
         title: `${m.meal} (${m.protein}g protein, Rs ${m.cost})`,
         items: m.items.map((item) => ({ title: item, body: "", severity: "low" as Severity })),
       })),
