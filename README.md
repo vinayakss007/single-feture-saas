@@ -74,6 +74,16 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`38-carcost`](apps/38-carcost) | **CarCost** | Car price, state, fuel type, and loan details in, true 5-year ownership cost with cost-per-km out. | Personal finance | Free · $19/mo · Enterprise custom |
 | [`39-petdose`](apps/39-petdose) | **PetDose** | Species, breed, weight, and last treatment dates in, next due dates with weight-based dosing out. | Pet care | Free · $19/mo · Enterprise custom |
 | [`40-packlist`](apps/40-packlist) | **PackList** | Destination type, duration, weather, and activities in, complete categorised packing list with quantities and bag space estimate out. | Travel tools | Free · $9/mo · Enterprise custom |
+| [`41-legalnotice`](apps/41-legalnotice) | **LegalNotice** | Dispute type, sender/recipient details, and facts in, properly structured legal notice with correct Indian law sections, timeline, and consequences out. | Legal tools | Free · $9/mo · Enterprise custom |
+| [`42-cropcal`](apps/42-cropcal) | **CropCal** | State, soil type, month, land area, and irrigation in, crop recommendations with seed quantity, water needs, sowing window, yield estimates, and mandi prices out. | Agriculture tools | Free · $9/mo · Enterprise custom |
+| [`43-freelancerate`](apps/43-freelancerate) | **FreelanceRate** | Target take-home, expenses, working days, billable hours, and buffer in, minimum viable hourly/day/monthly rate with utilisation scenarios and Indian market comparison out. | Finance tools | Free · $9/mo · Enterprise custom |
+| [`44-waterleak`](apps/44-waterleak) | **WaterLeak** | Meter readings over several days and household size in, daily consumption analysis, leak detection, litres lost per day, monthly cost, and likely leak type out. | Utility tools | Free · $9/mo · Enterprise custom |
+| [`45-growthchart`](apps/45-growthchart) | **GrowthChart** | Child date of birth, sex, and measurements over time in, exact WHO percentiles via LMS method, growth velocity, percentile crossing alerts, and paediatrician discussion prompts out. | Health tools | Free · $9/mo · Enterprise custom |
+| [`46-examplan`](apps/46-examplan) | **ExamPlan** | Exam date, subjects with syllabus size and difficulty, and study hours per day in, weighted hour allocation, day-by-day calendar, revision blocks, insufficiency warnings, and critical subjects out. | Education tools | Free · $9/mo · Enterprise custom |
+| [`47-estateadmin`](apps/47-estateadmin) | **EstateAdmin** | State, religion, assets, will status, and heir details in, chronological checklist with timelines, documents, religion-specific succession law, and NRI complications out. | Legal tools | Free · $9/mo · Enterprise custom |
+| [`48-visadocs`](apps/48-visadocs) | **VisaDocs** | Passport country, destination, visa type, and documents already held in, complete checklist with missing items flagged, financial requirements, photo specs, and processing timeline out. | Travel tools | Free · $9/mo · Enterprise custom |
+| [`49-macroplate`](apps/49-macroplate) | **MacroPlate** | Protein target, diet type, meals per day, and budget in, Indian food meal plan hitting protein goal within budget with per-meal breakdown and common myths corrected out. | Nutrition tools | Free · $9/mo · Enterprise custom |
+| [`50-emicalc`](apps/50-emicalc) | **EMICalc** | Up to 3 loan offers with principal, rate, tenure, fees, and insurance in, EMI, total interest, effective APR, total outflow ranking, rupee difference, and prepayment savings out. | Finance tools | Free · $9/mo · Enterprise custom |
 
 ## Why these twenty
 
@@ -243,6 +253,16 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | CarCost | `car_cost_compute` | `apps/38-carcost/mcp/server.mjs` |
 | PetDose | `pet_dose_schedule` | `apps/39-petdose/mcp/server.mjs` |
 | PackList | `packing_list` | `apps/40-packlist/mcp/server.mjs` |
+| LegalNotice | `legal_notice_generator` | `apps/41-legalnotice/mcp/server.mjs` |
+| CropCal | `crop_calendar` | `apps/42-cropcal/mcp/server.mjs` |
+| FreelanceRate | `freelance_rate_calculator` | `apps/43-freelancerate/mcp/server.mjs` |
+| WaterLeak | `water_leak_detector` | `apps/44-waterleak/mcp/server.mjs` |
+| GrowthChart | `child_growth_chart` | `apps/45-growthchart/mcp/server.mjs` |
+| ExamPlan | `exam_study_planner` | `apps/46-examplan/mcp/server.mjs` |
+| EstateAdmin | `estate_administration_checklist` | `apps/47-estateadmin/mcp/server.mjs` |
+| VisaDocs | `visa_document_checker` | `apps/48-visadocs/mcp/server.mjs` |
+| MacroPlate | `protein_meal_planner` | `apps/49-macroplate/mcp/server.mjs` |
+| EMICalc | `emi_loan_comparator` | `apps/50-emicalc/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 

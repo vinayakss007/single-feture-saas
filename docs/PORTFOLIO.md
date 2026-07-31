@@ -880,6 +880,226 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/40-packlist/LAUNCH.md`](../apps/40-packlist/LAUNCH.md)
 
+---
+
+## 41. LegalNotice
+
+**The legal notice that gets a reply, not a dustbin**
+
+| | |
+|---|---|
+| Folder | [`apps/41-legalnotice`](../apps/41-legalnotice) |
+| Category | Legal tools |
+| The one job | Dispute type, sender/recipient details, and facts in, properly structured legal notice with correct Indian law sections, timeline, and consequences out. |
+| Buyer | Individuals, advocates, small businesses, HR teams, landlords, tenants, consumers |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `legal_notice_generator` |
+| Suggested domain | `legalnotice.abetworks.in` |
+
+**Why it wins.** Not a generic angry letter — a properly formatted legal notice with correct statutes, mandatory timelines, and the consequences that make recipients respond.
+
+**How it works.** Dispute-type-specific section citation (Section 138 NI Act, Section 80 CPC, Consumer Protection Act 2019, Hindu Succession Act, etc.), mandatory timeline enforcement (15/30/60 days), consequence generation, common mistake flagging, and dispatch guidance via RPAD.
+
+**Launch kit.** [`apps/41-legalnotice/LAUNCH.md`](../apps/41-legalnotice/LAUNCH.md)
+
+---
+
+## 42. CropCal
+
+**What to sow this week, for this soil, in this climate**
+
+| | |
+|---|---|
+| Folder | [`apps/42-cropcal`](../apps/42-cropcal) |
+| Category | Agriculture tools |
+| The one job | State, soil type, month, land area, and irrigation in, crop recommendations with seed quantity, water needs, sowing window, yield estimates, and mandi prices out. |
+| Buyer | Farmers, agricultural officers, agri-entrepreneurs, FPOs, rural advisors |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `crop_calendar` |
+| Suggested domain | `cropcal.abetworks.in` |
+
+**Why it wins.** Not generic agriculture advice — specific crops for this soil, this zone, this month, with exact seed quantity for your land area and whether the sowing window is closing.
+
+**How it works.** Indian agro-climatic zone matching, kharif/rabi/zaid season determination, soil-crop compatibility filtering, seed rate calculation per area, water requirement vs irrigation capacity check, sowing window urgency detection, and mandi price range estimation.
+
+**Launch kit.** [`apps/42-cropcal/LAUNCH.md`](../apps/42-cropcal/LAUNCH.md)
+
+---
+
+## 43. FreelanceRate
+
+**What to charge per hour, based on what you actually need to earn**
+
+| | |
+|---|---|
+| Folder | [`apps/43-freelancerate`](../apps/43-freelancerate) |
+| Category | Finance tools |
+| The one job | Target take-home, expenses, working days, billable hours, and buffer in, minimum viable hourly/day/monthly rate with utilisation scenarios and Indian market comparison out. |
+| Buyer | Freelancers, consultants, independent contractors, solopreneurs, agencies |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `freelance_rate_calculator` |
+| Suggested domain | `freelancerate.abetworks.in` |
+
+**Why it wins.** Not a guess — the actual math of what you must charge per hour given what you need to earn, what you spend, and what you realistically bill.
+
+**How it works.** Reverse calculation from take-home through tax (new regime), expenses, bad-debt buffer to gross revenue target, divided by actual billable hours. Utilisation drop scenarios (10-30%), GST threshold check, equivalent salaried CTC, and market median comparison for Indian freelancer categories.
+
+**Launch kit.** [`apps/43-freelancerate/LAUNCH.md`](../apps/43-freelancerate/LAUNCH.md)
+
+---
+
+## 44. WaterLeak
+
+**Find the leak from your water meter readings**
+
+| | |
+|---|---|
+| Folder | [`apps/44-waterleak`](../apps/44-waterleak) |
+| Category | Utility tools |
+| The one job | Meter readings over several days and household size in, daily consumption analysis, leak detection, litres lost per day, monthly cost, and likely leak type out. |
+| Buyer | Homeowners, apartment residents, facility managers, plumbers, water utility engineers |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `water_leak_detector` |
+| Suggested domain | `waterleak.abetworks.in` |
+
+**Why it wins.** Not a plumber guessing — data-driven leak detection from your meter readings that identifies the type of leak and what it costs you per month.
+
+**How it works.** Daily consumption computation from sequential readings, per-capita comparison against 135 LPCD Indian benchmark, anomaly detection (sudden jumps, steady overnight consumption), leak type profiling (dripping tap 30-50 L/day, running toilet 200-400 L/day, underground pipe 500+ L/day), and monthly cost at municipal rates.
+
+**Launch kit.** [`apps/44-waterleak/LAUNCH.md`](../apps/44-waterleak/LAUNCH.md)
+
+---
+
+## 45. GrowthChart
+
+**Is your child growing on track - percentiles, not guesses**
+
+| | |
+|---|---|
+| Folder | [`apps/45-growthchart`](../apps/45-growthchart) |
+| Category | Health tools |
+| The one job | Child date of birth, sex, and measurements over time in, exact WHO percentiles via LMS method, growth velocity, percentile crossing alerts, and paediatrician discussion prompts out. |
+| Buyer | Parents, paediatricians, anganwadi workers, child health clinics, school health programmes |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `child_growth_chart` |
+| Suggested domain | `growthchart.abetworks.in` |
+
+**Why it wins.** Not approximate zones — exact percentile from WHO LMS method with trajectory analysis that catches growth faltering months before it becomes visible.
+
+**How it works.** WHO Child Growth Standards LMS parameters (weight-for-age, height-for-age) with interpolation, z-score computation, percentile calculation via normal CDF approximation, percentile crossing detection across major lines, growth velocity computation, and clinical flag generation.
+
+**Launch kit.** [`apps/45-growthchart/LAUNCH.md`](../apps/45-growthchart/LAUNCH.md)
+
+---
+
+## 46. ExamPlan
+
+**How many hours per subject, and when to start**
+
+| | |
+|---|---|
+| Folder | [`apps/46-examplan`](../apps/46-examplan) |
+| Category | Education tools |
+| The one job | Exam date, subjects with syllabus size and difficulty, and study hours per day in, weighted hour allocation, day-by-day calendar, revision blocks, insufficiency warnings, and critical subjects out. |
+| Buyer | Students (board exams, competitive exams, university), parents, tutors, coaching centres |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `exam_study_planner` |
+| Suggested domain | `examplan.abetworks.in` |
+
+**Why it wins.** Not motivation — math. Exactly how many hours each subject needs, distributed across days with revision built in, and a clear warning if you started too late.
+
+**How it works.** Weight computation (chapters x difficulty), proportional hour allocation, 30% revision reservation, day-by-day subject rotation for interleaving, insufficiency detection with additional-hours-per-day calculation, and critical subject identification by risk ratio.
+
+**Launch kit.** [`apps/46-examplan/LAUNCH.md`](../apps/46-examplan/LAUNCH.md)
+
+---
+
+## 47. EstateAdmin
+
+**What has to happen after someone dies, in what order**
+
+| | |
+|---|---|
+| Folder | [`apps/47-estateadmin`](../apps/47-estateadmin) |
+| Category | Legal tools |
+| The one job | State, religion, assets, will status, and heir details in, chronological checklist with timelines, documents, religion-specific succession law, and NRI complications out. |
+| Buyer | Families dealing with bereavement, estate planners, advocates, CA firms, NRIs managing Indian estates |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `estate_administration_checklist` |
+| Suggested domain | `estateadmin.abetworks.in` |
+
+**Why it wins.** Not a generic grief resource — a precise legal and administrative checklist for this religion, these assets, this state, with documents needed at each step.
+
+**How it works.** Religion-specific succession law application (Hindu Succession Act 1956, Muslim Personal Law, Indian Succession Act 1925), asset-type-specific procedures (property mutation, bank claims, share transmission, insurance, PF), NRI POA/FEMA requirements, and phased timeline generation (immediate/short/medium/long-term).
+
+**Launch kit.** [`apps/47-estateadmin/LAUNCH.md`](../apps/47-estateadmin/LAUNCH.md)
+
+---
+
+## 48. VisaDocs
+
+**Every document this visa needs, with what is missing**
+
+| | |
+|---|---|
+| Folder | [`apps/48-visadocs`](../apps/48-visadocs) |
+| Category | Travel tools |
+| The one job | Passport country, destination, visa type, and documents already held in, complete checklist with missing items flagged, financial requirements, photo specs, and processing timeline out. |
+| Buyer | Visa applicants, travel agents, immigration consultants, corporate travel managers, students |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `visa_document_checker` |
+| Suggested domain | `visadocs.abetworks.in` |
+
+**Why it wins.** Not a generic checklist — the exact documents this visa type for this country needs from an Indian passport holder, with what you have and what is missing.
+
+**How it works.** Country-specific document database (15 destinations), visa-type-specific requirements (tourist/business/student/work), have/missing status matching, financial proof thresholds, photo specification differences, processing time and appointment timelines, and passport validity checking.
+
+**Launch kit.** [`apps/48-visadocs/LAUNCH.md`](../apps/48-visadocs/LAUNCH.md)
+
+---
+
+## 49. MacroPlate
+
+**Hit your protein target from Indian food you actually eat**
+
+| | |
+|---|---|
+| Folder | [`apps/49-macroplate`](../apps/49-macroplate) |
+| Category | Nutrition tools |
+| The one job | Protein target, diet type, meals per day, and budget in, Indian food meal plan hitting protein goal within budget with per-meal breakdown and common myths corrected out. |
+| Buyer | Fitness enthusiasts, bodybuilders, vegetarians seeking protein, dietitians, gym trainers |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `protein_meal_planner` |
+| Suggested domain | `macroplate.abetworks.in` |
+
+**Why it wins.** Not Western bodybuilding foods — Indian foods you actually eat (dal, paneer, soya, curd, eggs, chicken) planned to hit protein targets within a rupee budget.
+
+**How it works.** Indian food protein database (40+ items with protein per serving, cost per serving, serving sizes in Indian measures), budget-constrained greedy optimization, diet-type filtering (veg/egg/non-veg), meal distribution across day, protein-per-rupee ranking, and myth correction (dal = 7g not 20g, peanut butter is a fat source).
+
+**Launch kit.** [`apps/49-macroplate/LAUNCH.md`](../apps/49-macroplate/LAUNCH.md)
+
+---
+
+## 50. EMICalc
+
+**Compare loan offers properly - total cost, not just EMI**
+
+| | |
+|---|---|
+| Folder | [`apps/50-emicalc`](../apps/50-emicalc) |
+| Category | Finance tools |
+| The one job | Up to 3 loan offers with principal, rate, tenure, fees, and insurance in, EMI, total interest, effective APR, total outflow ranking, rupee difference, and prepayment savings out. |
+| Buyer | Home loan borrowers, car loan applicants, personal loan seekers, loan brokers, financial advisors |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `emi_loan_comparator` |
+| Suggested domain | `emicalc.abetworks.in` |
+
+**Why it wins.** Not just EMI comparison — total lifetime cost including fees, effective APR, and prepayment savings that reveal which offer actually costs less over the full tenure.
+
+**How it works.** EMI computation (reducing balance), total interest calculation, effective APR via Newton method (incorporating fees and insurance), total outflow ranking, prepayment scenario modeling (5% in year 2 with amortization simulation), tenure reduction calculation, and fee-vs-rate flip detection.
+
+**Launch kit.** [`apps/50-emicalc/LAUNCH.md`](../apps/50-emicalc/LAUNCH.md)
+
 
 ---
 
