@@ -60,6 +60,10 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`24-loantruth`](apps/24-loantruth) | **LoanTruth** | Sanction letter terms in, true APR and amortisation out. | Personal finance | Free · ₹499/mo · Broker custom |
 | [`25-tripsplit`](apps/25-tripsplit) | **TripSplit** | Shared expenses in, minimal set of transfers out. | Travel money | Free · ₹299/mo · Teams custom |
 | [`26-flightright`](apps/26-flightright) | **FlightRight** | Flight disruption details in, entitlements and a claim letter out. | Travel rights | Free · ₹399/mo · Travel desk custom |
+| [`27-solarpayback`](apps/27-solarpayback) | **SolarPayback** | Monthly bill and rooftop area in, payback period and savings out. | Home energy | Free · ₹499/mo · Enterprise custom |
+| [`28-powerbill`](apps/28-powerbill) | **PowerBill** | Bill line items in, slab errors and overcharges in rupees out. | Home utilities | Free · ₹499/mo · Enterprise custom |
+| [`29-rentcheck`](apps/29-rentcheck) | **RentCheck** | Property details and quoted rent in, fair range and negotiation points out. | Housing | Free · ₹299/mo · Enterprise custom |
+| [`30-propertytax`](apps/30-propertytax) | **PropertyTax** | Property details and city in, tax computation with rates cited out. | Property | Free · ₹499/mo · Enterprise custom |
 
 ## Why these twenty
 
@@ -215,6 +219,10 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | LoanTruth | `loantruth_analyse_loan` | `apps/24-loantruth/mcp/server.mjs` |
 | TripSplit | `tripsplit_settle_expenses` | `apps/25-tripsplit/mcp/server.mjs` |
 | FlightRight | `flightright_assess_claim` | `apps/26-flightright/mcp/server.mjs` |
+| SolarPayback | `solarpayback_analyse_roi` | `apps/27-solarpayback/mcp/server.mjs` |
+| PowerBill | `powerbill_audit_bill` | `apps/28-powerbill/mcp/server.mjs` |
+| RentCheck | `rentcheck_evaluate_rent` | `apps/29-rentcheck/mcp/server.mjs` |
+| PropertyTax | `propertytax_compute_tax` | `apps/30-propertytax/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 

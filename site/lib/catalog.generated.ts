@@ -337,5 +337,53 @@ export const products: HubProduct[] = [
     "accent": "#0284c7",
     "mcpTool": "flightright_assess_claim",
     "differentiator": "Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter."
+  },
+  {
+    "dir": "27-solarpayback",
+    "slug": "solarpayback",
+    "name": "SolarPayback",
+    "tagline": "Will rooftop solar actually pay for itself, and when",
+    "job": "Monthly bill and rooftop area in, payback period and savings out.",
+    "category": "Home energy",
+    "audience": "Homeowners considering rooftop solar, and anyone who was just quoted a system",
+    "accent": "#16a34a",
+    "mcpTool": "solarpayback_analyse_roi",
+    "differentiator": "Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie."
+  },
+  {
+    "dir": "28-powerbill",
+    "slug": "powerbill",
+    "name": "PowerBill",
+    "tagline": "What is wrong with this electricity bill, in rupees",
+    "job": "Bill line items in, slab errors and overcharges in rupees out.",
+    "category": "Home utilities",
+    "audience": "Anyone who suspects their electricity bill is wrong and wants the arithmetic before they complain",
+    "accent": "#d97706",
+    "mcpTool": "powerbill_audit_bill",
+    "differentiator": "Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order."
+  },
+  {
+    "dir": "29-rentcheck",
+    "slug": "rentcheck",
+    "name": "RentCheck",
+    "tagline": "Is this rent fair for this area, and what to negotiate",
+    "job": "Property details and quoted rent in, fair range and negotiation points out.",
+    "category": "Housing",
+    "audience": "Anyone looking at a rental in an Indian metro and wondering whether the number is real",
+    "accent": "#7c2d12",
+    "mcpTool": "rentcheck_evaluate_rent",
+    "differentiator": "Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement."
+  },
+  {
+    "dir": "30-propertytax",
+    "slug": "propertytax",
+    "name": "PropertyTax",
+    "tagline": "Calculate your property tax before the notice arrives",
+    "job": "Property details and city in, tax computation with rates cited out.",
+    "category": "Property",
+    "audience": "Property owners in Indian metros who get a notice they cannot verify",
+    "accent": "#1e3a5f",
+    "mcpTool": "propertytax_compute_tax",
+    "differentiator": "Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it."
   }
 ];

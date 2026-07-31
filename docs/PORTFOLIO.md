@@ -572,6 +572,94 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/26-flightright/LAUNCH.md`](../apps/26-flightright/LAUNCH.md)
 
+---
+
+## 27. SolarPayback
+
+**Will rooftop solar actually pay for itself, and when**
+
+| | |
+|---|---|
+| Folder | [`apps/27-solarpayback`](../apps/27-solarpayback) |
+| Category | Home energy |
+| The one job | Monthly bill and rooftop area in, payback period and savings out. |
+| Buyer | Homeowners considering rooftop solar, and anyone who was just quoted a system |
+| Pricing | Free · ₹499/mo · Enterprise custom |
+| MCP tool | `solarpayback_analyse_roi` |
+| Suggested domain | `solarpayback.abetworks.in` |
+
+**Why it wins.** Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie.
+
+**How it works.** System sizing from monthly bill and state tariff, generation estimation from area/orientation/state-specific irradiance, PM Surya Ghar subsidy slabs, month-level breakeven with panel degradation and tariff inflation, IRR versus FD returns.
+
+**Launch kit.** [`apps/27-solarpayback/LAUNCH.md`](../apps/27-solarpayback/LAUNCH.md)
+
+---
+
+## 28. PowerBill
+
+**What is wrong with this electricity bill, in rupees**
+
+| | |
+|---|---|
+| Folder | [`apps/28-powerbill`](../apps/28-powerbill) |
+| Category | Home utilities |
+| The one job | Bill line items in, slab errors and overcharges in rupees out. |
+| Buyer | Anyone who suspects their electricity bill is wrong and wants the arithmetic before they complain |
+| Pricing | Free · ₹499/mo · Enterprise custom |
+| MCP tool | `powerbill_audit_bill` |
+| Suggested domain | `powerbill.abetworks.in` |
+
+**Why it wins.** Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order.
+
+**How it works.** State-specific slab arithmetic for 8 states with telescopic and non-telescopic structures, fixed charge validation against sanctioned load, fuel adjustment tracking, demand charge applicability, and total reconciliation.
+
+**Launch kit.** [`apps/28-powerbill/LAUNCH.md`](../apps/28-powerbill/LAUNCH.md)
+
+---
+
+## 29. RentCheck
+
+**Is this rent fair for this area, and what to negotiate**
+
+| | |
+|---|---|
+| Folder | [`apps/29-rentcheck`](../apps/29-rentcheck) |
+| Category | Housing |
+| The one job | Property details and quoted rent in, fair range and negotiation points out. |
+| Buyer | Anyone looking at a rental in an Indian metro and wondering whether the number is real |
+| Pricing | Free · ₹299/mo · Enterprise custom |
+| MCP tool | `rentcheck_evaluate_rent` |
+| Suggested domain | `rentcheck.abetworks.in` |
+
+**Why it wins.** Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement.
+
+**How it works.** Locality-tier benchmarks for 8 Indian metros, fair-rent computation from BHK, furnishing, floor and age multipliers, rent-to-income ratio, negotiation points with rupee discounts, and agreement clauses.
+
+**Launch kit.** [`apps/29-rentcheck/LAUNCH.md`](../apps/29-rentcheck/LAUNCH.md)
+
+---
+
+## 30. PropertyTax
+
+**Calculate your property tax before the notice arrives**
+
+| | |
+|---|---|
+| Folder | [`apps/30-propertytax`](../apps/30-propertytax) |
+| Category | Property |
+| The one job | Property details and city in, tax computation with rates cited out. |
+| Buyer | Property owners in Indian metros who get a notice they cannot verify |
+| Pricing | Free · ₹499/mo · Enterprise custom |
+| MCP tool | `propertytax_compute_tax` |
+| Suggested domain | `propertytax.abetworks.in` |
+
+**Why it wins.** Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it.
+
+**How it works.** Capital value method (Mumbai, Pune, Hyderabad), unit area value method (Bengaluru, Delhi, Kolkata), annual rental value method (Chennai), with step-by-step computation, rebates for self-occupied and early payment, and education/library cess.
+
+**Launch kit.** [`apps/30-propertytax/LAUNCH.md`](../apps/30-propertytax/LAUNCH.md)
+
 
 ---
 
