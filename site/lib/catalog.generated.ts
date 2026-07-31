@@ -385,5 +385,65 @@ export const products: HubProduct[] = [
     "accent": "#1e3a5f",
     "mcpTool": "propertytax_compute_tax",
     "differentiator": "Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it."
+  },
+  {
+    "dir": "31-nutrilabel",
+    "slug": "nutrilabel",
+    "name": "NutriLabel",
+    "tagline": "Read a food label and know what it actually means",
+    "job": "Nutrition facts in, traffic-light breakdown and label honesty rating out.",
+    "category": "Health & nutrition",
+    "audience": "Health-conscious Indian consumers, dietitians, fitness coaches, parents reading labels for their kids",
+    "accent": "#065f46",
+    "mcpTool": "nutrilabel_analyze_label",
+    "differentiator": "Not a calorie counter — a label auditor that normalises to per-100g, catches misleading serving sizes, and rates the label honest/misleading/deceptive based on what the front says vs what the back shows."
+  },
+  {
+    "dir": "32-sleepdebt",
+    "slug": "sleepdebt",
+    "name": "SleepDebt",
+    "tagline": "How much sleep you owe yourself, and when to repay it",
+    "job": "Sleep log in, cumulative debt, severity, recovery plan, and tonight's bedtime out.",
+    "category": "Health & wellness",
+    "audience": "Professionals with irregular sleep, shift workers, students, anyone tracking sleep debt",
+    "accent": "#4c1d95",
+    "mcpTool": "sleepdebt_analyze_log",
+    "differentiator": "Not a sleep tracker — a debt calculator that tells you exactly how much you owe, how long recovery will take with realistic diminishing returns, and what time to go to bed tonight."
+  },
+  {
+    "dir": "33-racepace",
+    "slug": "racepace",
+    "name": "RacePace",
+    "tagline": "The pace plan that gets you to the finish, not the wall",
+    "job": "Race distance and training data in, per-km pace plan with three strategies out.",
+    "category": "Fitness & endurance",
+    "audience": "Recreational runners preparing for 5K to marathon, running coaches building race strategies",
+    "accent": "#b91c1c",
+    "mcpTool": "racepace_plan_race",
+    "differentiator": "Not a finish-time calculator — a pace plan that shows you three versions of your race including the one where you hit the wall, so you recognise it happening in time to adjust."
+  },
+  {
+    "dir": "34-weddingbudget",
+    "slug": "weddingbudget",
+    "name": "WeddingBudget",
+    "tagline": "What an Indian wedding actually costs, by category",
+    "job": "Wedding parameters in, 12-category budget with city/season multipliers and savings plan out.",
+    "category": "Personal finance",
+    "audience": "Indian couples and families planning weddings, wedding planners building budgets",
+    "accent": "#9d174d",
+    "mcpTool": "weddingbudget_calculate",
+    "differentiator": "Not a wedding checklist — a budget reality check that shows the 60% nobody quotes (decoration, photography add-ons, transport, miscellaneous) with the multipliers that change everything."
+  },
+  {
+    "dir": "35-schoolfee",
+    "slug": "schoolfee",
+    "name": "SchoolFee",
+    "tagline": "Compare school fees properly — total cost, not just tuition",
+    "job": "Fee structures for up to 3 schools in, true total cost comparison with inflation projection out.",
+    "category": "Personal finance",
+    "audience": "Indian parents choosing between schools, financial planners advising on education costs",
+    "accent": "#155e75",
+    "mcpTool": "schoolfee_compare",
+    "differentiator": "Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to."
   }
 ];

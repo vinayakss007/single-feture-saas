@@ -64,6 +64,11 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`28-powerbill`](apps/28-powerbill) | **PowerBill** | Bill line items in, slab errors and overcharges in rupees out. | Home utilities | Free · ₹499/mo · Enterprise custom |
 | [`29-rentcheck`](apps/29-rentcheck) | **RentCheck** | Property details and quoted rent in, fair range and negotiation points out. | Housing | Free · ₹299/mo · Enterprise custom |
 | [`30-propertytax`](apps/30-propertytax) | **PropertyTax** | Property details and city in, tax computation with rates cited out. | Property | Free · ₹499/mo · Enterprise custom |
+| [`31-nutrilabel`](apps/31-nutrilabel) | **NutriLabel** | Nutrition facts in, traffic-light breakdown and label honesty rating out. | Health & nutrition | Free · $19/mo · Enterprise custom |
+| [`32-sleepdebt`](apps/32-sleepdebt) | **SleepDebt** | Sleep log in, cumulative debt, severity, recovery plan, and tonight's bedtime out. | Health & wellness | Free · $9/mo · Enterprise custom |
+| [`33-racepace`](apps/33-racepace) | **RacePace** | Race distance and training data in, per-km pace plan with three strategies out. | Fitness & endurance | Free · $19/mo · Enterprise custom |
+| [`34-weddingbudget`](apps/34-weddingbudget) | **WeddingBudget** | Wedding parameters in, 12-category budget with city/season multipliers and savings plan out. | Personal finance | Free · $29/mo · Enterprise custom |
+| [`35-schoolfee`](apps/35-schoolfee) | **SchoolFee** | Fee structures for up to 3 schools in, true total cost comparison with inflation projection out. | Personal finance | Free · $19/mo · Enterprise custom |
 
 ## Why these twenty
 
@@ -223,6 +228,11 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | PowerBill | `powerbill_audit_bill` | `apps/28-powerbill/mcp/server.mjs` |
 | RentCheck | `rentcheck_evaluate_rent` | `apps/29-rentcheck/mcp/server.mjs` |
 | PropertyTax | `propertytax_compute_tax` | `apps/30-propertytax/mcp/server.mjs` |
+| NutriLabel | `nutrilabel_analyze_label` | `apps/31-nutrilabel/mcp/server.mjs` |
+| SleepDebt | `sleepdebt_analyze_log` | `apps/32-sleepdebt/mcp/server.mjs` |
+| RacePace | `racepace_plan_race` | `apps/33-racepace/mcp/server.mjs` |
+| WeddingBudget | `weddingbudget_calculate` | `apps/34-weddingbudget/mcp/server.mjs` |
+| SchoolFee | `schoolfee_compare` | `apps/35-schoolfee/mcp/server.mjs` |
 
 Every server takes `SFS_API_URL` and optional `SFS_API_KEY`, and derives its tool schema from the live API.
 

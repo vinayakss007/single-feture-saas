@@ -660,6 +660,116 @@ Positioning, moat and revenue model for each of the twenty products.
 
 **Launch kit.** [`apps/30-propertytax/LAUNCH.md`](../apps/30-propertytax/LAUNCH.md)
 
+---
+
+## 31. NutriLabel
+
+**Read a food label and know what it actually means**
+
+| | |
+|---|---|
+| Folder | [`apps/31-nutrilabel`](../apps/31-nutrilabel) |
+| Category | Health & nutrition |
+| The one job | Nutrition facts in, traffic-light breakdown and label honesty rating out. |
+| Buyer | Health-conscious Indian consumers, dietitians, fitness coaches, parents reading labels for their kids |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `nutrilabel_analyze_label` |
+| Suggested domain | `nutrilabel.abetworks.in` |
+
+**Why it wins.** Not a calorie counter — a label auditor that normalises to per-100g, catches misleading serving sizes, and rates the label honest/misleading/deceptive based on what the front says vs what the back shows.
+
+**How it works.** ICMR/FSSAI daily value scoring, FSA traffic-light thresholds per 100g, WHO limit checks for sugar/sodium/trans fat, serving size honesty detection, and front-of-pack claim validation against FSSAI criteria.
+
+**Launch kit.** [`apps/31-nutrilabel/LAUNCH.md`](../apps/31-nutrilabel/LAUNCH.md)
+
+---
+
+## 32. SleepDebt
+
+**How much sleep you owe yourself, and when to repay it**
+
+| | |
+|---|---|
+| Folder | [`apps/32-sleepdebt`](../apps/32-sleepdebt) |
+| Category | Health & wellness |
+| The one job | Sleep log in, cumulative debt, severity, recovery plan, and tonight's bedtime out. |
+| Buyer | Professionals with irregular sleep, shift workers, students, anyone tracking sleep debt |
+| Pricing | Free · $9/mo · Enterprise custom |
+| MCP tool | `sleepdebt_analyze_log` |
+| Suggested domain | `sleepdebt.abetworks.in` |
+
+**Why it wins.** Not a sleep tracker — a debt calculator that tells you exactly how much you owe, how long recovery will take with realistic diminishing returns, and what time to go to bed tonight.
+
+**How it works.** Cumulative debt computation from bedtime/wake pairs against personal target, severity classification (manageable/concerning/chronic), recovery modelling with diminishing returns, consecutive short-night detection, and optimal bedtime recommendation.
+
+**Launch kit.** [`apps/32-sleepdebt/LAUNCH.md`](../apps/32-sleepdebt/LAUNCH.md)
+
+---
+
+## 33. RacePace
+
+**The pace plan that gets you to the finish, not the wall**
+
+| | |
+|---|---|
+| Folder | [`apps/33-racepace`](../apps/33-racepace) |
+| Category | Fitness & endurance |
+| The one job | Race distance and training data in, per-km pace plan with three strategies out. |
+| Buyer | Recreational runners preparing for 5K to marathon, running coaches building race strategies |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `racepace_plan_race` |
+| Suggested domain | `racepace.abetworks.in` |
+
+**Why it wins.** Not a finish-time calculator — a pace plan that shows you three versions of your race including the one where you hit the wall, so you recognise it happening in time to adjust.
+
+**How it works.** Even-split, negative-split, and positive-split pace plans per km, Riegel formula feasibility check against training data, condition and terrain adjustments, fueling schedule for distances above 10K, and HR zone predictions per segment.
+
+**Launch kit.** [`apps/33-racepace/LAUNCH.md`](../apps/33-racepace/LAUNCH.md)
+
+---
+
+## 34. WeddingBudget
+
+**What an Indian wedding actually costs, by category**
+
+| | |
+|---|---|
+| Folder | [`apps/34-weddingbudget`](../apps/34-weddingbudget) |
+| Category | Personal finance |
+| The one job | Wedding parameters in, 12-category budget with city/season multipliers and savings plan out. |
+| Buyer | Indian couples and families planning weddings, wedding planners building budgets |
+| Pricing | Free · $29/mo · Enterprise custom |
+| MCP tool | `weddingbudget_calculate` |
+| Suggested domain | `weddingbudget.abetworks.in` |
+
+**Why it wins.** Not a wedding checklist — a budget reality check that shows the 60% nobody quotes (decoration, photography add-ons, transport, miscellaneous) with the multipliers that change everything.
+
+**How it works.** 12-category budget computation with city-tier multipliers (metro/tier2/tier3), peak-season premiums, venue-type pricing, per-guest and per-event breakdowns, underestimate warnings for decoration/photography/misc, and backward savings timeline.
+
+**Launch kit.** [`apps/34-weddingbudget/LAUNCH.md`](../apps/34-weddingbudget/LAUNCH.md)
+
+---
+
+## 35. SchoolFee
+
+**Compare school fees properly — total cost, not just tuition**
+
+| | |
+|---|---|
+| Folder | [`apps/35-schoolfee`](../apps/35-schoolfee) |
+| Category | Personal finance |
+| The one job | Fee structures for up to 3 schools in, true total cost comparison with inflation projection out. |
+| Buyer | Indian parents choosing between schools, financial planners advising on education costs |
+| Pricing | Free · $19/mo · Enterprise custom |
+| MCP tool | `schoolfee_compare` |
+| Suggested domain | `schoolfee.abetworks.in` |
+
+**Why it wins.** Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to.
+
+**How it works.** True total annual cost computation (all line items, not just tuition), inflation-adjusted projection through graduation at 8-10%, monthly outflow with amortised one-time fees, hidden cost flags, and investment value of fee difference at 12% equity returns.
+
+**Launch kit.** [`apps/35-schoolfee/LAUNCH.md`](../apps/35-schoolfee/LAUNCH.md)
+
 
 ---
 
