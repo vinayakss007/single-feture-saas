@@ -1,11 +1,39 @@
 @import "tailwindcss";
 
+/**
+ * Fallbacks only.
+ *
+ * The real values are set as inline custom properties on <body> by app/layout.tsx
+ * from lib/design.ts, so a product's design family applies before first paint and
+ * without a client round-trip. These defaults exist so that a page rendered outside
+ * the layout (an error boundary, for example) is still legible.
+ */
 :root {
   --accent: #4f46e5;
   --accent-soft: #eef2ff;
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --band: #fafbfd;
   --ink: #0b1020;
   --muted: #5b6478;
   --line: #e6e8f0;
+  --line-strong: #c9cede;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  --font-head: var(--font-body);
+  --font-code: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1rem;
+  --bw: 1px;
+  --shadow: 0 1px 2px rgba(11, 16, 32, 0.04);
+  --shadow-lg: 0 8px 30px rgba(11, 16, 32, 0.07);
+  --head-tracking: -0.02em;
+  --head-weight: 600;
+  --head-case: none;
+  --label-case: uppercase;
+  --label-tracking: 0.14em;
+  --section-y: 5rem;
+  --measure: 72rem;
 }
 
 @theme inline {
@@ -14,8 +42,10 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --color-panel: var(--panel);
+  --color-band: var(--band);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
 }
 
 * {
@@ -26,17 +56,62 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Respect a user who has asked the OS to stop moving things. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
-  background: #ffffff;
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * Visible focus for keyboard users on every family.
+ *
+ * The accent is used as the ring, with a solid offset in the page background so the
+ * ring reads against both the light families and the dark terminal one. This is a
+ * single global rule rather than per-component focus classes because a missed focus
+ * style is invisible until someone who needs it cannot use the page.
+ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-bottom-right-radius: var(--r-md);
+}
+
+.skip-link:focus {
+  left: 0;
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(11, 16, 32, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(11, 16, 32, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 4.5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 4.5%, transparent) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -44,25 +119,82 @@ body {
   background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft) 0%, transparent 70%);
 }
 
-
-/* Shared form control, used by the auth screens and the dashboard. */
+/* Shared form control, used by the auth screens, the runner and the dashboard. */
 .input {
   width: 100%;
-  border-radius: 0.75rem;
-  border: 1px solid var(--line);
-  background: #fff;
+  border-radius: var(--r-md);
+  border: var(--bw) solid var(--line);
+  background: var(--panel);
   padding: 0.625rem 0.875rem;
   font-size: 0.9375rem;
+  font-family: var(--font-body);
   color: var(--ink);
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
 .input::placeholder {
-  color: #9aa3b5;
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
 }
 
 .input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ------------------------------------------------------------ family overrides */
+
+/**
+ * The dark family needs a different input treatment: `--panel` is already dark, but
+ * the browser default text colour for form controls is not inherited on every
+ * engine, and the accent-soft focus ring is a light tint that would glare here.
+ */
+[data-design="terminal"] .input {
+  background: #0d121a;
+  color: var(--ink);
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+}
+
+[data-design="terminal"] .input:focus {
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+[data-design="terminal"] ::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Hard-edged focus to match the family, rather than a rounded ring on square boxes. */
+[data-design="brutalist"] :focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+[data-design="brutalist"] .input {
+  border-width: 2px;
+  border-color: var(--ink);
+}
+
+[data-design="brutalist"] .input:focus {
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Numerals line up in a column wherever money is involved. */
+[data-design="ledger"] table,
+[data-design="ledger"] .input {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Serif body copy wants a slightly looser measure and rhythm. */
+[data-design="editorial"] p {
+  text-wrap: pretty;
+}
+
+[data-design="clinical"] p,
+[data-design="editorial"] p {
+  hyphens: auto;
 }

@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Answer ten questions, get the SOC 2 policy set and your gap list. Company profile in, policy set with control mapping and gap list out. Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy.
+> The SOC 2 policy set an auditor expects, from ten answers. Company profile in, policy set with control mapping and gap list out. Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy.
 
 **Topics** — Security compliance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -80,7 +80,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy.
 >
-> Built it because answer ten questions, get the SOC 2 policy set and your gap list is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because the SOC 2 policy set an auditor expects, from ten answers is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

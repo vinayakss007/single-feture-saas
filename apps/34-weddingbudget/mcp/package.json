@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/weddingbudget-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for WeddingBudget — What an Indian wedding actually costs, by category",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "weddingbudget"
+  ],
+  "homepage": "https://weddingbudget.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/34-weddingbudget/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-weddingbudget-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

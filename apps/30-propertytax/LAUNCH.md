@@ -27,7 +27,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 > Calculate your property tax before the notice arrives. Property details and city in, tax computation with rates cited out. Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it.
 
-**Topics** — Property, Artificial Intelligence, SaaS, Developer Tools, API
+**Topics** — Real estate & compliance, Artificial Intelligence, SaaS, Developer Tools, API
 
 **First comment** — post this immediately after the launch goes live
 

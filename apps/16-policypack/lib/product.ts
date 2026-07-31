@@ -165,7 +165,16 @@ export const product: ProductConfig = {
   ],
 
   inputs: [
-    { name: "company", label: "Company legal name", type: "text", required: true, placeholder: "Northwind Technologies Pvt Ltd" },
+    {
+      name: "company",
+      label: "Company legal name",
+      type: "text",
+      required: true,
+      placeholder: "Northwind Technologies Pvt Ltd",
+      // The user's own company — it goes on the generated policies as the legal
+      // entity, so their browser's saved value is the right one. WCAG 1.3.5.
+      autocomplete: "organization",
+    },
     {
       name: "headcount",
       label: "Headcount",

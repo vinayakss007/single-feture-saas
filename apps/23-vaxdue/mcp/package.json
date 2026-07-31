@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/vaxdue-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for VaxDue — Which childhood vaccines are overdue, due now and next",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "vaxdue"
+  ],
+  "homepage": "https://vaxdue.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/23-vaxdue/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-vaxdue-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -202,8 +202,8 @@ export function AuthForm({
           <button
             type="submit"
             disabled={busy}
-            className="w-full rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
-            style={{ background: "var(--accent)" }}
+            className="w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
+            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
           >
             {busy ? copy.busy : copy.submit}
           </button>

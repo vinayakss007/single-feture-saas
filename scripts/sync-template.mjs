@@ -171,8 +171,122 @@ export const SCHEMA_SQL = \`${escaped}\`;
   }
 }
 
+/**
+ * Writes `lib/group.ts` into each app.
+ *
+ * Every product carries a small, ordered list of its siblings so it can cross-sell
+ * inside the group without a runtime call to a central service. Generating it means
+ * the list can never go stale against the catalogue, and it stays a plain module so
+ * the bundler tree-shakes what a given page does not use.
+ *
+ * Order is nearest-first: same category, then catalogue adjacency. A visitor who
+ * needed a GST reconciliation tool is a far better prospect for e-invoice validation
+ * than for a pet dosage calculator, and that ordering is the entire reason the group
+ * is worth more than fifty unrelated domains.
+ */
+function generateGroupModules(catalog, changes) {
+  const all = catalog.products;
+  const count = all.length;
+
+  for (const [index, self] of all.entries()) {
+    const ranked = all
+      .filter((other) => other.slug !== self.slug)
+      .map((other, otherIndex) => {
+        const sameCategory = other.category === self.category ? 0 : 1;
+        // Recompute the true index; `otherIndex` is post-filter.
+        const trueIndex = all.findIndex((c) => c.slug === other.slug);
+        return { other, sameCategory, distance: Math.abs(trueIndex - index), otherIndex };
+      })
+      .sort((a, b) => a.sameCategory - b.sameCategory || a.distance - b.distance)
+      .slice(0, 8)
+      .map(({ other }) => ({
+        slug: other.slug,
+        name: other.name,
+        tagline: other.tagline,
+        category: other.category,
+        accent: other.accent,
+        url: `https://${other.slug}.abetworks.in`,
+      }));
+
+    const contents = `// GENERATED FILE — DO NOT EDIT.
+// Source: scripts/catalog.json   Regenerate: pnpm sync
+//
+// See generateGroupModules() in scripts/sync-template.mjs for why this is generated
+// per app rather than fetched at runtime.
+
+export const GROUP = {
+  name: ${JSON.stringify(catalog.suite.company)},
+  site: ${JSON.stringify(catalog.suite.site)},
+  productCount: ${count},
+} as const;
+
+export type Sibling = {
+  slug: string;
+  name: string;
+  tagline: string;
+  category: string;
+  accent: string;
+  url: string;
+};
+
+/** Nearest first: same category, then catalogue adjacency. */
+export const siblings: Sibling[] = ${JSON.stringify(ranked, null, 2)};
+`;
+
+    const target = join(APPS_DIR, self.dir, "lib", "group.ts");
+    const current = existsSync(target) ? readFileSync(target, "utf8") : null;
+    if (current !== contents) {
+      changes.push(`${self.dir}/lib/group.ts (generated)`);
+      if (!CHECK_ONLY) write(target, contents);
+    }
+  }
+}
+
+/**
+ * Writes `mcp/package.json` into each app.
+ *
+ * The landing page tells people to run `npx -y @abetworks/<slug>-mcp`, and that has
+ * to be a real instruction rather than aspirational copy. Giving each app's mcp/
+ * directory a publishable manifest with a bin entry means `npm publish ./mcp` is the
+ * whole release step, and the server file itself stays shared through the template.
+ *
+ * It sits inside apps/<app>/mcp/ rather than under packages/, which keeps it out of
+ * the `apps/*` workspace glob — a nested manifest here would otherwise be resolved
+ * as a workspace member and pulled into every recursive command.
+ */
+function generateMcpManifests(catalog, changes) {
+  for (const entry of catalog.products) {
+    const manifest = {
+      name: `@abetworks/${entry.slug}-mcp`,
+      version: "1.0.0",
+      description: `MCP server for ${entry.name} — ${entry.tagline}`,
+      keywords: ["mcp", "model-context-protocol", "ai-agent", "tool", entry.slug],
+      homepage: `https://${entry.slug}.abetworks.in`,
+      repository: { type: "git", url: `https://github.com/${catalog.suite.repo}.git`, directory: `apps/${entry.dir}/mcp` },
+      license: "UNLICENSED",
+      type: "module",
+      bin: { [`abetworks-${entry.slug}-mcp`]: "./server.mjs" },
+      main: "./server.mjs",
+      files: ["server.mjs"],
+      engines: { node: ">=20" },
+      // No dependencies by design: the server is a stdio bridge built on node
+      // builtins and fetch, so `npx` has nothing to resolve and starts instantly.
+      dependencies: {},
+    };
+
+    const contents = `${JSON.stringify(manifest, null, 2)}\n`;
+    const target = join(APPS_DIR, entry.dir, "mcp", "package.json");
+    const current = existsSync(target) ? readFileSync(target, "utf8") : null;
+    if (current !== contents) {
+      changes.push(`${entry.dir}/mcp/package.json (generated)`);
+      if (!CHECK_ONLY) write(target, contents);
+    }
+  }
+}
+
 function main() {
   const changes = [];
+  const catalog = JSON.parse(readFileSync(join(ROOT, "scripts", "catalog.json"), "utf8"));
 
   // Must run before the file list is read, so the generated module propagates.
   generateSchemaModule(changes);
@@ -212,6 +326,9 @@ function main() {
 
     reconcilePackageJson(appDir, changes);
   }
+
+  generateGroupModules(catalog, changes);
+  generateMcpManifests(catalog, changes);
 
   console.log(`Template files: ${templateFiles.length} (${shared.length} shared, ${OWNED.size} owned per app)`);
   console.log(`Apps: ${apps().length}`);

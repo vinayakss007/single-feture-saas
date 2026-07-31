@@ -1,6 +1,10 @@
 import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
+  // Category default is ledger, but the reader is a friend group settling a holiday,
+  // not a bookkeeper reconciling one. Attention beats formality here.
+  design: "brutalist",
+
   slug: "tripsplit",
   name: "TripSplit",
   tagline: "Settle a group trip in three transfers instead of eleven",

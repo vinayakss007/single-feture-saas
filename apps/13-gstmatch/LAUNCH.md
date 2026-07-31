@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Reconcile GSTR-2B against your purchase register and see the ITC at risk. Two CSVs in, input tax credit at risk in rupees out. Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence.
+> See the input tax credit you are about to lose, in rupees. Two CSVs in, input tax credit at risk in rupees out. Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence.
 
 **Topics** — Tax compliance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -80,7 +80,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence.
 >
-> Built it because reconcile GSTR-2B against your purchase register and see the ITC at risk is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because see the input tax credit you are about to lose, in rupees is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

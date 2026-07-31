@@ -182,7 +182,16 @@ export const product: ProductConfig = {
       options: ["Male", "Female", "Prefer not to say"],
       help: "Haemoglobin, creatinine, ferritin and several others have genuinely different ranges.",
     },
-    { name: "name", label: "Whose report is this?", type: "text", placeholder: "Amma", help: "Appears on the summary. Useful when tracking for several people." },
+    {
+      name: "name",
+      label: "Whose report is this?",
+      type: "text",
+      placeholder: "Amma",
+      help: "Appears on the summary. Useful when tracking for several people.",
+      // The subject is usually the person filling this in, or a family member whose
+      // name their browser already knows. WCAG 1.3.5.
+      autocomplete: "name",
+    },
   ],
 
   sample: {

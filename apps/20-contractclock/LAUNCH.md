@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Paste a contract, get every deadline and auto-renewal trap. Contract text in, deadlines and a calendar file out. Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug.
+> Paste a contract, find the auto-renewal you were about to miss. Contract text in, deadlines and a calendar file out. Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug.
 
 **Topics** — Contract operations, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -80,7 +80,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug.
 >
-> Built it because paste a contract, get every deadline and auto-renewal trap is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because paste a contract, find the auto-renewal you were about to miss is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

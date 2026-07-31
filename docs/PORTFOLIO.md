@@ -224,7 +224,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 11. AIActNotice
 
-**Generate the EU AI Act transparency notice your product needs**
+**The EU AI Act notice your product legally needs, in one minute**
 
 | | |
 |---|---|
@@ -246,7 +246,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 12. A11yGate
 
-**Paste your HTML, get every WCAG 2.2 failure and the EAA statement**
+**Paste your HTML, get every WCAG failure and the EAA statement**
 
 | | |
 |---|---|
@@ -268,7 +268,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 13. GSTMatch
 
-**Reconcile GSTR-2B against your purchase register and see the ITC at risk**
+**See the input tax credit you are about to lose, in rupees**
 
 | | |
 |---|---|
@@ -290,7 +290,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 14. eInvoiceGuard
 
-**Validate an e-invoice payload before the portal rejects it**
+**Catch the e-invoice error before the portal rejects it**
 
 | | |
 |---|---|
@@ -312,7 +312,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 15. SubAudit
 
-**Upload a card statement, get every subscription and renewal date**
+**Upload a card statement, find the subscriptions you forgot**
 
 | | |
 |---|---|
@@ -334,7 +334,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 16. PolicyPack
 
-**Answer ten questions, get the SOC 2 policy set and your gap list**
+**The SOC 2 policy set an auditor expects, from ten answers**
 
 | | |
 |---|---|
@@ -356,7 +356,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 17. VendorTrace
 
-**Turn a vendor list into a subprocessor register with residency flags**
+**Your vendor list becomes the subprocessor register buyers ask for**
 
 | | |
 |---|---|
@@ -400,7 +400,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 19. DMARCFix
 
-**Paste your SPF, DKIM and DMARC records and get the corrected ones**
+**Paste your SPF, DKIM and DMARC — get the corrected records**
 
 | | |
 |---|---|
@@ -422,7 +422,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 20. ContractClock
 
-**Paste a contract, get every deadline and auto-renewal trap**
+**Paste a contract, find the auto-renewal you were about to miss**
 
 | | |
 |---|---|
@@ -581,11 +581,11 @@ Positioning, moat and revenue model for each of the twenty products.
 | | |
 |---|---|
 | Folder | [`apps/27-solarpayback`](../apps/27-solarpayback) |
-| Category | Home energy |
+| Category | Energy & sustainability |
 | The one job | Monthly bill and rooftop area in, payback period and savings out. |
 | Buyer | Homeowners considering rooftop solar, and anyone who was just quoted a system |
 | Pricing | Free · ₹499/mo · Enterprise custom |
-| MCP tool | `solarpayback_analyse_roi` |
+| MCP tool | `solar_payback_calculate` |
 | Suggested domain | `solarpayback.abetworks.in` |
 
 **Why it wins.** Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie.
@@ -603,11 +603,11 @@ Positioning, moat and revenue model for each of the twenty products.
 | | |
 |---|---|
 | Folder | [`apps/28-powerbill`](../apps/28-powerbill) |
-| Category | Home utilities |
+| Category | Utilities & consumer rights |
 | The one job | Bill line items in, slab errors and overcharges in rupees out. |
 | Buyer | Anyone who suspects their electricity bill is wrong and wants the arithmetic before they complain |
 | Pricing | Free · ₹499/mo · Enterprise custom |
-| MCP tool | `powerbill_audit_bill` |
+| MCP tool | `powerbill_audit` |
 | Suggested domain | `powerbill.abetworks.in` |
 
 **Why it wins.** Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order.
@@ -625,11 +625,11 @@ Positioning, moat and revenue model for each of the twenty products.
 | | |
 |---|---|
 | Folder | [`apps/29-rentcheck`](../apps/29-rentcheck) |
-| Category | Housing |
+| Category | Real estate & housing |
 | The one job | Property details and quoted rent in, fair range and negotiation points out. |
 | Buyer | Anyone looking at a rental in an Indian metro and wondering whether the number is real |
 | Pricing | Free · ₹299/mo · Enterprise custom |
-| MCP tool | `rentcheck_evaluate_rent` |
+| MCP tool | `rent_check_evaluate` |
 | Suggested domain | `rentcheck.abetworks.in` |
 
 **Why it wins.** Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement.
@@ -647,11 +647,11 @@ Positioning, moat and revenue model for each of the twenty products.
 | | |
 |---|---|
 | Folder | [`apps/30-propertytax`](../apps/30-propertytax) |
-| Category | Property |
+| Category | Real estate & compliance |
 | The one job | Property details and city in, tax computation with rates cited out. |
 | Buyer | Property owners in Indian metros who get a notice they cannot verify |
 | Pricing | Free · ₹499/mo · Enterprise custom |
-| MCP tool | `propertytax_compute_tax` |
+| MCP tool | `property_tax_calculate` |
 | Suggested domain | `propertytax.abetworks.in` |
 
 **Why it wins.** Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it.
@@ -752,7 +752,7 @@ Positioning, moat and revenue model for each of the twenty products.
 
 ## 35. SchoolFee
 
-**Compare school fees properly — total cost, not just tuition**
+**Compare school fees properly - total cost, not just tuition**
 
 | | |
 |---|---|

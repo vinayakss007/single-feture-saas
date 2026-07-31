@@ -27,7 +27,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 > Will rooftop solar actually pay for itself, and when. Monthly bill and rooftop area in, payback period and savings out. Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie.
 
-**Topics** — Home energy, Artificial Intelligence, SaaS, Developer Tools, API
+**Topics** — Energy & sustainability, Artificial Intelligence, SaaS, Developer Tools, API
 
 **First comment** — post this immediately after the launch goes live
 

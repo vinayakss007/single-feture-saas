@@ -11,11 +11,40 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const catalog = JSON.parse(readFileSync(join(root, "scripts/catalog.json"), "utf8"));
 const { suite, products } = catalog;
+
+/**
+ * Design family per product, resolved by the framework rather than stored.
+ *
+ * The docs describe which family each product uses, and a hand-maintained list here
+ * would be a fourth copy of something already derivable — the same duplication that
+ * had the hub advertising four MCP tool names no product exposed.
+ */
+const { designFor } = await import(pathToFileURL(join(root, "_template/lib/design.ts")).href);
+
+for (const entry of products) {
+  const { product } = await import(pathToFileURL(join(root, "apps", entry.dir, "lib/product.ts")).href);
+  const tokens = designFor(product);
+  entry.design = tokens.family;
+  entry.designLabel = tokens.label;
+  entry.designRationale = tokens.rationale;
+}
+
+const designSummary = (() => {
+  const counts = new Map();
+  for (const entry of products) counts.set(entry.designLabel, (counts.get(entry.designLabel) ?? 0) + 1);
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([label, count]) => {
+      const members = products.filter((e) => e.designLabel === label).map((e) => e.name);
+      return `- **${label}** (${count}) — ${members.join(", ")}`;
+    })
+    .join("\n");
+})();
 
 function appReadme(p) {
   const envKey = `${p.slug.toUpperCase()}_KEY`;
@@ -72,7 +101,11 @@ Responses are \`{ ok: true, data: RunResult }\` or \`{ ok: false, error: string 
 |---|---|---|
 | \`/api/v1/run\` | GET | Input schema, example payload and MCP tool metadata |
 | \`/api/v1/run\` | POST | Run the engine |
+| \`/api/v1/openapi\` | GET | OpenAPI 3.1 document, generated from the same input config |
+| \`/api/v1/agents\` | GET | Tool schemas for OpenAI, Anthropic, Gemini, LangChain and MCP |
+| \`/.well-known/ai-plugin.json\` | GET | Plugin manifest, so agent runtimes can discover this product |
 | \`/api/health\` | GET | Liveness, version and whether auth is enabled |
+| \`/sitemap.xml\`, \`/robots.txt\` | GET | Generated, and they list the sibling products |
 
 Auth is off when \`API_KEYS\` is unset — which is what you want for a launch-day demo. Set it before you charge.
 
@@ -261,15 +294,37 @@ function rootReadme() {
 - **[ROADMAP.md](./ROADMAP.md)** — the market research behind products 11–20. All ten are now built,
   each by writing only \`lib/product.ts\` and \`lib/engine.ts\` with no framework change.
 
-Each product ships six surfaces, so it can be sold to humans, to backends and to agents:
+Each product ships seven surfaces, so it can be sold to humans, to backends and to agents:
 
-1. a **marketing site** — hero, problem, features, pricing, FAQ
+1. a **marketing site** — hero, problem, features, pricing, FAQ, in one of eight design families
 2. a **working product** at \`/app\` — no signup, no API key, no empty state
 3. **accounts and billing** — signup, login, password reset, dashboard, Razorpay and Stripe checkout,
    metered quotas, API keys
 4. a **REST API** at \`POST /api/v1/run\` that publishes its own schema
-5. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/${suite.repo.split("/")[0]}/aw-agent-fleet) can use it as a tool
-6. **monitoring** — \`/api/health\`, Prometheus \`/api/metrics\`, webhook alerts, a retention cron
+5. an **agent interface** — an OpenAPI 3.1 document at \`/api/v1/openapi\`, ready-to-paste tool schemas for
+   OpenAI, Anthropic, Gemini and LangChain at \`/api/v1/agents\`, a discovery manifest at
+   \`/.well-known/ai-plugin.json\`, and a publishable \`@abetworks/<slug>-mcp\` package
+6. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/${suite.repo.split("/")[0]}/aw-agent-fleet) can use it as a tool
+7. **monitoring** — \`/api/health\`, Prometheus \`/api/metrics\`, webhook alerts, a retention cron
+
+Every one of those is generated from the same \`lib/product.ts\`, which is why the OpenAPI document, the
+MCP tool schema, the demo form and the request validator cannot disagree with each other.
+
+### Eight design families, not one template with fifty accent colours
+
+${designSummary}
+
+A family changes the typeface, the surface, the border weight, the density and the composition of the
+page — not the accent. Which one a product uses is derived from its category by \`_template/lib/design.ts\`,
+and can be overridden per product where the category reads the buyer wrongly.
+
+### It passes the accessibility audit it sells
+
+A11yGate sells WCAG 2.2 auditing, so \`pnpm run a11y\` runs its engine against our own rendered HTML —
+one product per design family, four pages each. It found real defects on its first run: eight products
+shipping white button text at as low as **2.94:1**, every table rendered without a \`<caption>\`, and a
+name field with no autofill token. All fifty now derive their button and text colours from the accent's
+luminance (\`_template/lib/contrast.ts\`), and the audit is a required CI step.
 
 Every product is independently deployable. Nothing is shared at runtime; everything is shared at
 build time via \`_template/\`, enforced by \`pnpm sync:check\`.

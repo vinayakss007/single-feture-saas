@@ -19,7 +19,7 @@ export default async function ResetPasswordPage({
   return (
     <>
       <Nav p={product} />
-      <main className="accent-fade px-5 py-20">
+      <main id="main-content" className="accent-fade px-5 py-20">
         {token ? (
           <AuthForm mode="reset" token={token} accountsEnabled={dbAvailable()} />
         ) : (
@@ -31,8 +31,8 @@ export default async function ResetPasswordPage({
             </p>
             <Link
               href="/forgot-password"
-              className="mt-6 inline-block rounded-xl px-4 py-2.5 text-sm font-semibold text-white"
-              style={{ background: "var(--accent)" }}
+              className="mt-6 inline-block rounded-xl px-4 py-2.5 text-sm font-semibold"
+              style={{ background: "var(--accent)", color: "var(--on-accent)" }}
             >
               Request a new link
             </Link>

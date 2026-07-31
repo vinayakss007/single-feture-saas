@@ -16,6 +16,16 @@ export type HubProduct = {
   accent: string;
   mcpTool: string;
   differentiator: string;
+  /** which of the eight design families renders this product */
+  design: string;
+  designLabel: string;
+};
+
+export type DesignFamilySummary = {
+  family: string;
+  label: string;
+  rationale: string;
+  count: number;
 };
 
 export const suite = {
@@ -36,7 +46,9 @@ export const products: HubProduct[] = [
     "audience": "B2B sales teams, RevOps, sales managers running pipeline reviews",
     "accent": "#4f46e5",
     "mcpTool": "dealbrief_analyze_call",
-    "differentiator": "A meeting recorder summarises what was said. DealBrief judges the deal — what is missing, what is at risk, and who owes what by when."
+    "differentiator": "A meeting recorder summarises what was said. DealBrief judges the deal — what is missing, what is at risk, and who owes what by when.",
+    "design": "split",
+    "designLabel": "Split"
   },
   {
     "dir": "02-churnsignal",
@@ -48,7 +60,9 @@ export const products: HubProduct[] = [
     "audience": "SaaS founders, customer success teams, account managers",
     "accent": "#e11d48",
     "mcpTool": "churnsignal_score_accounts",
-    "differentiator": "A health score without reason codes tells a CSM nothing. Every score here shows which signals fired, how many points each added, and the specific save play for the dominant one."
+    "differentiator": "A health score without reason codes tells a CSM nothing. Every score here shows which signals fired, how many points each added, and the specific save play for the dominant one.",
+    "design": "standard",
+    "designLabel": "Standard"
   },
   {
     "dir": "03-pricepulse",
@@ -60,7 +74,9 @@ export const products: HubProduct[] = [
     "audience": "Product marketing, pricing owners, competitive intelligence, founders",
     "accent": "#0891b2",
     "mcpTool": "pricepulse_diff_pricing",
-    "differentiator": "Visual diff tools fire on a rotated testimonial and a changed copyright year. This one parses the plans first, so only changes that affect what a buyer pays or gets ever surface."
+    "differentiator": "Visual diff tools fire on a rotated testimonial and a changed copyright year. This one parses the plans first, so only changes that affect what a buyer pays or gets ever surface.",
+    "design": "bento",
+    "designLabel": "Bento"
   },
   {
     "dir": "04-consentscan",
@@ -72,7 +88,9 @@ export const products: HubProduct[] = [
     "audience": "Indian SMBs, web agencies, anyone with EU users, compliance owners",
     "accent": "#059669",
     "mcpTool": "consentscan_audit_site",
-    "differentiator": "Every finding names the specific DPDP section or GDPR article it touches, and is ordered by penalty exposure. Most scanners just say \"cookie banner missing\"."
+    "differentiator": "Every finding names the specific DPDP section or GDPR article it touches, and is ordered by penalty exposure. Most scanners just say \"cookie banner missing\".",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "05-invoiceparse",
@@ -84,7 +102,9 @@ export const products: HubProduct[] = [
     "audience": "Indian accountants, finance teams, B2B marketplaces, AP automation",
     "accent": "#7c3aed",
     "mcpTool": "invoiceparse_extract_and_validate",
-    "differentiator": "Most parsers regex-match a 15-character string and call the GSTIN valid. This runs the actual check-digit algorithm, so a typo that would cost you input tax credit six months later gets caught now."
+    "differentiator": "Most parsers regex-match a 15-character string and call the GSTIN valid. This runs the actual check-digit algorithm, so a typo that would cost you input tax credit six months later gets caught now.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "06-coldangle",
@@ -96,7 +116,9 @@ export const products: HubProduct[] = [
     "audience": "Founders doing their own outbound, SDRs, agencies running sequences",
     "accent": "#ea580c",
     "mcpTool": "coldangle_write_opener",
-    "differentiator": "Every clause traces back to a line in the text you pasted. If the fact is not there, the opener does not assert it — which is why it never produces \"I loved your recent post about digital transformation\"."
+    "differentiator": "Every clause traces back to a line in the text you pasted. If the fact is not there, the opener does not assert it — which is why it never produces \"I loved your recent post about digital transformation\".",
+    "design": "split",
+    "designLabel": "Split"
   },
   {
     "dir": "07-repurpose10",
@@ -108,7 +130,9 @@ export const products: HubProduct[] = [
     "audience": "Solo creators, content teams, agencies managing client calendars",
     "accent": "#db2777",
     "mcpTool": "repurpose10_fan_out",
-    "differentiator": "It selects and restructures your sentences rather than rewriting them. Your voice survives and no fact gets invented."
+    "differentiator": "It selects and restructures your sentences rather than rewriting them. Your voice survives and no fact gets invented.",
+    "design": "bento",
+    "designLabel": "Bento"
   },
   {
     "dir": "08-pingdeck",
@@ -120,7 +144,9 @@ export const products: HubProduct[] = [
     "audience": "Small teams, agencies managing client sites, solo operators",
     "accent": "#2563eb",
     "mcpTool": "pingdeck_check_endpoints",
-    "differentiator": "Uptime tools are a commodity. Expiring certificates and expiring domains cause a large share of small-site outages and almost nothing checks both — here they are free."
+    "differentiator": "Uptime tools are a commodity. Expiring certificates and expiring domains cause a large share of small-site outages and almost nothing checks both — here they are free.",
+    "design": "terminal",
+    "designLabel": "Terminal"
   },
   {
     "dir": "09-answerready",
@@ -132,7 +158,9 @@ export const products: HubProduct[] = [
     "audience": "SEO owners, content marketers, founders losing traffic to AI answers",
     "accent": "#0d9488",
     "mcpTool": "answerready_audit_page",
-    "differentiator": "Ranking tools measure backlinks. None of them tell you that you are blocking OAI-SearchBot, or that your content does not exist without JavaScript — which is what decides whether you get cited in an answer."
+    "differentiator": "Ranking tools measure backlinks. None of them tell you that you are blocking OAI-SearchBot, or that your content does not exist without JavaScript — which is what decides whether you get cited in an answer.",
+    "design": "bento",
+    "designLabel": "Bento"
   },
   {
     "dir": "10-promptshield",
@@ -144,91 +172,107 @@ export const products: HubProduct[] = [
     "audience": "Teams shipping AI agents to production, platform and security engineers",
     "accent": "#4338ca",
     "mcpTool": "promptshield_scan_text",
-    "differentiator": "A model asked to judge untrusted text is itself reading untrusted text and can be talked out of its judgement. Deterministic rules cannot be persuaded, run in single-digit milliseconds and cost nothing per call."
+    "differentiator": "A model asked to judge untrusted text is itself reading untrusted text and can be talked out of its judgement. Deterministic rules cannot be persuaded, run in single-digit milliseconds and cost nothing per call.",
+    "design": "terminal",
+    "designLabel": "Terminal"
   },
   {
     "dir": "11-aiactnotice",
     "slug": "aiactnotice",
     "name": "AIActNotice",
-    "tagline": "Generate the EU AI Act transparency notice your product needs",
+    "tagline": "The EU AI Act notice your product legally needs, in one minute",
     "job": "AI system description in, risk tier and Article 50 notice out.",
     "category": "AI governance",
     "audience": "Anyone shipping AI into the EU — founders, product leads, DPOs, compliance owners",
     "accent": "#6d28d9",
     "mcpTool": "aiactnotice_classify_system",
-    "differentiator": "Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for."
+    "differentiator": "Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "12-a11ygate",
     "slug": "a11ygate",
     "name": "A11yGate",
-    "tagline": "Paste your HTML, get every WCAG 2.2 failure and the EAA statement",
+    "tagline": "Paste your HTML, get every WCAG failure and the EAA statement",
     "job": "HTML in, WCAG failures with fixes and a publishable accessibility statement out.",
     "category": "Accessibility compliance",
     "audience": "EU e-commerce, banking, transport and SaaS teams, plus the agencies that build for them",
     "accent": "#b45309",
     "mcpTool": "a11ygate_audit_html",
-    "differentiator": "Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report."
+    "differentiator": "Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report.",
+    "design": "terminal",
+    "designLabel": "Terminal"
   },
   {
     "dir": "13-gstmatch",
     "slug": "gstmatch",
     "name": "GSTMatch",
-    "tagline": "Reconcile GSTR-2B against your purchase register and see the ITC at risk",
+    "tagline": "See the input tax credit you are about to lose, in rupees",
     "job": "Two CSVs in, input tax credit at risk in rupees out.",
     "category": "Tax compliance",
     "audience": "Indian businesses filing GST, chartered accountants, finance teams",
     "accent": "#15803d",
     "mcpTool": "gstmatch_reconcile_2b",
-    "differentiator": "Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence."
+    "differentiator": "Every GST reconciliation product on the market is an ERP integration for mid-market. This wants two CSVs and gives you a rupee figure for the credit you are about to lose, which makes the ROI a single sentence.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "14-einvoiceguard",
     "slug": "einvoiceguard",
     "name": "eInvoiceGuard",
-    "tagline": "Validate an e-invoice payload before the portal rejects it",
+    "tagline": "Catch the e-invoice error before the portal rejects it",
     "job": "Invoice payload in, portal error codes and a corrected payload out.",
     "category": "Finance automation",
     "audience": "Indian businesses on e-invoicing, SaaS exporters, ERP and billing engineers",
     "accent": "#0369a1",
     "mcpTool": "einvoiceguard_validate_payload",
-    "differentiator": "A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically."
+    "differentiator": "A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "15-subaudit",
     "slug": "subaudit",
     "name": "SubAudit",
-    "tagline": "Upload a card statement, get every subscription and renewal date",
+    "tagline": "Upload a card statement, find the subscriptions you forgot",
     "job": "Statement CSV in, subscription map with duplicates and renewals out.",
     "category": "Finance operations",
     "audience": "Founders, finance leads, office managers and anyone who owns a company card",
     "accent": "#be123c",
     "mcpTool": "subaudit_find_subscriptions",
-    "differentiator": "Spend management platforms want to become your card, which is a procurement project. This wants a CSV you already have — no bank connection, no OAuth — and usually finds money on the first run."
+    "differentiator": "Spend management platforms want to become your card, which is a procurement project. This wants a CSV you already have — no bank connection, no OAuth — and usually finds money on the first run.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "16-policypack",
     "slug": "policypack",
     "name": "PolicyPack",
-    "tagline": "Answer ten questions, get the SOC 2 policy set and your gap list",
+    "tagline": "The SOC 2 policy set an auditor expects, from ten answers",
     "job": "Company profile in, policy set with control mapping and gap list out.",
     "category": "Security compliance",
     "audience": "Startups facing their first security review, CTOs, and whoever got handed the questionnaire",
     "accent": "#1e40af",
     "mcpTool": "policypack_generate_policies",
-    "differentiator": "Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy."
+    "differentiator": "Downloaded templates describe a company with a security team and a SIEM, which an auditor reads before asking for evidence you do not have. This describes your actual company, and states plainly which controls your headcount cannot satisfy.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "17-vendortrace",
     "slug": "vendortrace",
     "name": "VendorTrace",
-    "tagline": "Turn a vendor list into a subprocessor register with residency flags",
+    "tagline": "Your vendor list becomes the subprocessor register buyers ask for",
     "job": "Vendor list in, Article 30 register and subprocessor page out.",
     "category": "Privacy compliance",
     "audience": "DPOs, founders answering security questionnaires, SaaS companies under DPDP or GDPR",
     "accent": "#a21caf",
     "mcpTool": "vendortrace_build_register",
-    "differentiator": "Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them."
+    "differentiator": "Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "18-payslipin",
@@ -240,31 +284,37 @@ export const products: HubProduct[] = [
     "audience": "Small employers, HR consultants, chartered accountants and anyone doing payroll in a spreadsheet",
     "accent": "#047857",
     "mcpTool": "payslipin_compute_payslip",
-    "differentiator": "A full HRMS is the wrong shape and price for four employees. This computes one correct payslip and shows every threshold it used, so you can check it against the current Finance Act rather than trusting a black box."
+    "differentiator": "A full HRMS is the wrong shape and price for four employees. This computes one correct payslip and shows every threshold it used, so you can check it against the current Finance Act rather than trusting a black box.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "19-dmarcfix",
     "slug": "dmarcfix",
     "name": "DMARCFix",
-    "tagline": "Paste your SPF, DKIM and DMARC records and get the corrected ones",
+    "tagline": "Paste your SPF, DKIM and DMARC — get the corrected records",
     "job": "Email auth records in, lookup count, failures and corrected records out.",
     "category": "Email deliverability",
     "audience": "Founders whose email lands in spam, ops and platform engineers, agencies running client domains",
     "accent": "#c2410c",
     "mcpTool": "dmarcfix_audit_records",
-    "differentiator": "SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI."
+    "differentiator": "SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI.",
+    "design": "terminal",
+    "designLabel": "Terminal"
   },
   {
     "dir": "20-contractclock",
     "slug": "contractclock",
     "name": "ContractClock",
-    "tagline": "Paste a contract, get every deadline and auto-renewal trap",
+    "tagline": "Paste a contract, find the auto-renewal you were about to miss",
     "job": "Contract text in, deadlines and a calendar file out.",
     "category": "Contract operations",
     "audience": "Ops and finance leads, procurement, founders signing their own contracts, agencies managing client vendors",
     "accent": "#7e22ce",
     "mcpTool": "contractclock_extract_deadlines",
-    "differentiator": "Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug."
+    "differentiator": "Contract management platforms want your whole repository migrated. This answers one question about one contract — and uses no model, because a hallucinated cancellation deadline is a liability rather than a bug.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "21-medibillcheck",
@@ -276,7 +326,9 @@ export const products: HubProduct[] = [
     "audience": "Anyone paying a hospital bill in India, plus the family members who end up handling it",
     "accent": "#0e7490",
     "mcpTool": "medibillcheck_audit_bill",
-    "differentiator": "Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge."
+    "differentiator": "Bill audit services take a percentage and a fortnight. This runs on the bill you are holding at the discharge counter, and every finding is a rupee figure with a line number you can point at. It makes no clinical judgement, which is exactly why it can be trusted on the parts it does judge.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "22-labtrack",
@@ -288,7 +340,9 @@ export const products: HubProduct[] = [
     "audience": "Anyone managing their own or a parent's test results across multiple reports and labs",
     "accent": "#0f766e",
     "mcpTool": "labtrack_check_values",
-    "differentiator": "Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box."
+    "differentiator": "Every other tool in this space interprets. This deliberately does not: it checks thirty values against thirty ranges without missing one, and lines up four reports to show what is moving. Both are mechanical, both are where the signal is, and neither requires a diagnosis nobody should take from a text box.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "23-vaxdue",
@@ -300,7 +354,9 @@ export const products: HubProduct[] = [
     "audience": "Parents and grandparents tracking a child's immunisations, and the relative who ends up holding the card",
     "accent": "#c026d3",
     "mcpTool": "vaxdue_check_schedule",
-    "differentiator": "A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again."
+    "differentiator": "A paper card and a chart in weeks and months, versus actual calendar dates you can diary. It also marks every dose free or paid, which is the thing nobody explains at the counter, and is honest that being late almost never means starting again.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "24-loantruth",
@@ -312,7 +368,9 @@ export const products: HubProduct[] = [
     "audience": "Anyone taking a home, car, personal or business loan, and anyone already paying one off",
     "accent": "#1d4ed8",
     "mcpTool": "loantruth_analyse_loan",
-    "differentiator": "Every EMI calculator computes the payment. None tells you that fees deducted from disbursal mean you pay interest on money you never received — on the sample loan that is 0.36 points of hidden APR, and no sanction letter states it."
+    "differentiator": "Every EMI calculator computes the payment. None tells you that fees deducted from disbursal mean you pay interest on money you never received — on the sample loan that is 0.36 points of hidden APR, and no sanction letter states it.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "25-tripsplit",
@@ -324,7 +382,9 @@ export const products: HubProduct[] = [
     "audience": "Anyone who has organised a group trip, a shared house, or a weekend away and ended up as the accountant",
     "accent": "#ca8a04",
     "mcpTool": "tripsplit_settle_expenses",
-    "differentiator": "Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat — with no account to create and nothing stored afterwards."
+    "differentiator": "Splitting is bookkeeping; minimising the payments is the actual problem. Four transfers instead of six on the sample trip, and a message ready for the group chat — with no account to create and nothing stored afterwards.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "26-flightright",
@@ -336,7 +396,9 @@ export const products: HubProduct[] = [
     "audience": "Anyone whose flight was delayed, cancelled or overbooked, and who was offered a voucher",
     "accent": "#0284c7",
     "mcpTool": "flightright_assess_claim",
-    "differentiator": "Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter."
+    "differentiator": "Claim companies take 25-35% for sending a letter and decline the marginal cases. This separates the three entitlements airlines conflate, pre-answers the four standard refusals, and hands you the letter.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "27-solarpayback",
@@ -344,11 +406,13 @@ export const products: HubProduct[] = [
     "name": "SolarPayback",
     "tagline": "Will rooftop solar actually pay for itself, and when",
     "job": "Monthly bill and rooftop area in, payback period and savings out.",
-    "category": "Home energy",
+    "category": "Energy & sustainability",
     "audience": "Homeowners considering rooftop solar, and anyone who was just quoted a system",
     "accent": "#16a34a",
-    "mcpTool": "solarpayback_analyse_roi",
-    "differentiator": "Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie."
+    "mcpTool": "solar_payback_calculate",
+    "differentiator": "Solar salespeople quote savings. This shows the payback month, the IRR, and what happens to both when you change the assumptions — because the assumptions are where they lie.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "28-powerbill",
@@ -356,11 +420,13 @@ export const products: HubProduct[] = [
     "name": "PowerBill",
     "tagline": "What is wrong with this electricity bill, in rupees",
     "job": "Bill line items in, slab errors and overcharges in rupees out.",
-    "category": "Home utilities",
+    "category": "Utilities & consumer rights",
     "audience": "Anyone who suspects their electricity bill is wrong and wants the arithmetic before they complain",
     "accent": "#d97706",
-    "mcpTool": "powerbill_audit_bill",
-    "differentiator": "Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order."
+    "mcpTool": "powerbill_audit",
+    "differentiator": "Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "29-rentcheck",
@@ -368,11 +434,13 @@ export const products: HubProduct[] = [
     "name": "RentCheck",
     "tagline": "Is this rent fair for this area, and what to negotiate",
     "job": "Property details and quoted rent in, fair range and negotiation points out.",
-    "category": "Housing",
+    "category": "Real estate & housing",
     "audience": "Anyone looking at a rental in an Indian metro and wondering whether the number is real",
     "accent": "#7c2d12",
-    "mcpTool": "rentcheck_evaluate_rent",
-    "differentiator": "Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement."
+    "mcpTool": "rent_check_evaluate",
+    "differentiator": "Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "30-propertytax",
@@ -380,11 +448,13 @@ export const products: HubProduct[] = [
     "name": "PropertyTax",
     "tagline": "Calculate your property tax before the notice arrives",
     "job": "Property details and city in, tax computation with rates cited out.",
-    "category": "Property",
+    "category": "Real estate & compliance",
     "audience": "Property owners in Indian metros who get a notice they cannot verify",
     "accent": "#1e3a5f",
-    "mcpTool": "propertytax_compute_tax",
-    "differentiator": "Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it."
+    "mcpTool": "property_tax_calculate",
+    "differentiator": "Seven cities, three different methods, and the step-by-step working so you can check the notice when it arrives rather than accepting it.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "31-nutrilabel",
@@ -396,7 +466,9 @@ export const products: HubProduct[] = [
     "audience": "Health-conscious Indian consumers, dietitians, fitness coaches, parents reading labels for their kids",
     "accent": "#065f46",
     "mcpTool": "nutrilabel_analyze_label",
-    "differentiator": "Not a calorie counter — a label auditor that normalises to per-100g, catches misleading serving sizes, and rates the label honest/misleading/deceptive based on what the front says vs what the back shows."
+    "differentiator": "Not a calorie counter — a label auditor that normalises to per-100g, catches misleading serving sizes, and rates the label honest/misleading/deceptive based on what the front says vs what the back shows.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "32-sleepdebt",
@@ -408,7 +480,9 @@ export const products: HubProduct[] = [
     "audience": "Professionals with irregular sleep, shift workers, students, anyone tracking sleep debt",
     "accent": "#4c1d95",
     "mcpTool": "sleepdebt_analyze_log",
-    "differentiator": "Not a sleep tracker — a debt calculator that tells you exactly how much you owe, how long recovery will take with realistic diminishing returns, and what time to go to bed tonight."
+    "differentiator": "Not a sleep tracker — a debt calculator that tells you exactly how much you owe, how long recovery will take with realistic diminishing returns, and what time to go to bed tonight.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "33-racepace",
@@ -420,7 +494,9 @@ export const products: HubProduct[] = [
     "audience": "Recreational runners preparing for 5K to marathon, running coaches building race strategies",
     "accent": "#b91c1c",
     "mcpTool": "racepace_plan_race",
-    "differentiator": "Not a finish-time calculator — a pace plan that shows you three versions of your race including the one where you hit the wall, so you recognise it happening in time to adjust."
+    "differentiator": "Not a finish-time calculator — a pace plan that shows you three versions of your race including the one where you hit the wall, so you recognise it happening in time to adjust.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "34-weddingbudget",
@@ -432,19 +508,23 @@ export const products: HubProduct[] = [
     "audience": "Indian couples and families planning weddings, wedding planners building budgets",
     "accent": "#9d174d",
     "mcpTool": "weddingbudget_calculate",
-    "differentiator": "Not a wedding checklist — a budget reality check that shows the 60% nobody quotes (decoration, photography add-ons, transport, miscellaneous) with the multipliers that change everything."
+    "differentiator": "Not a wedding checklist — a budget reality check that shows the 60% nobody quotes (decoration, photography add-ons, transport, miscellaneous) with the multipliers that change everything.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "35-schoolfee",
     "slug": "schoolfee",
     "name": "SchoolFee",
-    "tagline": "Compare school fees properly — total cost, not just tuition",
+    "tagline": "Compare school fees properly - total cost, not just tuition",
     "job": "Fee structures for up to 3 schools in, true total cost comparison with inflation projection out.",
     "category": "Personal finance",
     "audience": "Indian parents choosing between schools, financial planners advising on education costs",
     "accent": "#155e75",
     "mcpTool": "schoolfee_compare",
-    "differentiator": "Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to."
+    "differentiator": "Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to.",
+    "design": "ledger",
+    "designLabel": "Ledger"
   },
   {
     "dir": "36-resumeats",
@@ -456,7 +536,9 @@ export const products: HubProduct[] = [
     "audience": "Job seekers in India and globally, career coaches, resume writers, placement consultants",
     "accent": "#dc2626",
     "mcpTool": "resume_ats_scan",
-    "differentiator": "Not a resume builder — an ATS simulator that shows exactly what gets extracted, what gets lost, and why 70% of resumes are rejected before a human reads them."
+    "differentiator": "Not a resume builder — an ATS simulator that shows exactly what gets extracted, what gets lost, and why 70% of resumes are rejected before a human reads them.",
+    "design": "split",
+    "designLabel": "Split"
   },
   {
     "dir": "37-rtidraft",
@@ -468,7 +550,9 @@ export const products: HubProduct[] = [
     "audience": "Indian citizens filing RTI applications, RTI activists, journalists, NGOs, legal aid organizations",
     "accent": "#854d0e",
     "mcpTool": "rti_draft",
-    "differentiator": "Not a legal advice tool — a properly formatted RTI application generator that gets the technicalities right so your valid question actually gets answered."
+    "differentiator": "Not a legal advice tool — a properly formatted RTI application generator that gets the technicalities right so your valid question actually gets answered.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "38-carcost",
@@ -480,7 +564,9 @@ export const products: HubProduct[] = [
     "audience": "Indian car buyers, auto journalists, financial planners, car comparison researchers",
     "accent": "#1a2e05",
     "mcpTool": "car_cost_compute",
-    "differentiator": "Not a car listing — a financial calculator that shows what you think it costs (EMI) vs what it actually costs (EMI + fuel + insurance + service + depreciation)."
+    "differentiator": "Not a car listing — a financial calculator that shows what you think it costs (EMI) vs what it actually costs (EMI + fuel + insurance + service + depreciation).",
+    "design": "split",
+    "designLabel": "Split"
   },
   {
     "dir": "39-petdose",
@@ -492,7 +578,9 @@ export const products: HubProduct[] = [
     "audience": "Pet owners in India, veterinarians, pet boarding facilities, animal shelters",
     "accent": "#92400e",
     "mcpTool": "pet_dose_schedule",
-    "differentiator": "Not a pet health app — a preventative care calculator that tells you exactly what dose, which product, and when it is due based on your pet's actual weight and schedule."
+    "differentiator": "Not a pet health app — a preventative care calculator that tells you exactly what dose, which product, and when it is due based on your pet's actual weight and schedule.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "40-packlist",
@@ -504,7 +592,9 @@ export const products: HubProduct[] = [
     "audience": "Travellers, business travellers, backpackers, digital nomads, travel planners",
     "accent": "#3f6212",
     "mcpTool": "packing_list",
-    "differentiator": "Not a generic travel checklist — a packing calculator that gives exact quantities for this trip, this weather, this many days, with these activities, in this bag."
+    "differentiator": "Not a generic travel checklist — a packing calculator that gives exact quantities for this trip, this weather, this many days, with these activities, in this bag.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "41-legalnotice",
@@ -516,7 +606,9 @@ export const products: HubProduct[] = [
     "audience": "Individuals, advocates, small businesses, HR teams, landlords, tenants, consumers",
     "accent": "#831843",
     "mcpTool": "legal_notice_generator",
-    "differentiator": "Not a generic angry letter — a properly formatted legal notice with correct statutes, mandatory timelines, and the consequences that make recipients respond."
+    "differentiator": "Not a generic angry letter — a properly formatted legal notice with correct statutes, mandatory timelines, and the consequences that make recipients respond.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "42-cropcal",
@@ -528,7 +620,9 @@ export const products: HubProduct[] = [
     "audience": "Farmers, agricultural officers, agri-entrepreneurs, FPOs, rural advisors",
     "accent": "#365314",
     "mcpTool": "crop_calendar",
-    "differentiator": "Not generic agriculture advice — specific crops for this soil, this zone, this month, with exact seed quantity for your land area and whether the sowing window is closing."
+    "differentiator": "Not generic agriculture advice — specific crops for this soil, this zone, this month, with exact seed quantity for your land area and whether the sowing window is closing.",
+    "design": "standard",
+    "designLabel": "Standard"
   },
   {
     "dir": "43-freelancerate",
@@ -540,7 +634,9 @@ export const products: HubProduct[] = [
     "audience": "Freelancers, consultants, independent contractors, solopreneurs, agencies",
     "accent": "#581c87",
     "mcpTool": "freelance_rate_calculator",
-    "differentiator": "Not a guess — the actual math of what you must charge per hour given what you need to earn, what you spend, and what you realistically bill."
+    "differentiator": "Not a guess — the actual math of what you must charge per hour given what you need to earn, what you spend, and what you realistically bill.",
+    "design": "split",
+    "designLabel": "Split"
   },
   {
     "dir": "44-waterleak",
@@ -552,7 +648,9 @@ export const products: HubProduct[] = [
     "audience": "Homeowners, apartment residents, facility managers, plumbers, water utility engineers",
     "accent": "#164e63",
     "mcpTool": "water_leak_detector",
-    "differentiator": "Not a plumber guessing — data-driven leak detection from your meter readings that identifies the type of leak and what it costs you per month."
+    "differentiator": "Not a plumber guessing — data-driven leak detection from your meter readings that identifies the type of leak and what it costs you per month.",
+    "design": "standard",
+    "designLabel": "Standard"
   },
   {
     "dir": "45-growthchart",
@@ -564,7 +662,9 @@ export const products: HubProduct[] = [
     "audience": "Parents, paediatricians, anganwadi workers, child health clinics, school health programmes",
     "accent": "#701a75",
     "mcpTool": "child_growth_chart",
-    "differentiator": "Not approximate zones — exact percentile from WHO LMS method with trajectory analysis that catches growth faltering months before it becomes visible."
+    "differentiator": "Not approximate zones — exact percentile from WHO LMS method with trajectory analysis that catches growth faltering months before it becomes visible.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "46-examplan",
@@ -576,7 +676,9 @@ export const products: HubProduct[] = [
     "audience": "Students (board exams, competitive exams, university), parents, tutors, coaching centres",
     "accent": "#134e4a",
     "mcpTool": "exam_study_planner",
-    "differentiator": "Not motivation — math. Exactly how many hours each subject needs, distributed across days with revision built in, and a clear warning if you started too late."
+    "differentiator": "Not motivation — math. Exactly how many hours each subject needs, distributed across days with revision built in, and a clear warning if you started too late.",
+    "design": "bento",
+    "designLabel": "Bento"
   },
   {
     "dir": "47-estateadmin",
@@ -588,7 +690,9 @@ export const products: HubProduct[] = [
     "audience": "Families dealing with bereavement, estate planners, advocates, CA firms, NRIs managing Indian estates",
     "accent": "#450a0a",
     "mcpTool": "estate_administration_checklist",
-    "differentiator": "Not a generic grief resource — a precise legal and administrative checklist for this religion, these assets, this state, with documents needed at each step."
+    "differentiator": "Not a generic grief resource — a precise legal and administrative checklist for this religion, these assets, this state, with documents needed at each step.",
+    "design": "editorial",
+    "designLabel": "Editorial"
   },
   {
     "dir": "48-visadocs",
@@ -600,7 +704,9 @@ export const products: HubProduct[] = [
     "audience": "Visa applicants, travel agents, immigration consultants, corporate travel managers, students",
     "accent": "#422006",
     "mcpTool": "visa_document_checker",
-    "differentiator": "Not a generic checklist — the exact documents this visa type for this country needs from an Indian passport holder, with what you have and what is missing."
+    "differentiator": "Not a generic checklist — the exact documents this visa type for this country needs from an Indian passport holder, with what you have and what is missing.",
+    "design": "brutalist",
+    "designLabel": "Brutalist"
   },
   {
     "dir": "49-macroplate",
@@ -612,7 +718,9 @@ export const products: HubProduct[] = [
     "audience": "Fitness enthusiasts, bodybuilders, vegetarians seeking protein, dietitians, gym trainers",
     "accent": "#052e16",
     "mcpTool": "protein_meal_planner",
-    "differentiator": "Not Western bodybuilding foods — Indian foods you actually eat (dal, paneer, soya, curd, eggs, chicken) planned to hit protein targets within a rupee budget."
+    "differentiator": "Not Western bodybuilding foods — Indian foods you actually eat (dal, paneer, soya, curd, eggs, chicken) planned to hit protein targets within a rupee budget.",
+    "design": "clinical",
+    "designLabel": "Clinical"
   },
   {
     "dir": "50-emicalc",
@@ -624,6 +732,59 @@ export const products: HubProduct[] = [
     "audience": "Home loan borrowers, car loan applicants, personal loan seekers, loan brokers, financial advisors",
     "accent": "#1c1917",
     "mcpTool": "emi_loan_comparator",
-    "differentiator": "Not just EMI comparison — total lifetime cost including fees, effective APR, and prepayment savings that reveal which offer actually costs less over the full tenure."
+    "differentiator": "Not just EMI comparison — total lifetime cost including fees, effective APR, and prepayment savings that reveal which offer actually costs less over the full tenure.",
+    "design": "ledger",
+    "designLabel": "Ledger"
+  }
+];
+
+export const designFamilies: DesignFamilySummary[] = [
+  {
+    "family": "standard",
+    "label": "Standard",
+    "rationale": "Neutral product-marketing surface. Used where the buyer has no strong aesthetic expectation and clarity wins.",
+    "count": 3
+  },
+  {
+    "family": "editorial",
+    "label": "Editorial",
+    "rationale": "Serif, ruled, article-shaped. Used for legal, policy and compliance products, where the buyer is reading to be persuaded and expects prose, not tiles.",
+    "count": 8
+  },
+  {
+    "family": "terminal",
+    "label": "Terminal",
+    "rationale": "Dark, monospace, shell-framed. Used for monitoring, deliverability and security products, whose buyer already works in this surface and reads it as competence.",
+    "count": 4
+  },
+  {
+    "family": "bento",
+    "label": "Bento",
+    "rationale": "Borderless tiles on a cool ground, asymmetric grid. Used for analytics and research products, where the value is many facets shown at once.",
+    "count": 4
+  },
+  {
+    "family": "split",
+    "label": "Split",
+    "rationale": "Two-column hero with the demo visible above the fold. Used where the product explains itself faster by being tried than by being described.",
+    "count": 5
+  },
+  {
+    "family": "brutalist",
+    "label": "Brutalist",
+    "rationale": "Hard borders, offset shadows, oversized type. Used for consumer products fighting for attention, where a polite SaaS page is ignored.",
+    "count": 9
+  },
+  {
+    "family": "ledger",
+    "label": "Ledger",
+    "rationale": "Ruled rows, tabular numerals, high density. Used for tax, payroll, invoicing and lending products, where the buyer trusts a statement and distrusts a marketing tile.",
+    "count": 10
+  },
+  {
+    "family": "clinical",
+    "label": "Clinical",
+    "rationale": "Restrained, airy, thin rules, no persuasion theatre. Used for health products, where overselling is the fastest way to lose a reader who is worried about a real result.",
+    "count": 7
   }
 ];

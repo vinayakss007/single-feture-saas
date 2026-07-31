@@ -14,7 +14,7 @@ export default async function LoginPage() {
   return (
     <>
       <Nav p={product} />
-      <main className="accent-fade px-5 py-20">
+      <main id="main-content" className="accent-fade px-5 py-20">
         <AuthForm mode="login" accountsEnabled={dbAvailable()} />
       </main>
       <Footer p={product} />

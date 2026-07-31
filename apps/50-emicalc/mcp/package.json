@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/emicalc-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for EMICalc — Compare loan offers properly - total cost, not just EMI",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "emicalc"
+  ],
+  "homepage": "https://emicalc.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/50-emicalc/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-emicalc-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

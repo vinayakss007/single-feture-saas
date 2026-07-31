@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Generate the EU AI Act transparency notice your product needs. AI system description in, risk tier and Article 50 notice out. Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for.
+> The EU AI Act notice your product legally needs, in one minute. AI system description in, risk tier and Article 50 notice out. Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for.
 
 **Topics** — AI governance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -82,7 +82,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Every compliance platform in this category is priced for a programme, and every AI-written classification is unreproducible. This applies the published criteria deterministically and cites the article that produced each conclusion — which is what an auditor asks for.
 >
-> Built it because generate the EU AI Act transparency notice your product needs is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because the EU AI Act notice your product legally needs, in one minute is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

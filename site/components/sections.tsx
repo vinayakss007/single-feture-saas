@@ -1,3 +1,4 @@
+import type { DesignFamilySummary } from "@/lib/catalog.generated.ts";
 import type { LinkedProduct } from "@/lib/links.ts";
 
 /** Shared section shell, so every band on the page has the same rhythm. */
@@ -415,5 +416,58 @@ export function Footer({
         </div>
       </div>
     </footer>
+  );
+}
+
+
+/**
+ * The eight design families.
+ *
+ * This section exists because the most common objection to a suite this size is that
+ * it must be fifty copies of one template with the colour changed. It nearly was —
+ * and saying so plainly, with the reason each family exists and which products use
+ * it, is more convincing than claiming variety.
+ *
+ * The data is generated from the framework's own resolver, so the counts and labels
+ * here cannot disagree with what the products actually render.
+ */
+export function DesignFamilies({
+  families,
+  products,
+}: {
+  families: DesignFamilySummary[];
+  products: LinkedProduct[];
+}) {
+  return (
+    <div className="space-y-4">
+      {families.map((family) => {
+        const members = products.filter((p) => p.design === family.family);
+        return (
+          <div key={family.family} className="rounded-2xl border bg-white p-6">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 className="text-base font-semibold">
+                {family.label}
+                <span className="ml-2 text-sm font-normal text-muted">
+                  {family.count} product{family.count === 1 ? "" : "s"}
+                </span>
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {members.map((member) => (
+                  <a
+                    key={member.slug}
+                    href={member.url}
+                    className="rounded-full border px-2.5 py-0.5 text-[11px] font-medium transition hover:bg-brand-soft"
+                    style={{ borderColor: `${member.accent}44`, color: member.accent }}
+                  >
+                    {member.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">{family.rationale}</p>
+          </div>
+        );
+      })}
+    </div>
   );
 }

@@ -33,7 +33,7 @@ export default async function DashboardPage() {
   return (
     <>
       <Nav p={product} />
-      <main>
+      <main id="main-content">
         <Dashboard
           user={{ email: user.email, name: user.name }}
           usage={{

@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/einvoiceguard-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for eInvoiceGuard — Catch the e-invoice error before the portal rejects it",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "einvoiceguard"
+  ],
+  "homepage": "https://einvoiceguard.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/14-einvoiceguard/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-einvoiceguard-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

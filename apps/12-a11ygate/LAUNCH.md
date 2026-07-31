@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Paste your HTML, get every WCAG 2.2 failure and the EAA statement. HTML in, WCAG failures with fixes and a publishable accessibility statement out. Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report.
+> Paste your HTML, get every WCAG failure and the EAA statement. HTML in, WCAG failures with fixes and a publishable accessibility statement out. Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report.
 
 **Topics** — Accessibility compliance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -80,7 +80,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Browser extensions test a rendered page, so they cannot run in CI or on a component that is not deployed. This runs on source with no browser, maps findings to EN 301 549 as well as WCAG, and generates the accessibility statement — which is a legal deliverable, not a report.
 >
-> Built it because paste your HTML, get every WCAG 2.2 failure and the EAA statement is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because paste your HTML, get every WCAG failure and the EAA statement is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

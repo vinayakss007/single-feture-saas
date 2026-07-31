@@ -27,7 +27,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 > What is wrong with this electricity bill, in rupees. Bill line items in, slab errors and overcharges in rupees out. Every finding is a rupee number with a slab table cited. Not 'your bill seems high' — the exact arithmetic the discom used and where it departs from the tariff order.
 
-**Topics** — Home utilities, Artificial Intelligence, SaaS, Developer Tools, API
+**Topics** — Utilities & consumer rights, Artificial Intelligence, SaaS, Developer Tools, API
 
 **First comment** — post this immediately after the launch goes live
 

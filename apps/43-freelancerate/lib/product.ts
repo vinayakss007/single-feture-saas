@@ -1,6 +1,10 @@
 import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
+  // Category default is ledger. This is a decision tool a freelancer tries once; showing
+  // the inputs converts better than showing a schedule.
+  design: "split",
+
   slug: "freelancerate",
   name: "FreelanceRate",
   tagline: "What to charge per hour, based on what you actually need to earn",

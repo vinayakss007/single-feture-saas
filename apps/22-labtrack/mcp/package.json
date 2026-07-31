@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/labtrack-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for LabTrack — See which lab values are outside range, and which are moving",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "labtrack"
+  ],
+  "homepage": "https://labtrack.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/22-labtrack/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-labtrack-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

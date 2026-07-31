@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/petdose-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for PetDose — What your pet weighs and when each dose is due",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "petdose"
+  ],
+  "homepage": "https://petdose.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/39-petdose/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-petdose-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

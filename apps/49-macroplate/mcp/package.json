@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/macroplate-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for MacroPlate — Hit your protein target from Indian food you actually eat",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "macroplate"
+  ],
+  "homepage": "https://macroplate.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/49-macroplate/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-macroplate-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

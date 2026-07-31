@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/repurpose10-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Repurpose10 — One thing you wrote becomes ten platform-native posts",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "repurpose10"
+  ],
+  "homepage": "https://repurpose10.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/07-repurpose10/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-repurpose10-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

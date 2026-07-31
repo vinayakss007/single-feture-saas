@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Turn a vendor list into a subprocessor register with residency flags. Vendor list in, Article 30 register and subprocessor page out. Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them.
+> Your vendor list becomes the subprocessor register buyers ask for. Vendor list in, Article 30 register and subprocessor page out. Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them.
 
 **Topics** — Privacy compliance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -80,7 +80,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Subprocessor disclosure is now a standard questionnaire item, and answering 'we use AWS and a few tools' ends the conversation with procurement. This produces the register in the format buyers accept, and flags unknown vendors rather than dropping them.
 >
-> Built it because turn a vendor list into a subprocessor register with residency flags is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because your vendor list becomes the subprocessor register buyers ask for is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

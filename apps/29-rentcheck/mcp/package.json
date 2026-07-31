@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/rentcheck-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for RentCheck — Is this rent fair for this area, and what to negotiate",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "rentcheck"
+  ],
+  "homepage": "https://rentcheck.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/29-rentcheck/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-rentcheck-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

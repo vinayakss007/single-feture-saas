@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/schoolfee-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for SchoolFee — Compare school fees properly - total cost, not just tuition",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "schoolfee"
+  ],
+  "homepage": "https://schoolfee.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/35-schoolfee/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-schoolfee-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

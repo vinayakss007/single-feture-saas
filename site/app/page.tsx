@@ -1,6 +1,16 @@
 import { Nav } from "@/components/nav.tsx";
-import { ForAgents, Footer, Framework, Hero, Platform, ProductGrid, Section } from "@/components/sections.tsx";
+import {
+  DesignFamilies,
+  ForAgents,
+  Footer,
+  Framework,
+  Hero,
+  Platform,
+  ProductGrid,
+  Section,
+} from "@/components/sections.tsx";
 import { company, linkedProducts, platform } from "@/lib/links.ts";
+import { designFamilies } from "@/lib/catalog.generated.ts";
 
 export default function Home() {
   return (
@@ -13,7 +23,7 @@ export default function Home() {
         <Section
           id="products"
           eyebrow="The suite"
-          title="Ten products. Ten problems. No overlap."
+          title={`${linkedProducts.length} products. ${linkedProducts.length} problems. No overlap.`}
           subtitle="Each one is a separate product on its own domain, with its own free plan. Click any of them to go straight there — nothing here asks you to sign up first."
         >
           <ProductGrid products={linkedProducts} />
@@ -32,10 +42,19 @@ export default function Home() {
         <Section
           id="framework"
           eyebrow="How we build"
-          title="Four rules, applied to all ten without exception"
-          subtitle="Shipping ten products with a small team only works if they are built the same way. These are the constraints that make that possible — and each one is enforced by a test rather than by good intentions."
+          title={`Four rules, applied to all ${linkedProducts.length} without exception`}
+          subtitle="Shipping this many products with a small team only works if they are built the same way. These are the constraints that make that possible — and each one is enforced by a test rather than by good intentions."
         >
           <Framework repoUrl={company.repoUrl} />
+        </Section>
+
+        <Section
+          id="design"
+          eyebrow="Why they do not look alike"
+          title={`Eight design families across the ${linkedProducts.length}`}
+          subtitle="A payroll compliance tool and a child vaccination reminder should not feel like the same object. Each family changes the typeface, the surface, the density and the page composition — not the accent colour. Which one a product uses is decided by who reads it."
+        >
+          <DesignFamilies families={designFamilies} products={linkedProducts} />
         </Section>
 
         <Section

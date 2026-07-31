@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/policypack-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for PolicyPack — The SOC 2 policy set an auditor expects, from ten answers",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "policypack"
+  ],
+  "homepage": "https://policypack.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/16-policypack/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-policypack-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

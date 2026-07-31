@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/churnsignal-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for ChurnSignal — Paste a CSV, find out which customers are about to leave",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "churnsignal"
+  ],
+  "homepage": "https://churnsignal.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/02-churnsignal/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-churnsignal-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

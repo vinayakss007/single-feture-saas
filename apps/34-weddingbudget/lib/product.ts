@@ -1,6 +1,10 @@
 import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
+  // Category default is ledger. A couple planning a wedding is a consumer arriving from
+  // a search, not someone who wants a statement.
+  design: "brutalist",
+
   slug: "weddingbudget",
   name: "WeddingBudget",
   tagline: "What an Indian wedding actually costs, by category",

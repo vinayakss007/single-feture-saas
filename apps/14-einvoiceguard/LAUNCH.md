@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Validate an e-invoice payload before the portal rejects it. Invoice payload in, portal error codes and a corrected payload out. A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically.
+> Catch the e-invoice error before the portal rejects it. Invoice payload in, portal error codes and a corrected payload out. A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically.
 
 **Topics** — Finance automation, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -78,7 +78,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > A rejected e-invoice blocks a payment, and you find out after submitting. This is wrong in the same way the portal is wrong — real error codes, offline — and returns a corrected payload for everything fixable deterministically.
 >
-> Built it because validate an e-invoice payload before the portal rejects it is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because catch the e-invoice error before the portal rejects it is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

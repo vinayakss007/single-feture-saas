@@ -4,7 +4,7 @@
 
 Bill line items in, slab errors and overcharges in rupees out. One job, four surfaces: a marketing site, a working app, a REST endpoint and an MCP server.
 
-- **Category** — Home utilities
+- **Category** — Utilities & consumer rights
 - **Built for** — Anyone who suspects their electricity bill is wrong and wants the arithmetic before they complain
 - **Pricing** — Free · ₹499/mo · Enterprise custom
 - **Accent** — `#d97706`
@@ -51,7 +51,11 @@ Responses are `{ ok: true, data: RunResult }` or `{ ok: false, error: string }`.
 |---|---|---|
 | `/api/v1/run` | GET | Input schema, example payload and MCP tool metadata |
 | `/api/v1/run` | POST | Run the engine |
+| `/api/v1/openapi` | GET | OpenAPI 3.1 document, generated from the same input config |
+| `/api/v1/agents` | GET | Tool schemas for OpenAI, Anthropic, Gemini, LangChain and MCP |
+| `/.well-known/ai-plugin.json` | GET | Plugin manifest, so agent runtimes can discover this product |
 | `/api/health` | GET | Liveness, version and whether auth is enabled |
+| `/sitemap.xml`, `/robots.txt` | GET | Generated, and they list the sibling products |
 
 Auth is off when `API_KEYS` is unset — which is what you want for a launch-day demo. Set it before you charge.
 
@@ -72,7 +76,7 @@ Auth is off when `API_KEYS` is unset — which is what you want for a launch-day
 }
 ```
 
-Exposes one tool, `powerbill_audit_bill`. The tool schema is fetched from `GET /api/v1/run` at startup, so the agent-facing contract can never drift from the REST contract.
+Exposes one tool, `powerbill_audit`. The tool schema is fetched from `GET /api/v1/run` at startup, so the agent-facing contract can never drift from the REST contract.
 
 ## Deploy
 

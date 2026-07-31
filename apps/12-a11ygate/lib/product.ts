@@ -192,6 +192,8 @@ export const product: ProductConfig = {
     },
     {
       name: "organisation",
+      // The user's own organisation, named in the accessibility statement this generates.
+      autocomplete: "organization",
       label: "Organisation name",
       type: "text",
       placeholder: "Northwind Retail BV",

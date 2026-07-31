@@ -11,15 +11,44 @@
 - **[ROADMAP.md](./ROADMAP.md)** — the market research behind products 11–20. All ten are now built,
   each by writing only `lib/product.ts` and `lib/engine.ts` with no framework change.
 
-Each product ships six surfaces, so it can be sold to humans, to backends and to agents:
+Each product ships seven surfaces, so it can be sold to humans, to backends and to agents:
 
-1. a **marketing site** — hero, problem, features, pricing, FAQ
+1. a **marketing site** — hero, problem, features, pricing, FAQ, in one of eight design families
 2. a **working product** at `/app` — no signup, no API key, no empty state
 3. **accounts and billing** — signup, login, password reset, dashboard, Razorpay and Stripe checkout,
    metered quotas, API keys
 4. a **REST API** at `POST /api/v1/run` that publishes its own schema
-5. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/vinayakss007/aw-agent-fleet) can use it as a tool
-6. **monitoring** — `/api/health`, Prometheus `/api/metrics`, webhook alerts, a retention cron
+5. an **agent interface** — an OpenAPI 3.1 document at `/api/v1/openapi`, ready-to-paste tool schemas for
+   OpenAI, Anthropic, Gemini and LangChain at `/api/v1/agents`, a discovery manifest at
+   `/.well-known/ai-plugin.json`, and a publishable `@abetworks/<slug>-mcp` package
+6. an **MCP server** so Claude, Cursor or [Agent Fleet](https://github.com/vinayakss007/aw-agent-fleet) can use it as a tool
+7. **monitoring** — `/api/health`, Prometheus `/api/metrics`, webhook alerts, a retention cron
+
+Every one of those is generated from the same `lib/product.ts`, which is why the OpenAPI document, the
+MCP tool schema, the demo form and the request validator cannot disagree with each other.
+
+### Eight design families, not one template with fifty accent colours
+
+- **Ledger** (10) — InvoiceParse, GSTMatch, eInvoiceGuard, SubAudit, PaySlipIN, MediBillCheck, LoanTruth, PropertyTax, SchoolFee, EMICalc
+- **Brutalist** (9) — TripSplit, FlightRight, SolarPayback, PowerBill, RentCheck, RacePace, WeddingBudget, PackList, VisaDocs
+- **Editorial** (8) — ConsentScan, AIActNotice, PolicyPack, VendorTrace, ContractClock, RTIDraft, LegalNotice, EstateAdmin
+- **Clinical** (7) — LabTrack, VaxDue, NutriLabel, SleepDebt, PetDose, GrowthChart, MacroPlate
+- **Split** (5) — DealBrief, ColdAngle, ResumeATS, CarCost, FreelanceRate
+- **Bento** (4) — PricePulse, Repurpose10, AnswerReady, ExamPlan
+- **Terminal** (4) — PingDeck, PromptShield, A11yGate, DMARCFix
+- **Standard** (3) — ChurnSignal, CropCal, WaterLeak
+
+A family changes the typeface, the surface, the border weight, the density and the composition of the
+page — not the accent. Which one a product uses is derived from its category by `_template/lib/design.ts`,
+and can be overridden per product where the category reads the buyer wrongly.
+
+### It passes the accessibility audit it sells
+
+A11yGate sells WCAG 2.2 auditing, so `pnpm run a11y` runs its engine against our own rendered HTML —
+one product per design family, four pages each. It found real defects on its first run: eight products
+shipping white button text at as low as **2.94:1**, every table rendered without a `<caption>`, and a
+name field with no autofill token. All fifty now derive their button and text colours from the accent's
+luminance (`_template/lib/contrast.ts`), and the audit is a required CI step.
 
 Every product is independently deployable. Nothing is shared at runtime; everything is shared at
 build time via `_template/`, enforced by `pnpm sync:check`.
@@ -60,10 +89,10 @@ takes money. Same build throughout — no flags, no separate demo deployment.
 | [`24-loantruth`](apps/24-loantruth) | **LoanTruth** | Sanction letter terms in, true APR and amortisation out. | Personal finance | Free · ₹499/mo · Broker custom |
 | [`25-tripsplit`](apps/25-tripsplit) | **TripSplit** | Shared expenses in, minimal set of transfers out. | Travel money | Free · ₹299/mo · Teams custom |
 | [`26-flightright`](apps/26-flightright) | **FlightRight** | Flight disruption details in, entitlements and a claim letter out. | Travel rights | Free · ₹399/mo · Travel desk custom |
-| [`27-solarpayback`](apps/27-solarpayback) | **SolarPayback** | Monthly bill and rooftop area in, payback period and savings out. | Home energy | Free · ₹499/mo · Enterprise custom |
-| [`28-powerbill`](apps/28-powerbill) | **PowerBill** | Bill line items in, slab errors and overcharges in rupees out. | Home utilities | Free · ₹499/mo · Enterprise custom |
-| [`29-rentcheck`](apps/29-rentcheck) | **RentCheck** | Property details and quoted rent in, fair range and negotiation points out. | Housing | Free · ₹299/mo · Enterprise custom |
-| [`30-propertytax`](apps/30-propertytax) | **PropertyTax** | Property details and city in, tax computation with rates cited out. | Property | Free · ₹499/mo · Enterprise custom |
+| [`27-solarpayback`](apps/27-solarpayback) | **SolarPayback** | Monthly bill and rooftop area in, payback period and savings out. | Energy & sustainability | Free · ₹499/mo · Enterprise custom |
+| [`28-powerbill`](apps/28-powerbill) | **PowerBill** | Bill line items in, slab errors and overcharges in rupees out. | Utilities & consumer rights | Free · ₹499/mo · Enterprise custom |
+| [`29-rentcheck`](apps/29-rentcheck) | **RentCheck** | Property details and quoted rent in, fair range and negotiation points out. | Real estate & housing | Free · ₹299/mo · Enterprise custom |
+| [`30-propertytax`](apps/30-propertytax) | **PropertyTax** | Property details and city in, tax computation with rates cited out. | Real estate & compliance | Free · ₹499/mo · Enterprise custom |
 | [`31-nutrilabel`](apps/31-nutrilabel) | **NutriLabel** | Nutrition facts in, traffic-light breakdown and label honesty rating out. | Health & nutrition | Free · $19/mo · Enterprise custom |
 | [`32-sleepdebt`](apps/32-sleepdebt) | **SleepDebt** | Sleep log in, cumulative debt, severity, recovery plan, and tonight's bedtime out. | Health & wellness | Free · $9/mo · Enterprise custom |
 | [`33-racepace`](apps/33-racepace) | **RacePace** | Race distance and training data in, per-km pace plan with three strategies out. | Fitness & endurance | Free · $19/mo · Enterprise custom |
@@ -239,10 +268,10 @@ build and 42 tests all work without modification. The banner site picks it up fr
 | LoanTruth | `loantruth_analyse_loan` | `apps/24-loantruth/mcp/server.mjs` |
 | TripSplit | `tripsplit_settle_expenses` | `apps/25-tripsplit/mcp/server.mjs` |
 | FlightRight | `flightright_assess_claim` | `apps/26-flightright/mcp/server.mjs` |
-| SolarPayback | `solarpayback_analyse_roi` | `apps/27-solarpayback/mcp/server.mjs` |
-| PowerBill | `powerbill_audit_bill` | `apps/28-powerbill/mcp/server.mjs` |
-| RentCheck | `rentcheck_evaluate_rent` | `apps/29-rentcheck/mcp/server.mjs` |
-| PropertyTax | `propertytax_compute_tax` | `apps/30-propertytax/mcp/server.mjs` |
+| SolarPayback | `solar_payback_calculate` | `apps/27-solarpayback/mcp/server.mjs` |
+| PowerBill | `powerbill_audit` | `apps/28-powerbill/mcp/server.mjs` |
+| RentCheck | `rent_check_evaluate` | `apps/29-rentcheck/mcp/server.mjs` |
+| PropertyTax | `property_tax_calculate` | `apps/30-propertytax/mcp/server.mjs` |
 | NutriLabel | `nutrilabel_analyze_label` | `apps/31-nutrilabel/mcp/server.mjs` |
 | SleepDebt | `sleepdebt_analyze_log` | `apps/32-sleepdebt/mcp/server.mjs` |
 | RacePace | `racepace_plan_race` | `apps/33-racepace/mcp/server.mjs` |

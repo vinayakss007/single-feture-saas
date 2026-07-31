@@ -8,8 +8,9 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    # Twenty-one Next builds plus three integration runs against a real database.
-    timeout-minutes: 40
+    # Fifty Next builds, a smoke boot of each, an accessibility audit of eight of
+    # them, and three integration runs against a real database.
+    timeout-minutes: 60
 
     # A real Postgres, because the integration suite tests the things that only
     # break when everything is wired together. Mocking the database here would
@@ -50,6 +51,13 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # The catalogue drives the hub, the sibling cross-sell modules and the launch
+      # docs; lib/product.ts drives the product. Both carry name, tagline, accent,
+      # category and mcpTool, and they had silently disagreed on eighteen fields —
+      # including four MCP tool names the hub was advertising and no product exposed.
+      - name: Catalogue agrees with the products
+        run: pnpm run check:catalog
+
       # Fails if any product has drifted from _template/. This is what makes the
       # framework a standard rather than a suggestion.
       - name: Framework is in sync
@@ -76,6 +84,13 @@ jobs:
       # mcp/server.mjs — the one surface nothing else covered.
       - name: MCP protocol
         run: pnpm run mcp
+
+      # We sell WCAG auditing. This runs A11yGate's own engine against the rendered
+      # HTML of one product per design family, four pages each, and fails on any
+      # finding. It is the check that caught white button text at 2.94:1 on eight
+      # products and missing <caption> on every table we render.
+      - name: Accessibility (our own engine, our own pages)
+        run: pnpm run a11y
 
       - name: Schema is idempotent
         run: node scripts/db-apply.mjs --twice

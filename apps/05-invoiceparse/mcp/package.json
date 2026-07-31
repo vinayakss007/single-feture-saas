@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/invoiceparse-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for InvoiceParse — Turn any invoice into clean data — and catch the GST errors",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "invoiceparse"
+  ],
+  "homepage": "https://invoiceparse.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/05-invoiceparse/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-invoiceparse-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

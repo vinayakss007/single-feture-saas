@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/estateadmin-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for EstateAdmin — What has to happen after someone dies, in what order",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "estateadmin"
+  ],
+  "homepage": "https://estateadmin.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/47-estateadmin/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-estateadmin-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

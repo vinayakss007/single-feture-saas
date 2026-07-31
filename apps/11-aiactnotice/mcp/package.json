@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/aiactnotice-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for AIActNotice — The EU AI Act notice your product legally needs, in one minute",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "aiactnotice"
+  ],
+  "homepage": "https://aiactnotice.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/11-aiactnotice/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-aiactnotice-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

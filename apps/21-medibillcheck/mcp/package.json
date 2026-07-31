@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/medibillcheck-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for MediBillCheck — Find the errors in a hospital bill before you pay it",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "medibillcheck"
+  ],
+  "homepage": "https://medibillcheck.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/21-medibillcheck/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-medibillcheck-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

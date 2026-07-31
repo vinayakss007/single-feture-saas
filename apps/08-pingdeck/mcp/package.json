@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/pingdeck-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for PingDeck — The three outages nobody monitors, checked in one place",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "pingdeck"
+  ],
+  "homepage": "https://pingdeck.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/08-pingdeck/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-pingdeck-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/loantruth-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for LoanTruth — The real interest rate on your loan, not the one you were quoted",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "loantruth"
+  ],
+  "homepage": "https://loantruth.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/24-loantruth/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-loantruth-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

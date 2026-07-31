@@ -7,7 +7,7 @@ State, religion, assets, will status, and heir details in, chronological checkli
 - **Category** — Legal tools
 - **Built for** — Families dealing with bereavement, estate planners, advocates, CA firms, NRIs managing Indian estates
 - **Pricing** — Free · $9/mo · Enterprise custom
-- **Accent** — `#dc2626`
+- **Accent** — `#450a0a`
 
 ## Why it exists
 
@@ -51,7 +51,11 @@ Responses are `{ ok: true, data: RunResult }` or `{ ok: false, error: string }`.
 |---|---|---|
 | `/api/v1/run` | GET | Input schema, example payload and MCP tool metadata |
 | `/api/v1/run` | POST | Run the engine |
+| `/api/v1/openapi` | GET | OpenAPI 3.1 document, generated from the same input config |
+| `/api/v1/agents` | GET | Tool schemas for OpenAI, Anthropic, Gemini, LangChain and MCP |
+| `/.well-known/ai-plugin.json` | GET | Plugin manifest, so agent runtimes can discover this product |
 | `/api/health` | GET | Liveness, version and whether auth is enabled |
+| `/sitemap.xml`, `/robots.txt` | GET | Generated, and they list the sibling products |
 
 Auth is off when `API_KEYS` is unset — which is what you want for a launch-day demo. Set it before you charge.
 

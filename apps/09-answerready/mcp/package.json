@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/answerready-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for AnswerReady — Find out whether AI search can actually read your site",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "answerready"
+  ],
+  "homepage": "https://answerready.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/09-answerready/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-answerready-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

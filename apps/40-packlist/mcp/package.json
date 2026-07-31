@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/packlist-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for PackList — The packing list for this trip, this weather, this many days",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "packlist"
+  ],
+  "homepage": "https://packlist.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/40-packlist/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-packlist-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/vendortrace-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for VendorTrace — Your vendor list becomes the subprocessor register buyers ask for",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "vendortrace"
+  ],
+  "homepage": "https://vendortrace.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/17-vendortrace/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-vendortrace-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

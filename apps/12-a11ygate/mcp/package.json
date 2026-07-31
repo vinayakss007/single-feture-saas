@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/a11ygate-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for A11yGate — Paste your HTML, get every WCAG failure and the EAA statement",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "a11ygate"
+  ],
+  "homepage": "https://a11ygate.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/12-a11ygate/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-a11ygate-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

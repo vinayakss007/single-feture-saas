@@ -7,7 +7,7 @@ Passport country, destination, visa type, and documents already held in, complet
 - **Category** — Travel tools
 - **Built for** — Visa applicants, travel agents, immigration consultants, corporate travel managers, students
 - **Pricing** — Free · $9/mo · Enterprise custom
-- **Accent** — `#854d0e`
+- **Accent** — `#422006`
 
 ## Why it exists
 
@@ -51,7 +51,11 @@ Responses are `{ ok: true, data: RunResult }` or `{ ok: false, error: string }`.
 |---|---|---|
 | `/api/v1/run` | GET | Input schema, example payload and MCP tool metadata |
 | `/api/v1/run` | POST | Run the engine |
+| `/api/v1/openapi` | GET | OpenAPI 3.1 document, generated from the same input config |
+| `/api/v1/agents` | GET | Tool schemas for OpenAI, Anthropic, Gemini, LangChain and MCP |
+| `/.well-known/ai-plugin.json` | GET | Plugin manifest, so agent runtimes can discover this product |
 | `/api/health` | GET | Liveness, version and whether auth is enabled |
+| `/sitemap.xml`, `/robots.txt` | GET | Generated, and they list the sibling products |
 
 Auth is off when `API_KEYS` is unset — which is what you want for a launch-day demo. Set it before you charge.
 

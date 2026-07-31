@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/coldangle-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for ColdAngle — Cold email openers that prove you actually did the research",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "coldangle"
+  ],
+  "homepage": "https://coldangle.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/06-coldangle/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-coldangle-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

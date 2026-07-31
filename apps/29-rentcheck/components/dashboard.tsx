@@ -248,8 +248,8 @@ export function Dashboard(props: DashboardProps) {
                     key={u.code}
                     onClick={() => startCheckout(u.code)}
                     disabled={busy === `upgrade:${u.code}`}
-                    className="w-full rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
-                    style={{ background: props.accent }}
+                    className="w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
+                    style={{ background: "var(--accent)", color: "var(--on-accent)" }}
                   >
                     {busy === `upgrade:${u.code}` ? "Opening checkout…" : `Upgrade to ${u.name} — ${u.price}`}
                   </button>
@@ -301,8 +301,8 @@ export function Dashboard(props: DashboardProps) {
               <button
                 type="submit"
                 disabled={busy === "key"}
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
-                style={{ background: props.accent }}
+                className="rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
+                style={{ background: "var(--accent)", color: "var(--on-accent)" }}
               >
                 {busy === "key" ? "Creating…" : "Create key"}
               </button>

@@ -99,7 +99,7 @@ export function Runner({ p }: { p: ProductConfig }) {
                 onClick={() => setMode(m)}
                 aria-pressed={mode === m}
                 className="rounded-md px-2.5 py-1 transition"
-                style={mode === m ? { background: p.accent, color: "#fff" } : undefined}
+                style={mode === m ? { background: p.accent, color: "var(--on-accent)" } : undefined}
               >
                 {m === "guided" ? "One at a time" : "All fields"}
               </button>
@@ -149,6 +149,7 @@ export function Runner({ p }: { p: ProductConfig }) {
 
                   {field.type === "textarea" ? (
                     <textarea
+                      autoComplete={field.autocomplete}
                       id={field.name}
                       name={field.name}
                       rows={field.rows ?? 8}
@@ -176,6 +177,7 @@ export function Runner({ p }: { p: ProductConfig }) {
                     </select>
                   ) : (
                     <input
+                      autoComplete={field.autocomplete}
                       id={field.name}
                       name={field.name}
                       type="text"
@@ -193,8 +195,8 @@ export function Runner({ p }: { p: ProductConfig }) {
             <button
               type="submit"
               disabled={busy}
-              className="mt-7 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
-              style={{ background: "var(--accent)" }}
+              className="mt-7 w-full rounded-xl px-4 py-3 text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
+              style={{ background: "var(--accent)", color: "var(--on-accent)" }}
             >
               {busy ? "Running…" : `Run ${p.name}`}
             </button>

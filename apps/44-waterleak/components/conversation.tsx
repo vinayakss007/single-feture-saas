@@ -204,8 +204,8 @@ export function Conversation({
             type="button"
             onClick={advance}
             disabled={busy}
-            className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
-            style={{ background: accent }}
+            className="rounded-xl px-5 py-2.5 text-sm font-semibold transition hover:opacity-90 disabled:opacity-60"
+            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
           >
             {step.kind === "review" ? (busy ? "Running…" : `Run ${productName}`) : "Continue"}
           </button>
@@ -310,7 +310,7 @@ function QuestionStep({
                   <span
                     aria-hidden
                     className="grid size-6 shrink-0 place-items-center rounded-md border text-[11px] font-semibold"
-                    style={selected ? { background: accent, color: "#fff", borderColor: accent } : undefined}
+                    style={selected ? { background: accent, color: "var(--on-accent)", borderColor: accent } : undefined}
                   >
                     {i + 1}
                   </span>
@@ -321,6 +321,7 @@ function QuestionStep({
           </div>
         ) : field.type === "textarea" ? (
           <textarea
+            autoComplete={field.autocomplete}
             id={field.name}
             ref={inputRef as React.Ref<HTMLTextAreaElement>}
             rows={Math.min(field.rows ?? 8, 14)}
@@ -331,6 +332,7 @@ function QuestionStep({
           />
         ) : (
           <input
+            autoComplete={field.autocomplete}
             id={field.name}
             ref={inputRef as React.Ref<HTMLInputElement>}
             type="text"

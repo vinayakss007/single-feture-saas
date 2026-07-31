@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/flightright-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for FlightRight — What the airline actually owes you, and the letter to claim it",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "flightright"
+  ],
+  "homepage": "https://flightright.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/26-flightright/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-flightright-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

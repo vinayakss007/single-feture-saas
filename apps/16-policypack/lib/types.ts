@@ -6,6 +6,10 @@
  * one UI, one REST endpoint and one MCP server serve all ten products.
  */
 
+import type { DesignFamily } from "./design.ts";
+
+export type { DesignFamily };
+
 export type InputField = {
   name: string;
   label: string;
@@ -15,6 +19,21 @@ export type InputField = {
   options?: string[];
   help?: string;
   rows?: number;
+  /**
+   * HTML autofill token, e.g. "name", "email", "organization", "postal-code".
+   *
+   * Required by WCAG 1.3.5 for any field that collects information *about the user* —
+   * our own A11yGate engine flags a missing one, and it found exactly this gap in
+   * LabTrack's name field.
+   *
+   * Deliberately explicit rather than inferred from the field name, because inference
+   * gets it actively wrong. ColdAngle asks for a "Prospect company" and PackList asks
+   * for the traveller's gender; auto-filling the user's own employer or profile into
+   * those is worse than leaving the token off. VaxDue's date of birth belongs to a
+   * child, so `bday` would offer the parent's. A token is only correct when the answer
+   * really is the person filling the form in, and only a person can decide that.
+   */
+  autocomplete?: string;
 };
 
 export type PricingTier = {
@@ -41,6 +60,15 @@ export type PricingTier = {
 export type ProductConfig = {
   /** url-safe id, matches the folder name suffix */
   slug: string;
+  /**
+   * Which of the eight design families in `lib/design.ts` renders this product.
+   *
+   * Left unset it is derived from `category`, which is the normal case — the
+   * mapping in `CATEGORY_DESIGN` already encodes a deliberate choice per category.
+   * Set it explicitly only to disagree with that default for one product, e.g. a
+   * money product whose buyer is a consumer rather than a bookkeeper.
+   */
+  design?: DesignFamily;
   name: string;
   /** short Product Hunt style tagline, <= 60 chars */
   tagline: string;

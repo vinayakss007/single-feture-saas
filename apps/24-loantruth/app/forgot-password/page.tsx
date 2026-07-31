@@ -11,7 +11,7 @@ export default function ForgotPasswordPage() {
   return (
     <>
       <Nav p={product} />
-      <main className="accent-fade px-5 py-20">
+      <main id="main-content" className="accent-fade px-5 py-20">
         <AuthForm mode="forgot" accountsEnabled={dbAvailable()} />
       </main>
       <Footer p={product} />

@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/resumeats-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for ResumeATS — What an ATS actually sees in your resume",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "resumeats"
+  ],
+  "homepage": "https://resumeats.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/36-resumeats/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-resumeats-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

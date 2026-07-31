@@ -72,6 +72,9 @@ export function Nav({
             <a href="#framework" className="rounded-lg px-3 py-2 font-medium text-muted transition hover:text-ink">
               How we build
             </a>
+            <a href="#design" className="rounded-lg px-3 py-2 font-medium text-muted transition hover:text-ink">
+              Design
+            </a>
             <a href="#agents" className="rounded-lg px-3 py-2 font-medium text-muted transition hover:text-ink">
               For agents
             </a>

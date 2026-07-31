@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Paste your SPF, DKIM and DMARC records and get the corrected ones. Email auth records in, lookup count, failures and corrected records out. SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI.
+> Paste your SPF, DKIM and DMARC — get the corrected records. Email auth records in, lookup count, failures and corrected records out. SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI.
 
 **Topics** — Email deliverability, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -82,7 +82,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > SPF breaks silently at ten DNS lookups — permerror, no error anywhere an operator would look. This counts them from pasted records, so you can test a change before publishing it and run the check in CI.
 >
-> Built it because paste your SPF, DKIM and DMARC records and get the corrected ones is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because paste your SPF, DKIM and DMARC — get the corrected records is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 

@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/sleepdebt-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for SleepDebt — How much sleep you owe yourself, and when to repay it",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "sleepdebt"
+  ],
+  "homepage": "https://sleepdebt.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/32-sleepdebt/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-sleepdebt-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

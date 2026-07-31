@@ -12,7 +12,7 @@ export default function AppPage() {
   return (
     <>
       <Nav p={product} />
-      <main className="mx-auto max-w-6xl px-5 py-14">
+      <main id="main-content" className="mx-auto max-w-6xl px-5 py-14">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--accent)" }}>
             Live demo

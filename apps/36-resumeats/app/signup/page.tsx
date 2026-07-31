@@ -18,7 +18,7 @@ export default async function SignupPage() {
   return (
     <>
       <Nav p={product} />
-      <main className="accent-fade px-5 py-20">
+      <main id="main-content" className="accent-fade px-5 py-20">
         <AuthForm mode="signup" accountsEnabled={dbAvailable()} />
         <p className="mx-auto mt-6 max-w-md text-center text-sm text-muted">
           The free plan includes {formatQuota(PLANS.free.monthlyRuns)} runs a month. No card, and nothing is charged

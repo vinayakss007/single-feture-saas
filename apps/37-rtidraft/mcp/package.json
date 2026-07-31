@@ -1,0 +1,31 @@
+{
+  "name": "@abetworks/rtidraft-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for RTIDraft — The RTI application that gets answered, not ignored",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "tool",
+    "rtidraft"
+  ],
+  "homepage": "https://rtidraft.abetworks.in",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinayakss007/single-feture-saas.git",
+    "directory": "apps/37-rtidraft/mcp"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "abetworks-rtidraft-mcp": "./server.mjs"
+  },
+  "main": "./server.mjs",
+  "files": [
+    "server.mjs"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {}
+}

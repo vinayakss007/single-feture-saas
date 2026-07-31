@@ -1,6 +1,10 @@
 import type { ProductConfig } from "./types.ts";
 
 export const product: ProductConfig = {
+  // Category default is ledger. The value is in seeing what it asks for — two cars and a
+  // mileage — so the form belongs above the fold.
+  design: "split",
+
   slug: "carcost",
   name: "CarCost",
   tagline: "The real cost of owning this car, not just the EMI",

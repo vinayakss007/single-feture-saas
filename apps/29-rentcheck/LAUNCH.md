@@ -27,7 +27,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 > Is this rent fair for this area, and what to negotiate. Property details and quoted rent in, fair range and negotiation points out. Not a listing site — a second opinion on the number someone quoted you, with the specific points to negotiate on and the clauses to add to the agreement.
 
-**Topics** — Housing, Artificial Intelligence, SaaS, Developer Tools, API
+**Topics** — Real estate & housing, Artificial Intelligence, SaaS, Developer Tools, API
 
 **First comment** — post this immediately after the launch goes live
 

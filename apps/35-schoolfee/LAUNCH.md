@@ -25,7 +25,7 @@ Everything needed to ship this on Product Hunt, Hacker News and Reddit. Copy is 
 
 **Description**
 
-> Compare school fees properly — total cost, not just tuition. Fee structures for up to 3 schools in, true total cost comparison with inflation projection out. Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to.
+> Compare school fees properly - total cost, not just tuition. Fee structures for up to 3 schools in, true total cost comparison with inflation projection out. Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to.
 
 **Topics** — Personal finance, Artificial Intelligence, SaaS, Developer Tools, API
 
@@ -71,7 +71,7 @@ Pick one subreddit and read its self-promotion rules first. Most ban it outright
 >
 > Not a school directory — a financial comparison that adds every hidden fee, projects what you will actually pay by Class 12, and shows what investing the difference could grow to.
 >
-> Built it because compare school fees properly — total cost, not just tuition is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
+> Built it because compare school fees properly - total cost, not just tuition is something I kept doing by hand. Free tier, no signup, nothing stored. Genuinely interested in whether the approach holds up on your data — happy to be told it does not.
 
 ## Launch-day post for X and LinkedIn
 
